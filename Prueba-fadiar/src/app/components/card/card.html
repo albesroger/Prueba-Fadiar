@@ -1,0 +1,187 @@
+<!-- VERTICAL (Figma original) -->
+<article
+  *ngIf="layout === 'vertical'; else horizontalCard"
+  class="w-[250px] h-[557px] p-[16px] rounded-[16px] border border-[#E0E0E0] bg-white box-border flex flex-col gap-[32px]"
+>
+  <!-- Imagen -->
+  <div class="w-full flex justify-center items-start">
+    <img
+      [src]="image"
+      [alt]="name"
+      class="max-w-full max-h-[260px] object-contain"
+    />
+  </div>
+
+  <!-- Info -->
+  <div class="flex flex-col gap-[8px]">
+    <p class="text-[14px] text-[#9E9E9E]">
+      {{ category }}
+    </p>
+
+    <h3 class="text-[18px] font-bold text-[#002855] leading-snug">
+      {{ name }}
+    </h3>
+
+    <p class="text-[16px] text-[#002855]">
+      Marca {{ brand }}
+    </p>
+
+    <p class="text-[14px] text-[#E0AA12] mt-[8px]">
+      {{ warranty }}
+    </p>
+
+    <p class="flex items-baseline gap-[6px] mt-[12px]">
+      <span class="text-[22px] font-bold text-[#002855]">
+        $ {{ price }}
+      </span>
+      <span class="text-[16px] text-[#002855]">USD</span>
+    </p>
+  </div>
+
+  <!-- Footer (cantidad + carrito) -->
+  <div class="mt-auto flex items-center justify-between">
+    <!-- Cantidad -->
+    <div
+      class="flex items-center justify-between gap-[16px] px-[18px] py-[10px] rounded-[24px] border border-[#E0E0E0]"
+    >
+      <button
+        type="button"
+        class="border-none bg-transparent text-[18px] text-[#E0AA12] cursor-pointer"
+        (click)="decrease()"
+      >
+        −
+      </button>
+
+      <span class="text-[16px] text-[#002855]">
+        {{ quantity }}
+      </span>
+
+      <button
+        type="button"
+        class="border-none bg-transparent text-[18px] text-[#E0AA12] cursor-pointer"
+        (click)="increase()"
+      >
+        +
+      </button>
+    </div>
+
+    <!-- Carrito -->
+    <button
+      type="button"
+      class="w-[80px] h-[48px] rounded-[16px] border border-[#002855] bg-white flex items-center justify-center cursor-pointer"
+    >
+      <svg class="w-[24px] h-[24px]" viewBox="0 0 24 24" aria-hidden="true">
+        <path
+          d="M7 4h-2l-1 2v2h2l2.5 9h9l2.5-9h2v-2h-3"
+          fill="none"
+          stroke="#002855"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <circle cx="10" cy="20" r="1.2" fill="#002855" />
+        <circle cx="17" cy="20" r="1.2" fill="#002855" />
+      </svg>
+    </button>
+  </div>
+</article>
+
+
+<!-- HORIZONTAL -->
+<ng-template #horizontalCard>
+  <article
+    class="w-[520px] h-[268px] p-[16px] rounded-[16px] border border-[#E0E0E0] bg-white box-border flex flex-row items-center gap-[24px]"
+  >
+    <!-- Imagen izquierda -->
+    <div class="w-[220px] h-full flex items-center justify-center">
+      <img
+        [src]="image"
+        [alt]="name"
+        class="max-w-[220px] max-h-[180px] object-contain"
+      />
+    </div>
+
+    <!-- Columna derecha: info + controles -->
+    <div class="flex-1 h-full flex flex-col justify-between">
+      <!-- Info -->
+      <div class="flex flex-col gap-[4px]">
+        <p class="text-[14px] text-[#9E9E9E]">
+          {{ category }}
+        </p>
+
+        <h3 class="text-[18px] font-bold text-[#002855] leading-snug">
+          {{ name }}
+        </h3>
+
+        <p class="text-[16px] text-[#002855]">
+          Marca {{ brand }}
+        </p>
+
+        <p class="text-[14px] text-[#E0AA12] mt-[4px]">
+          {{ warranty }}
+        </p>
+
+        <p class="flex items-baseline gap-[6px] mt-[8px]">
+          <span class="text-[22px] font-bold text-[#002855]">
+            $ {{ price }}
+          </span>
+          <span class="text-[16px] text-[#002855]">
+            USD
+          </span>
+        </p>
+      </div>
+
+      <!-- Controles abajo -->
+      <div class="mt-[8px] flex items-center justify-between">
+        <!-- Cantidad -->
+        <div
+          class="flex items-center justify-between gap-[16px] px-[24px] py-[10px] rounded-[24px] border border-[#E0E0E0]"
+        >
+          <button
+            type="button"
+            class="border-none bg-transparent text-[18px] text-[#E0AA12] cursor-pointer"
+            (click)="decrease()"
+          >
+            −
+          </button>
+
+          <span class="text-[16px] text-[#002855]">
+            {{ quantity }}
+          </span>
+
+          <button
+            type="button"
+            class="border-none bg-transparent text-[18px] text-[#E0AA12] cursor-pointer"
+            (click)="increase()"
+          >
+            +
+          </button>
+        </div>
+
+        <!-- Botón carrito -->
+        <button
+          type="button"
+          class="w-[80px] h-[48px] rounded-[16px] border border-[#002855] bg-white flex items-center justify-center cursor-pointer"
+        >
+          <svg
+            class="w-[24px] h-[24px]"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path
+              d="M7 4h-2l-1 2v2h2l2.5 9h9l2.5-9h2v-2h-3"
+              fill="none"
+              stroke="#002855"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <circle cx="10" cy="20" r="1.2" fill="#002855" />
+            <circle cx="17" cy="20" r="1.2" fill="#002855" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </article>
+</ng-template>
+

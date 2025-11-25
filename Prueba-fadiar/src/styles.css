@@ -1,2 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
 @import "tailwindcss";
+
+@theme {
+  --color-primary: #022954; /* Azul */
+  --color-accent: #d69f04; /* Dorado */
+  --color-background: #ffffff; /* Fondo claro */
+  --color-background-soft: #e1dee9; /* Tarjetas/secciones */
+  --color-background-dark: #1e1e1e; /* Fondo oscuro */
+  --color-text-muted: #777777; /* Gris opaco;*/
+  --color-desactivate: #9fa9aa; /* plaesholder buscar*/
+  --color-deafuera: #d9d9d9;
+  --font-sans: "Inter", system-ui, sans-serif;
+}
