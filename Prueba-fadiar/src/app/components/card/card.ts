@@ -1,17 +1,19 @@
+import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-product-card',
-  standalone: true,
+  imports: [CommonModule],
   templateUrl: './card.html',
 })
 export class ProductCardComponent {
-  @Input() image: string = '';
-  @Input() category: string = '';
+  @Input() img: string = '';
+  @Input() categoria: { id: number; name: string; id_padre: number }[] = [];
   @Input() name: string = '';
   @Input() brand: string = '';
   @Input() price: number = 0;
-  @Input() warranty: string = 'Garantía 1 Año';
+  @Input() warranty: number = 0;
+  @Input() layout: 'vertical' | 'horizontal' = 'vertical';
 
   quantity = 1;
 

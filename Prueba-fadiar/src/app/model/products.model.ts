@@ -16,7 +16,7 @@ export interface Product {
   commission: number;
   count: number;
   specs: [{ id: number; name: string; description: string }];
-  categoria: [{ id: number; name: string; id_padre: number | null }];
+  categoria: [{ id: number; name: string; id_padre: number }];
   size: [
     {
       id: number;
