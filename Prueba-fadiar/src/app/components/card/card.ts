@@ -22,7 +22,6 @@ export class ProductCardComponent {
   @Input() price: number = 0;
   @Input() warranty: number = 0;
   @Input() layout: 'vertical' | 'horizontal' = 'vertical';
-
   quantity = 1;
 
   increase() {

@@ -43,4 +43,12 @@ export class OfertasSeccion implements OnInit {
   getLayout(index: number): 'vertical' | 'horizontal' {
     return this.isDoubleSpan(index) ? 'horizontal' : 'vertical';
   }
+
+  getMedidas(index: number): { altura: number; ancho: number } {
+    if (this.getLayout(index) === 'horizontal') {
+      return { altura: 268, ancho: 520 }; // Ejemplo de medidas para horizontal
+    } else {
+      return { altura: 556, ancho: 250 }; // Ejemplo de medidas para vertical
+    }
+  }
 }

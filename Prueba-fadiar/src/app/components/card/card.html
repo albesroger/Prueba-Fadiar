@@ -1,10 +1,10 @@
 <!-- VERTICAL (Figma original) -->
 <article
   *ngIf="layout === 'vertical'; else horizontalCard"
-  class="w-[250px] h-[500px] p-3 rounded-2xl border border-[#E0E0E0] bg-white box-border flex flex-col"
+  class="w-[250px] h-[500px] p-3 rounded-2xl border border-deafuera bg-white box-border flex flex-col"
 >
   <!-- Imagen -->
-  <div class="w-full flex justify-center items-start">
+  <div class="w-full flex justify-center items-start h-60 overflow-hidden">
     <img
       [src]="`https://app.fadiar.com:444/prueba/api/${img}`"
       [alt]="name"
@@ -14,19 +14,27 @@
 
   <!-- Info -->
   <div class="flex flex-col gap-2">
-    <p class="text-[14px] text-[#9E9E9E]">{{categoria.name }}</p>
+    <div class="h-5">
+      <p class="text-[14px] text-[#9E9E9E]">{{categoria.name }}</p>
+    </div>
 
-    <h3 class="text-[18px] font-bold text-primary leading-snug">{{ name }}</h3>
+    <div class="h-10">
+      <h3 class="text-[18px] font-bold text-primary leading-snug">
+        {{ name }}
+      </h3>
+    </div>
 
-    <p class="text-[16px] text-primary">Marca {{ brand }}</p>
+    <div class="h-5">
+      <p class="text-[16px] text-primary">Marca {{ brand }}</p>
+    </div>
 
-    <div class="flex gap-1">
+    <div class="flex gap-1 h-5">
       <p class="text-[14px] text-accent mt-2">Garantía de</p>
       <p class="text-[14px] text-accent mt-2">{{ warranty }}</p>
       <p class="text-[14px] text-accent mt-2">Días</p>
     </div>
 
-    <p class="flex items-baseline gap-1 mt-3">
+    <p class="flex items-baseline gap-1 mt-3 h-5">
       <span class="text-[22px] font-bold text-primary"> $ {{ price }} </span>
       <span class="text-[22px] text-primary">USD</span>
     </p>
@@ -118,7 +126,7 @@
 <!-- HORIZONTAL -->
 <ng-template #horizontalCard>
   <article
-    class="w-[500px] p-3 pl-5 rounded-2xl border border-[#E0E0E0] bg-white box-border flex flex-row items-center gap-6"
+    class="w-[500px] p-3 pl-5 rounded-2xl border border-deafuera bg-white box-border flex flex-row items-center gap-6"
   >
     <!-- Imagen izquierda -->
     <div class="w-[220px] h-full flex items-center justify-center">
