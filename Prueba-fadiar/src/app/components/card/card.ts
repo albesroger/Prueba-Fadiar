@@ -8,7 +8,15 @@ import { Component, Input } from '@angular/core';
 })
 export class ProductCardComponent {
   @Input() img: string = '';
-  @Input() categoria: { id: number; name: string; id_padre: number }[] = [];
+  @Input() categoria: {
+    id: number | null;
+    name: string | null;
+    id_padre: number | null;
+  } = {
+    id: null,
+    name: null,
+    id_padre: null,
+  };
   @Input() name: string = '';
   @Input() brand: string = '';
   @Input() price: number = 0;

@@ -8,13 +8,13 @@
     <img
       [src]="`https://app.fadiar.com:444/prueba/api/${img}`"
       [alt]="name"
-      class="max-w-full max-h-[260px] object-contain rounded-2xl"
+      class="max-w-full max-h-[260px] object-center rounded-2xl"
     />
   </div>
 
   <!-- Info -->
   <div class="flex flex-col gap-2">
-    <p class="text-[14px] text-[#9E9E9E]">{{categoria }}</p>
+    <p class="text-[14px] text-[#9E9E9E]">{{categoria.name }}</p>
 
     <h3 class="text-[18px] font-bold text-primary leading-snug">{{ name }}</h3>
 
@@ -118,7 +118,7 @@
 <!-- HORIZONTAL -->
 <ng-template #horizontalCard>
   <article
-    class="w-[500px] h-[250px] p-3 pl-5 rounded-2xl border border-[#E0E0E0] bg-white box-border flex flex-row items-center gap-6"
+    class="w-[500px] p-3 pl-5 rounded-2xl border border-[#E0E0E0] bg-white box-border flex flex-row items-center gap-6"
   >
     <!-- Imagen izquierda -->
     <div class="w-[220px] h-full flex items-center justify-center">
@@ -133,7 +133,7 @@
     <div class="flex-1 h-full flex flex-col justify-between">
       <!-- Info -->
       <div class="flex flex-col gap-1">
-        <p class="text-[14px] text-[#9E9E9E]">{{ categoria }}</p>
+        <p class="text-[14px] text-[#9E9E9E]">{{ categoria.name }}</p>
 
         <h3 class="text-[18px] font-bold text-primary leading-snug">
           {{ name }}
