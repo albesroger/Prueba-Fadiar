@@ -1,105 +1,56 @@
-<!-- BLOQUE AZUL -->
-<div
-  class="relative bg-primary text-white flex h-[440px] space-x-8 flex-col lg:flex-row items-stretch pt-10 pb-24"
->
-  <!-- LADO IZQUIERDO: TEXTO + CONTADOR -->
+<!-- BLOQUE AZUL CON IMAGEN DE FONDO -->
+<div class="relative h-[600px] mb-10 ">
+  <!-- Imagen de fondo -->
+  <img
+    src="assets/images/proximamente.png"
+    alt="Motos eléctricas"
+    class="absolute inset-0 w-full h-full object-cover drop-shadow-2xl"
+  />
+
+  <!-- CONTENIDO ENCIMA (z-10) -->
   <div
-    class="w-full lg:w-1/2 px-6 lg:px-10 flex flex-col ml-20 justify-center gap-6"
+    class="relative z-10 text-white flex flex-col lg:flex-row top-25 items-center pt-10 pb-24 space-x-8"
   >
-    <!-- DEBUG: indicador visible para comprobar renderizado -->
-    <div class="mb-2 px-2 py-1 bg-white text-black rounded text-sm">
-      DEBUG: coming-soon cargado
-    </div>
-    <div class="space-y-2">
-      <p class="text-3xl lg:text-5xl font-bold leading-tight">
-        <span class="text-accent">Próximamente</span><br />
-        en nuestra Tienda
-      </p>
-    </div>
+    <!-- LADO IZQUIERDO: TEXTO + CONTADOR -->
+    <div
+      class="w-full lg:w-1/2 px-6 lg:px-10 flex flex-col ml-20 justify-center gap-6"
+    >
+      <div class="space-y-1">
+        <p class="text-3xl lg:text-5xl font-bold leading-tight text-accent">
+          Próximamente
+        </p>
+        <p class="text-3xl lg:text-5xl font-bold leading-tight text-white">
+          en nuestra Tienda
+        </p>
+      </div>
 
-    <!-- CONTADOR -->
-    <div class="flex flex-wrap gap-3 mt-4">
-      <div
-        class="flex flex-col items-center justify-center w-20 h-20 rounded-lg bg-background-dark text-center"
-      >
-        <span class="text-xl font-semibold">{{ time.days }}</span>
-        <span class="text-[11px] text-accent">días</span>
-      </div>
-      <div
-        class="flex flex-col items-center justify-center w-20 h-20 rounded-lg bg-background-dark text-center"
-      >
-        <span class="text-xl font-semibold">{{ time.hours }}</span>
-        <span class="text-[11px] text-accent">horas</span>
-      </div>
-      <div
-        class="flex flex-col items-center justify-center w-20 h-20 rounded-lg bg-background-dark text-center"
-      >
-        <span class="text-xl font-semibold">{{ time.minutes }}</span>
-        <span class="text-[11px] text-accent">minutos</span>
-      </div>
-      <div
-        class="flex flex-col items-center justify-center w-20 h-20 rounded-lg bg-background-dark text-center"
-      >
-        <span class="text-xl font-semibold">{{ time.seconds }}</span>
-        <span class="text-[11px] text-accent">segundos</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- LADO DERECHO: MOTOS -->
-  <div class="relative w-full lg:w-1/2">
-    <!-- Bandas de color en el fondo -->
-    <div class="absolute -bottom-10 h-[90px]">
-      <!-- Amarillo -->
-      <div class="absolute inset-x-0 -bottom-8 h-18 -left-73 z-10">
-        <svg
-          width="1257"
-          height="96"
-          viewBox="0 0 1257 96"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
+      <!-- CONTADOR -->
+      <div class="flex flex-wrap gap-3 mt-4">
+        <div
+          class="flex flex-col items-center justify-center w-20 h-20 rounded-lg bg-background-dark text-center"
         >
-          <path d="M95.5769 0L0 96H1257V0H95.5769Z" fill="#D69F04" />
-        </svg>
-      </div>
-
-      <!-- Gris -->
-      <div class="absolute inset-x-[15%] -bottom-14 -left-[530px]">
-        <svg
-          width="748"
-          height="55"
-          viewBox="0 0 748 55"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
+          <span class="text-xl font-semibold">{{ time.days }}</span>
+          <span class="text-[11px] text-accent">días</span>
+        </div>
+        <div
+          class="flex flex-col items-center justify-center w-20 h-20 rounded-lg bg-background-dark text-center"
         >
-          <path d="M50.5 0L748 0V54.5H0L50.5 0Z" fill="#D9D9D9" />
-        </svg>
-      </div>
-
-      <!-- Blanco -->
-      <div
-        class="absolute inset-x-[20%] bottom-10 h-10 -left-[400px] origin-bottom-left skew-x-[-20deg]"
-      >
-        <svg
-          width="1366"
-          height="136"
-          viewBox="0 0 1366 136"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
+          <span class="text-xl font-semibold">{{ time.hours }}</span>
+          <span class="text-[11px] text-accent">horas</span>
+        </div>
+        <div
+          class="flex flex-col items-center justify-center w-20 h-20 rounded-lg bg-background-dark text-center"
         >
-          <path
-            d="M83.5 136H0L133.012 0L1365.6 1.5V17.5L199.5 16L83.5 136Z"
-            fill="white"
-          />
-        </svg>
+          <span class="text-xl font-semibold">{{ time.minutes }}</span>
+          <span class="text-[11px] text-accent">minutos</span>
+        </div>
+        <div
+          class="flex flex-col items-center justify-center w-20 h-20 rounded-lg bg-background-dark text-center"
+        >
+          <span class="text-xl font-semibold">{{ time.seconds }}</span>
+          <span class="text-[11px] text-accent">segundos</span>
+        </div>
       </div>
     </div>
-
-    <!-- Motos: se salen del contenedor azul -->
-    <img
-      src="assets/images/motos.png"
-      alt="Motos eléctricas"
-      class="absolute bottom-[-158px] h-[220px] lg:h-[540px] right-30 object-contain drop-shadow-2xl z-10"
-    />
   </div>
 </div>
