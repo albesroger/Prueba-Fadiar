@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { DownloadAppBanner } from "../../components/DownloadAppBanner/DownloadAppBanner";
 import { Billetes } from "../../components/billetes/billetes";
 import { UltimosProductos } from "../../components/ultimosProductos/ultimosProductos";
+import { BreadcrumbComponent } from "../../components/breadcrumb/breadcrumb";
 
 interface StatItem {
   value: string;
@@ -11,7 +12,7 @@ interface StatItem {
 }
 @Component({
   selector: 'app-aboutus-page',
-  imports: [CommonModule, DownloadAppBanner, Billetes, UltimosProductos],
+  imports: [CommonModule, DownloadAppBanner, Billetes, UltimosProductos, BreadcrumbComponent],
   templateUrl: './aboutusPage.html',
 })
 export class AboutusPage {

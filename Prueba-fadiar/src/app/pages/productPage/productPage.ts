@@ -13,6 +13,7 @@ import { ProductSearchService } from '../../services/product-search.service';
 import { Observable } from 'rxjs';
 import { Billetes } from '../../components/billetes/billetes';
 import { UltimosProductos } from '../../components/ultimosProductos/ultimosProductos';
+import { BreadcrumbComponent } from "../../components/breadcrumb/breadcrumb";
 
 @Component({
   selector: 'app-product-page',
@@ -24,6 +25,7 @@ import { UltimosProductos } from '../../components/ultimosProductos/ultimosProdu
     ProductsGrid,
     Billetes,
     UltimosProductos,
+    BreadcrumbComponent
 ],
   templateUrl: './productPage.html',
 })
