@@ -14,7 +14,10 @@ export const routes: Routes = [
     path: 'product',
     component: ProductPage,
   },
-  
+  {
+    path: 'about',
+    component: AboutusPage,
+  },
   {
     path: 'faq',
     component: FaqPage,

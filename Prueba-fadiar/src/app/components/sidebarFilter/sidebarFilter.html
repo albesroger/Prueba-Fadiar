@@ -1,4 +1,4 @@
-<aside class="w-full max-w-xs space-y-4 text-primary">
+<aside class="w-78 max-w-xs space-y-4 text-primary">
   <!-- CATEGORÍAS -->
   <section class="rounded-3xl px-5 py-4 bg-relleno border border-deafuera">
     <header
@@ -147,7 +147,9 @@
     @if (sectionsOpen.brands) {
     <div class="mt-3 space-y-2 max-h-[250px] overflow-y-auto pr-1">
       @for (brand of brands; track brand.id) {
-      <label class="flex items-center gap-2 text-[16px] text-text-muted cursor-pointer">
+      <label
+        class="flex items-center gap-2 text-[16px] text-text-muted cursor-pointer"
+      >
         <input
           type="checkbox"
           class="h-4 w-4 rounded border border-slate-300 accent-primary"

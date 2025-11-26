@@ -1,1 +1,83 @@
-<p>aboutusPage works!</p>,
+<div class="flex flex-col mx-28">
+  <div>
+    <span class="text-[32px] font-bold text-primary tracking-[0.08em]">
+      About Us
+    </span>
+  </div>
+
+  <div class="flex flex-row justify-between mt-5 mb-10">
+    <div class="py-5 w-[790px] h-[598px]">
+      <p class="text-[20px] text-telInfo mb-4">
+        <span class="font-bold text-[#003366]">Grupo Fadiar</span>
+        Sit amet consectetur. At tristique est adipiscing pellentesque vel sit
+        id at. Malesuada congue bibendum pretium faucibus orci sit urna. Turpis
+        mattis tortor eget egestas diam natoque ultrices ornare lectus. Tortor
+        viverra condimentum vestibulum commodo. Sed proin dictum risus in nam.
+      </p>
+
+      <p class="text-[20px] text-telInfo mb-4">
+        Sit amet consectetur. At tristique est adipiscing pellentesque vel sit
+        id at. Malesuada congue bibendum pretium faucibus orci sit urna. Turpis
+        mattis tortor eget egestas diam natoque ultrices ornare lectus. Tortor
+        viverra condimentum vestibulum commodo. Sed proin dictum risus in nam.
+      </p>
+
+      <p class="text-[20px] text-telInfo mb-4">
+        Sit amet consectetur. At tristique est adipiscing pellentesque vel sit
+        id at. Malesuada congue bibendum pretium faucibus orci sit urna. Turpis
+        mattis tortor eget egestas diam natoque ultrices ornare lectus. Tortor
+        viverra condimentum vestibulum commodo. Sed proin dictum risus in nam.
+        Sit amet consectetur. At tristique est adipiscing pellentesque vel sit
+        id at. Malesuada congue bibendum pretium faucibus orci sit urna. Turpis
+        mattis tortor eget egestas diam natoque ultrices ornare lectus. Tortor
+        viverra condimentum vestibulum commodo. Sed proin dictum risus in nam.
+      </p>
+
+      <p class="text-[20px] text-telInfo mb-2">
+        Para más información sobre la empresa matriz consulte el siguiente sitio
+        web:
+      </p>
+
+      <a
+        href="https://www.fadiar.com"
+        target="_blank"
+        class="text-accent underline text-[15px]"
+      >
+        www.fadiar.com
+      </a>
+    </div>
+
+    <!-- Imagen -->
+    <div class="overflow-hidden flex justify-center">
+      <img
+        src="/assets/images/tipo.jpg"
+        alt="Entrega Grupo Fadiar"
+        class="w-[650px] h-[600px]"
+      />
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div class="rounded-md bg-relleno px-8 py-6 mt-10 mb-10">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      @for (item of stats; track $index) {
+      <div
+        class="flex flex-col gap-2 bg-relleno2 rounded-lg px-6 py-4 w-91 h-50"
+      >
+        <span class="text-[40px] font-extrabold text-primary">
+          {{ item.value }}
+        </span>
+        <p class="text-xl text-gray-800 leading-snug">
+          {{ item.title }}
+          <span *ngIf="item.description"> {{ item.description }}</span>
+        </p>
+      </div>
+      }
+    </div>
+  </div>
+</div>
+<app-download-app-banner></app-download-app-banner>
+<app-billetes></app-billetes>
+<div>
+  <app-ultimos-productos marginLeft="28"></app-ultimos-productos>
+</div>
