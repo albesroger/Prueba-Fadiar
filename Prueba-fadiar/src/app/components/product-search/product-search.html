@@ -1,9 +1,32 @@
-<div class="mb-4">
+<div class="flex items-center border-b border-primary mb-2">
   <input
     type="text"
     [(ngModel)]="term"
     (ngModelChange)="onTermChange(term)"
-    placeholder="Buscar producto por nombre..."
-    class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-accent"
+    placeholder="Buscar producto"
+    class="flex-1 bg-transparent py-2 text-sm text-text placeholder:text-text-muted focus:outline-none"
   />
+  <button
+    type="button"
+    class="ml-2 pb-1 text-text hover:text-primary transition"
+  >
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <g id="Interface / Search_Magnifying_Glass">
+        <path
+          id="Vector"
+          d="M15 15L21 21M10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10C17 13.866 13.866 17 10 17Z"
+          stroke="#1E1E1E"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </g>
+    </svg>
+  </button>
 </div>

@@ -12,7 +12,8 @@
     searchTerm }}" }.
   </div>
   } @else {
-  <!-- GRID: usa paginatedProducts -->
+
+  <!-- GRID -->
   <div class="grid grid-cols-5 gap-4">
     @for (product of paginatedProducts; track product.id; let i = $index) {
     <app-product-card
@@ -33,22 +34,47 @@
   </div>
 
   <!-- PAGINACIÓN -->
-@if (totalPages > 1) {
+  @if (totalPages > 1) {
   <div class="mt-10 flex items-center justify-center gap-10">
+    <button
+      type="button"
+      (click)="prevPage()"
+      [disabled]="currentPage === 1"
+      class="text-gray-500 disabled:text-gray-300"
+    >
+      <svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <g id="Arrow / Chevron_Left">
+          <path
+            id="Vector"
+            d="M15 19L8 12L15 5"
+            stroke="#777777"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </g>
+      </svg>
+    </button>
 
     <!-- NÚMEROS DE PÁGINA -->
-    @for (page of pages; track page) {
-      <button
-        type="button"
-        (click)="goToPage(page)"
-        [ngClass]="
+    @for (page of visiblePages; track page) {
+    <button
+      type="button"
+      (click)="goToPage(page)"
+      [ngClass]="
           page === currentPage
-            ? 'flex items-center justify-center w-[90px] h-[90px] rounded-[30px] bg-[#C9972E] text-[32px] font-normal text-[#11263F]'
-            : 'text-[32px] font-normal text-[#8C8C8C] hover:text-[#555555]'
+            ? 'flex items-center justify-center w-12 h-12 rounded-2xl bg-accent text-4 font-normal text-primary'
+            : 'text-[16px] font-normal text-text-muted hover:text-[#555555]'
         "
-      >
-        {{ page }}
-      </button>
+    >
+      {{ page }}
+    </button>
     }
 
     <!-- FLECHA DERECHA -->
@@ -58,22 +84,25 @@
       [disabled]="currentPage === totalPages"
       class="text-[32px] text-[#8C8C8C] disabled:text-[#D0D0D0] hover:text-[#555555]"
     >
-      <!-- Puedes usar un simple carácter -->
-      ›
-      <!-- o este SVG si prefieres -->
-      <!--
       <svg
-        class="w-8 h-8"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
+        width="24"
+        height="24"
         viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
       >
-        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+        <g id="Arrow / Chevron_Right">
+          <path
+            id="Vector"
+            d="M9 5L16 12L9 19"
+            stroke="#777777"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </g>
       </svg>
-      -->
     </button>
   </div>
-}
-  }
+  } }
 </div>

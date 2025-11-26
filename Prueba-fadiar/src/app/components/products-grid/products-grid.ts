@@ -58,6 +58,35 @@ export class ProductsGrid {
   get totalPages(): number {
     return Math.max(1, Math.ceil(this.products.length / this.pageSize));
   }
+
+  get visiblePages(): number[] {
+    const maxVisible = 4;
+    const total = this.totalPages;
+
+    // Si hay 4 páginas o menos, muéstralas todas
+    if (total <= maxVisible) {
+      return Array.from({ length: total }, (_, i) => i + 1);
+    }
+
+    // Ventana deslizante de 4 páginas
+    let start = this.currentPage - Math.floor(maxVisible / 2); // centro en la actual
+    let end = start + maxVisible - 1;
+
+    // Ajustar si se pasa por abajo
+    if (start < 1) {
+      start = 1;
+      end = maxVisible;
+    }
+
+    // Ajustar si se pasa por arriba
+    if (end > total) {
+      end = total;
+      start = total - maxVisible + 1;
+    }
+
+    return Array.from({ length: end - start + 1 }, (_, i) => start + i);
+  }
+
   get pages(): number[] {
     return Array.from({ length: this.totalPages }, (_, i) => i + 1);
   }
@@ -71,8 +100,6 @@ export class ProductsGrid {
   goToPage(page: number) {
     if (page >= 1 && page <= this.totalPages) {
       this.currentPage = page;
-      // opcional: subir arriba
-      // window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }
 

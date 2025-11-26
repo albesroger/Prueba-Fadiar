@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-product-search',
-  standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './product-search.html',
 })
