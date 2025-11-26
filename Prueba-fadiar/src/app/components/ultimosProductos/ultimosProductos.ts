@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ProductCardComponent } from '../card/card';
 import { Product } from '../../model/products.model';
 import { ProductService } from '../../services/product.service';
@@ -11,6 +11,7 @@ import { ProductService } from '../../services/product.service';
 export class UltimosProductos implements OnInit {
   ultimosProd: Product[] = [];
   doubleSpanIndexes = [0, 2, 4]; // posiciones que harán col-span-2 (0-based: 3 = 4to, 6 = 7mo)
+  @Input() marginLeft: string = '';
 
   constructor(private productService: ProductService) {
     console.log(this.ultimosProd.length);

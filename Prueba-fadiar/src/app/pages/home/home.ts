@@ -4,6 +4,7 @@ import { OfertasSeccion } from '../../components/ofertasSeccion/ofertasSeccion';
 import { UltimosProductos } from '../../components/ultimosProductos/ultimosProductos';
 import { MasVendidos } from '../../components/masVendidos/masVendidos';
 import { ComingSoonBannerComponent } from "../../components/coming-soon/coming-soon-banner";
+import { Welcome } from "../../components/welcome/welcome";
 
 @Component({
   selector: 'app-home',
@@ -12,7 +13,8 @@ import { ComingSoonBannerComponent } from "../../components/coming-soon/coming-s
     OfertasSeccion,
     UltimosProductos,
     MasVendidos,
-    ComingSoonBannerComponent
+    ComingSoonBannerComponent,
+    Welcome
 ],
   templateUrl: './home.html',
 })

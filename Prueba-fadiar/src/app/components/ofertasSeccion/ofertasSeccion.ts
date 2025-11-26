@@ -12,7 +12,7 @@ import { ProductCardComponent } from '../card/card';
 })
 export class OfertasSeccion implements OnInit {
   ofertas: Product[] = [];
-  doubleSpanIndexes = [0, 2, 4]; // posiciones que harán col-span-2 (0-based: 3 = 4to, 6 = 7mo)
+  doubleSpanIndexes = [0, 1, 2]; // posiciones que harán col-span-2 (0-based: 3 = 4to, 6 = 7mo)
 
   constructor(private productService: ProductService) {
     console.log(this.ofertas.length);

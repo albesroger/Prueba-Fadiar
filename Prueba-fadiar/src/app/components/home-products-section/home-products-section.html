@@ -1,0 +1,23 @@
+<div class="mx-48 mt-10 grid grid-cols-12 gap-8">
+  <!-- Sidebar filtros -->
+  <aside class="col-span-3">
+    <app-sidebar-filter
+      (filtersChange)="onFiltersChange($event)"
+    ></app-sidebar-filter>
+  </aside>
+
+  <!-- Contenido principal: búsqueda + grid de productos -->
+  <section class="col-span-9">
+    <!-- Barra de búsqueda compartida -->
+    <app-product-search
+      (termChange)="onSearchChange($event)"
+    ></app-product-search>
+
+    <!-- Grid de productos -->
+    <app-products-grid
+      [products]="allProducts"
+      [searchTerm]="searchTerm"
+      [filters]="sidebarFilters"
+    ></app-products-grid>
+  </section>
+</div>

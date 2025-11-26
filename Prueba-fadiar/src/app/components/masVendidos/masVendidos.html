@@ -9,7 +9,7 @@
     @for (product of masVendidos; track product.id; let i = $index) {
     <app-product-card
       class="col-span-1"
-      [categoria]="{ id: product.categoria[0]?.id ?? null, name: product.categoria[0]?.name ?? null, id_padre: product.categoria[0]?.id_padre ?? null }"
+      [categoria]="{ id: product.categoria.id, name:product.categoria.name , id_padre: product.categoria.id_padre  }"
       [name]="product.name"
       [img]="product.img"
       [brand]="product.brand"

@@ -1,4 +1,4 @@
-<div class="mx-48 mb-10">
+<div class="mx-{{marginLeft}} mb-10">
   <div class="mb-6">
     <p class="text-xl text-primary">Más recientes</p>
     <h2 class="text-2xl font-bold lg:text-2xl">
@@ -9,7 +9,7 @@
     @for (product of ultimosProd; track product.id; let i = $index) {
     <app-product-card
       class="col-span-1"
-      [categoria]="{ id: product.categoria[0]?.id ?? null, name: product.categoria[0]?.name ?? null, id_padre: product.categoria[0]?.id_padre ?? null }"
+      [categoria]="{ id: product.categoria.id, name:product.categoria.name , id_padre: product.categoria.id_padre  }"
       [name]="product.name"
       [img]="product.img"
       [brand]="product.brand"

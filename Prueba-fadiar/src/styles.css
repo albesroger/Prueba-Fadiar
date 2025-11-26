@@ -10,5 +10,6 @@
   --color-text-muted: #777777; /* Gris opaco;*/
   --color-desactivate: #9fa9aa; /* plaesholder buscar*/
   --color-deafuera: #d9d9d9;
+  --color-relleno: #f5f7fa;
   --font-sans: "Inter", system-ui, sans-serif;
 }

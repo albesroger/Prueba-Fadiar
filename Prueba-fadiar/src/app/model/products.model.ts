@@ -15,8 +15,8 @@ export interface Product {
   temporal_price: number;
   commission: number;
   count: number;
-  specs: [{ id: number; name: string; description: string }];
-  categoria: [{ id: number; name: string; id_padre: number }];
+  specs: { id: number; name: string; description: string };
+  categoria: { id: number; name: string; id_padre: number };
   size: [
     {
       id: number;
