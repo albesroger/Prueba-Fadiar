@@ -11,14 +11,25 @@
     <!-- LISTA DE PRODUCTOS -->
     <section>
       @if (cartItems$ | async; as items) { @if (items.length === 0) {
-      <div
-        class=" rounded-xl p-6 text-center text-gray-500"
-      >
+      <div class="rounded-xl p-6 text-center text-gray-500">
         Tu carrito está vacío.
       </div>
       } @else {
       <div class="space-y-4">
         @for (item of items; track item.product.id) {
+
+        <app-product-card
+          class="col-span-1"
+          [categoria]="{ id: item.product.categoria.id, name:item.product.categoria.name , id_padre: item.product.categoria.id_padre  }"
+          [name]="item.product.name"
+          [img]="item.product.img"
+          [brand]="item.product.brand"
+          [price]="item.product.price"
+          [warranty]="item.product.warranty"
+          layout="horizontal"
+          [product]="item.product"
+        ></app-product-card>
+        
         <article
           class="border border-[#0070D2]/40 rounded-xl p-4 bg-white flex gap-4 items-stretch"
         >

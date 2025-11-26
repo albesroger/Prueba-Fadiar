@@ -28,7 +28,7 @@ export class ProductCardComponent {
 
   quantity = 1;
 
-  constructor(private cartService: CartService) {}
+  constructor(private cartService: CartService){}
   increase() {
     this.quantity++;
   }

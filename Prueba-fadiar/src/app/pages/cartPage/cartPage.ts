@@ -6,11 +6,12 @@ import { map, Observable } from 'rxjs';
 import { CartItem } from '../../model/cartItem.model';
 import { BreadcrumbComponent } from '../../components/breadcrumb/breadcrumb';
 import { CartRutaEnvio } from '../../components/cartRutaEnvio/cartRutaEnvio';
+import { ProductCardComponent } from "../../components/card/card";
 
 @Component({
   selector: 'app-cart-page',
   standalone: true,
-  imports: [CommonModule, FormsModule, BreadcrumbComponent, CartRutaEnvio],
+  imports: [CommonModule, FormsModule, BreadcrumbComponent, CartRutaEnvio, ProductCardComponent],
   templateUrl: './cartPage.html',
 })
 export class CartPage {
