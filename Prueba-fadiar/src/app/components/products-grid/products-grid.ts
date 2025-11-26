@@ -29,7 +29,7 @@ export class ProductsGrid {
       // 🏷️ Filtro por categorías
       let matchesCategory = true;
       if (this.filters?.categories?.length) {
-        const catId = (p as any).categoria?.id ?? p.categoria;
+        const catId = String((p as any).categoria?.id ?? p.categoria);
         matchesCategory = this.filters.categories.includes(catId);
       }
 

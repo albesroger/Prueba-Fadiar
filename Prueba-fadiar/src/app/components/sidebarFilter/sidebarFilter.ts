@@ -30,22 +30,25 @@ export class SidebarFilterComponent {
     relevant: true,
   };
 
-  // Datos de ejemplo (luego puedes cargarlos del backend)
+  // IDs alineados con la API (categoria.id)
   categories: FilterOption[] = [
     { id: 'all', label: 'Todas las Categorías' },
-    { id: 'fridges', label: 'Refrigeradores y Neveras' },
-    { id: 'stoves', label: 'Cocinas y Hornos' },
-    { id: 'furniture', label: 'Muebles' },
-    { id: 'filters', label: 'Filtros y Repuestos' },
-    { id: 'washers', label: 'Lavadoras y Secadoras' },
-    { id: 'pots', label: 'Ollas y tostadoras' },
-    { id: 'lighting', label: 'Iluminación' },
-    { id: 'clima', label: 'Clima' },
-    { id: 'fans', label: 'Ventiladores' },
-    { id: 'generators', label: 'Generadores Eléctricos' },
-    { id: 'tv', label: 'Televisión y Audio' },
-    { id: 'dishes', label: 'Vajillas' },
-    { id: 'accessories', label: 'Accesorios' },
+    { id: '1', label: 'Accesorios' },
+    { id: '3', label: 'Batidoras y otros Procesadores' },
+    { id: '4', label: 'Cafeteras y Teteras' },
+    { id: '5', label: 'Calentadores y Motores de agua' },
+    { id: '6', label: 'Cocinas y Hornos' },
+    { id: '7', label: 'Generadores Eléctricos' },
+    { id: '8', label: 'Iluminación' },
+    { id: '9', label: 'Lavadoras y Secadoras' },
+    { id: '10', label: 'Ollas y tostadoras' },
+    { id: '11', label: 'Refrigeradores y Neveras' },
+    { id: '12', label: 'Televisión y Audio' },
+    { id: '15', label: 'Ventiladores' },
+    { id: '16', label: 'Muebles' },
+    { id: '17', label: 'Filtros y Respuestos' },
+    { id: '18', label: 'Clima' },
+    { id: '21', label: 'Vajillas' },
   ];
 
   brands: FilterOption[] = [
