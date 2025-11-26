@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Product } from '../../model/products.model';
 import { CartService } from '../../services/cart.service';
 
@@ -26,9 +26,17 @@ export class ProductCardComponent {
   @Input() layout: 'vertical' | 'horizontal' = 'vertical';
   @Input() product!: Product;
 
-  quantity = 1;
+  // cantidad actual que viene del carrito
+  @Input() quantity: number = 1;
 
-  constructor(private cartService: CartService){}
+  // mostrar o no el controlador de cantidad (para reusar la card en otras vistas)
+  @Input() showQuantityControls = false;
+
+  @Output() increment = new EventEmitter<void>();
+  @Output() decrement = new EventEmitter<void>();
+  @Output() remove = new EventEmitter<void>();
+
+  constructor(private cartService: CartService) {}
   increase() {
     this.quantity++;
   }
@@ -41,5 +49,16 @@ export class ProductCardComponent {
 
   addToCart() {
     this.cartService.addToCart(this.product);
+  }
+  onIncrement() {
+    this.increment.emit();
+  }
+
+  onDecrement() {
+    this.decrement.emit();
+  }
+
+  onRemove() {
+    this.remove.emit();
   }
 }

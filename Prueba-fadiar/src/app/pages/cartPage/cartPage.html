@@ -18,97 +18,27 @@
       <div class="space-y-4">
         @for (item of items; track item.product.id) {
 
-        <app-product-card
-          class="col-span-1"
-          [categoria]="{ id: item.product.categoria.id, name:item.product.categoria.name , id_padre: item.product.categoria.id_padre  }"
-          [name]="item.product.name"
-          [img]="item.product.img"
-          [brand]="item.product.brand"
-          [price]="item.product.price"
-          [warranty]="item.product.warranty"
-          layout="horizontal"
-          [product]="item.product"
-        ></app-product-card>
-        
         <article
-          class="border border-[#0070D2]/40 rounded-xl p-4 bg-white flex gap-4 items-stretch"
+          class=" rounded-xl  bg-white flex gap-4 items-stretch"
         >
-          <!-- Imagen -->
-          <div
-            class="w-32 h-32 lg:w-40 lg:h-40 flex items-center justify-center"
-          >
-            <img
-              [src]="item.product.img"
-              [alt]="item.product.name"
-              class="max-w-full max-h-full object-contain"
-            />
-          </div>
-
-          <!-- Info + controles -->
-          <div class="flex-1 flex flex-col justify-between">
-            <div>
-              <h3 class="text-base lg:text-lg font-semibold text-[#0A2540]">
-                {{ item.product.name }}
-              </h3>
-              <p class="text-sm text-gray-500">
-                Marca {{ item.product.brand }}
-              </p>
-
-              <p class="mt-3 text-xl font-bold text-[#0A2540]">
-                $ {{ item.product.price }}
-                <span class="text-sm font-normal text-gray-500">USD</span>
-              </p>
-            </div>
-
-            <div class="mt-4 flex items-center justify-between gap-3 flex-wrap">
-              <!-- Contador -->
-              <div
-                class="inline-flex items-center rounded-full border border-[#0070D2] bg-white px-4 py-1"
-              >
-                <button
-                  type="button"
-                  class="px-2 text-lg text-gray-700"
-                  (click)="decrease(item)"
-                >
-                  –
-                </button>
-                <span
-                  class="mx-3 w-6 text-center text-base font-medium text-[#0A2540]"
-                >
-                  {{ item.quantity }}
-                </span>
-                <button
-                  type="button"
-                  class="px-2 text-lg text-[#0070D2] font-semibold"
-                  (click)="increase(item)"
-                >
-                  +
-                </button>
-              </div>
-
-              <!-- Eliminar -->
-              <button
-                type="button"
-                class="text-gray-400 hover:text-red-500 flex items-center gap-1"
-                (click)="remove(item)"
-              >
-                <svg
-                  class="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.7"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M9 10.5v6m6-6v6M4.5 6.75h15M9.75 4.5h4.5A1.5 1.5 0 0 1 15.75 6h-7.5a1.5 1.5 0 0 1 1.5-1.5zM6.75 6.75 7.5 19.5h9l.75-12.75"
-                  />
-                </svg>
-              </button>
-            </div>
-          </div>
+          <app-product-card
+            class="col-span-1"
+            [categoria]="{ id: item.product.categoria.id, name:item.product.categoria.name , id_padre: item.product.categoria.id_padre  }"
+            [name]="item.product.name"
+            [img]="item.product.img"
+            [brand]="item.product.brand"
+            [price]="item.product.price"
+            [warranty]="item.product.warranty"
+            layout="horizontal"
+            [product]="item.product"
+            [quantity]="item.quantity"
+            [showQuantityControls]="true"
+            (increment)="increase(item)"
+            (decrement)="decrease(item)"
+            (remove)="remove(item)"
+          ></app-product-card>
         </article>
+
         }
       </div>
       } }
