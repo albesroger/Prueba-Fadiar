@@ -1,15 +1,15 @@
 <!-- BLOQUE AZUL CON IMAGEN DE FONDO -->
-<div class="relative h-[600px] mb-10 ">
+<div class="relative h-[310px] mb-30 overflow-visible">
   <!-- Imagen de fondo -->
   <img
     src="assets/images/proximamente.png"
     alt="Motos eléctricas"
-    class="absolute inset-0 w-full h-full object-cover drop-shadow-2xl"
+    class="absolute w-full h-[450px] object-fill drop-shadow-2xl"
   />
 
   <!-- CONTENIDO ENCIMA (z-10) -->
   <div
-    class="relative z-10 text-white flex flex-col lg:flex-row top-25 items-center pt-10 pb-24 space-x-8"
+    class="relative z-10 top-10 text-white flex flex-col lg:flex-row top- items-center pt-10 pb-24 space-x-8"
   >
     <!-- LADO IZQUIERDO: TEXTO + CONTADOR -->
     <div
@@ -27,25 +27,25 @@
       <!-- CONTADOR -->
       <div class="flex flex-wrap gap-3 mt-4">
         <div
-          class="flex flex-col items-center justify-center w-20 h-20 rounded-lg bg-background-dark text-center"
+          class="flex flex-col items-center justify-center w-19 h-19 rounded-lg bg-background-dark text-center"
         >
           <span class="text-xl font-semibold">{{ time.days }}</span>
           <span class="text-[11px] text-accent">días</span>
         </div>
         <div
-          class="flex flex-col items-center justify-center w-20 h-20 rounded-lg bg-background-dark text-center"
+          class="flex flex-col items-center justify-center w-19 h-19 rounded-lg bg-background-dark text-center"
         >
           <span class="text-xl font-semibold">{{ time.hours }}</span>
           <span class="text-[11px] text-accent">horas</span>
         </div>
         <div
-          class="flex flex-col items-center justify-center w-20 h-20 rounded-lg bg-background-dark text-center"
+          class="flex flex-col items-center justify-center w-19 h-19 rounded-lg bg-background-dark text-center"
         >
           <span class="text-xl font-semibold">{{ time.minutes }}</span>
           <span class="text-[11px] text-accent">minutos</span>
         </div>
         <div
-          class="flex flex-col items-center justify-center w-20 h-20 rounded-lg bg-background-dark text-center"
+          class="flex flex-col items-center justify-center w-19 h-19 rounded-lg bg-background-dark text-center"
         >
           <span class="text-xl font-semibold">{{ time.seconds }}</span>
           <span class="text-[11px] text-accent">segundos</span>

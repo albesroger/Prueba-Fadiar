@@ -24,7 +24,7 @@ import { UltimosProductos } from '../../components/ultimosProductos/ultimosProdu
     ProductsGrid,
     Billetes,
     UltimosProductos,
-  ],
+],
   templateUrl: './productPage.html',
 })
 export class ProductPage implements OnInit {

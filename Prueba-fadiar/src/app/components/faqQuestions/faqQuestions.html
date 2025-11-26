@@ -1,0 +1,72 @@
+<div class="mx-20 flex flex-col ">
+  <div>
+    <span class="text-[32px] font-bold text-primary tracking-[0.08em]">
+      FAQ
+    </span>
+  </div>
+
+  <div class="flex justify-between mt-5">
+    <div class="flex flex-col lg:col-span-1">
+      <h2
+        class="text-[32px] leading-tight font-extrabold text-[#003366] mb-4  py-3 inline-block"
+      >
+        Preguntas Frecuentes
+        <br />
+        <span class="text-accent">de nuestros clientes</span>
+      </h2>
+
+      <p class="text-[15px] text-gray-600  max-w-[460px]">
+        Lorem ipsum Sit amet consectetur. At tristique est adipiscing
+        pellentesque vel sit id at.
+      </p>
+    </div>
+
+    <!-- Columna derecha: acordeón -->
+    <div class="lg:col-span-2 flex flex-col gap-3">
+      @for (faq of faqs; track $index; let i = $index) {
+      <div class="border border-[#E0E0E0] rounded-md overflow-hidden">
+        <!-- Header de la pregunta -->
+        <button
+          type="button"
+          class="w-[1060px] flex items-center justify-between px-6 py-4 text-left transition"
+          [ngClass]="
+              isOpen(i)
+                ? 'bg-[#003366] text-white'
+                : 'bg-white text-[primary]'
+            "
+          (click)="toggle(i)"
+        >
+          <span class="text-[16px] font-semibold"> {{ faq.question }} </span>
+
+          <!-- Icono: + cuando está cerrado, X cuando abierto -->
+          <span
+            class="inline-flex h-7 w-7 items-center justify-center rounded-full border"
+            [ngClass]="
+                isOpen(i)
+                  ? 'border-white text-white'
+                  : 'border-[#003366] text-[#003366]'
+              "
+          >
+            @if (isOpen(i)) {
+            <!-- X -->
+            <span class="text-[14px] leading-none">&times;</span>
+            } @else {
+            <!-- + -->
+            <span class="text-[18px] leading-none">+</span>
+            }
+          </span>
+        </button>
+
+        <!-- Cuerpo / respuesta -->
+        @if (isOpen(i)) {
+        <div
+          class="bg-white max-w-[1060px] px-6 py-4 text-[14px] text-gray-700"
+        >
+          {{ faq.answer }}
+        </div>
+        }
+      </div>
+      }
+    </div>
+  </div>
+</div>
