@@ -5,6 +5,7 @@ import { FaqQuestions } from './components/faqQuestions/faqQuestions';
 import { FaqPage } from './pages/faqPage/faqPage';
 import { AboutusPage } from './pages/aboutusPage/aboutusPage';
 import { ContactoPage } from './pages/contactoPage/contactoPage';
+import { CartPage } from './pages/cartPage/cartPage';
 
 export const routes: Routes = [
   {
@@ -31,5 +32,10 @@ export const routes: Routes = [
     path: 'contacto',
     component: ContactoPage,
     data: { breadcrumb: 'Contacto' },
+  },
+  {
+    path: 'cart',
+    component: CartPage,
+    data: { breadcrumb: 'Carrito' },
   },
 ];

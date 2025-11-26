@@ -6,11 +6,12 @@ import {
   SidebarFilterComponent,
 } from '../sidebarFilter/sidebarFilter';
 import { ProductsGrid } from '../products-grid/products-grid';
-import { ProductSearchComponent } from "../product-search/product-search";
+import { ProductSearch } from '../product-search/product-search';
+
 
 @Component({
   selector: 'app-home-products-section',
-  imports: [SidebarFilterComponent, ProductsGrid, ProductSearchComponent],
+  imports: [SidebarFilterComponent, ProductsGrid, ProductSearch],
   templateUrl: './home-products-section.html',
 })
 export class HomeProductsSection implements OnInit {

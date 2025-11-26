@@ -1,7 +1,9 @@
 <div class="mb-10 mt-20">
   <div class="mb-6 flex flex-row items-end gap-3">
     <p class="text-xl text-primary font-bold">Todas las Categorías</p>
-    <p class="text-[16px] text-text-muted">{{filteredProducts.length}} Productos</p>
+    <p class="text-[16px] text-text-muted">
+      {{filteredProducts.length}} Productos
+    </p>
   </div>
 
   @if (filteredProducts.length === 0) {
@@ -27,6 +29,7 @@
       [price]="product.price"
       [warranty]="product.warranty"
       layout="vertical"
+      [product]="product"
     ></app-product-card>
     }
   </div>

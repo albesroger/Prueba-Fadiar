@@ -13,7 +13,6 @@ import { ProductSearchService } from '../../services/product-search.service';
 import { Observable } from 'rxjs';
 import { Billetes } from '../../components/billetes/billetes';
 import { UltimosProductos } from '../../components/ultimosProductos/ultimosProductos';
-import { BreadcrumbComponent } from "../../components/breadcrumb/breadcrumb";
 
 @Component({
   selector: 'app-product-page',
@@ -24,8 +23,8 @@ import { BreadcrumbComponent } from "../../components/breadcrumb/breadcrumb";
     SidebarFilterComponent,
     ProductsGrid,
     Billetes,
-    UltimosProductos,
-    BreadcrumbComponent
+    UltimosProductos
+
 ],
   templateUrl: './productPage.html',
 })

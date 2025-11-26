@@ -68,9 +68,11 @@
   </div>
 
   <div class="flex items-center gap-6 mt-5">
+    <!--Carrito-->
     <button
       type="button"
       class="relative text-text hover:text-primary transition"
+      (click)="goToCart()"
     >
       <svg
         width="24"
@@ -90,8 +92,16 @@
           />
         </g>
       </svg>
+
+      <span
+        class="absolute -top-2 -right-2 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-xs text-white"
+        *ngIf="(cartCount$ | async) as count"
+      >
+        {{ count }}
+      </span>
     </button>
 
+    <!--Perfil-->
     <button type="button" class="text-text hover:text-primary transition">
       <svg
         width="24"

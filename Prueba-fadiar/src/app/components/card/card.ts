@@ -1,5 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
+import { Product } from '../../model/products.model';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-product-card',
@@ -22,8 +24,11 @@ export class ProductCardComponent {
   @Input() price: number = 0;
   @Input() warranty: number = 0;
   @Input() layout: 'vertical' | 'horizontal' = 'vertical';
+  @Input() product!: Product;
+
   quantity = 1;
 
+  constructor(private cartService: CartService) {}
   increase() {
     this.quantity++;
   }
@@ -32,5 +37,9 @@ export class ProductCardComponent {
     if (this.quantity > 1) {
       this.quantity--;
     }
+  }
+
+  addToCart() {
+    this.cartService.addToCart(this.product);
   }
 }

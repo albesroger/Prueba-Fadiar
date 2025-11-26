@@ -1,0 +1,244 @@
+<div class="mx-28 px-4 lg:px-0 py-8">
+  <!-- Rutas -->
+  <app-breadcrumb></app-breadcrumb>
+
+  <h1 class="text-2xl lg:text-3xl font-bold text-[#0A2540] mb-6">Carrito</h1>
+
+  <app-cart-ruta-envio [currentStep]="1"></app-cart-ruta-envio>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <div class="flex justify-between">
+    <!-- LISTA DE PRODUCTOS -->
+    <section>
+      @if (cartItems$ | async; as items) { @if (items.length === 0) {
+      <div
+        class=" rounded-xl p-6 text-center text-gray-500"
+      >
+        Tu carrito está vacío.
+      </div>
+      } @else {
+      <div class="space-y-4">
+        @for (item of items; track item.product.id) {
+        <article
+          class="border border-[#0070D2]/40 rounded-xl p-4 bg-white flex gap-4 items-stretch"
+        >
+          <!-- Imagen -->
+          <div
+            class="w-32 h-32 lg:w-40 lg:h-40 flex items-center justify-center"
+          >
+            <img
+              [src]="item.product.img"
+              [alt]="item.product.name"
+              class="max-w-full max-h-full object-contain"
+            />
+          </div>
+
+          <!-- Info + controles -->
+          <div class="flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="text-base lg:text-lg font-semibold text-[#0A2540]">
+                {{ item.product.name }}
+              </h3>
+              <p class="text-sm text-gray-500">
+                Marca {{ item.product.brand }}
+              </p>
+
+              <p class="mt-3 text-xl font-bold text-[#0A2540]">
+                $ {{ item.product.price }}
+                <span class="text-sm font-normal text-gray-500">USD</span>
+              </p>
+            </div>
+
+            <div class="mt-4 flex items-center justify-between gap-3 flex-wrap">
+              <!-- Contador -->
+              <div
+                class="inline-flex items-center rounded-full border border-[#0070D2] bg-white px-4 py-1"
+              >
+                <button
+                  type="button"
+                  class="px-2 text-lg text-gray-700"
+                  (click)="decrease(item)"
+                >
+                  –
+                </button>
+                <span
+                  class="mx-3 w-6 text-center text-base font-medium text-[#0A2540]"
+                >
+                  {{ item.quantity }}
+                </span>
+                <button
+                  type="button"
+                  class="px-2 text-lg text-[#0070D2] font-semibold"
+                  (click)="increase(item)"
+                >
+                  +
+                </button>
+              </div>
+
+              <!-- Eliminar -->
+              <button
+                type="button"
+                class="text-gray-400 hover:text-red-500 flex items-center gap-1"
+                (click)="remove(item)"
+              >
+                <svg
+                  class="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M9 10.5v6m6-6v6M4.5 6.75h15M9.75 4.5h4.5A1.5 1.5 0 0 1 15.75 6h-7.5a1.5 1.5 0 0 1 1.5-1.5zM6.75 6.75 7.5 19.5h9l.75-12.75"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </article>
+        }
+      </div>
+      } }
+    </section>
+
+    <!-- COLUMNA DERECHA: IMPORTE + FORM + RESUMEN -->
+    <aside class="space-y-5">
+      <!-- IMPORTE -->
+      <div class="border border-[#0070D2] rounded-xl bg-white">
+        <div
+          class="border-b border-[#0070D2] px-4 py-2 text-sm font-bold text-[#0A2540]"
+        >
+          IMPORTE
+        </div>
+        <div class="px-4 py-3 flex items-center justify-between">
+          <span class="text-sm text-gray-600">Subtotal</span>
+          <span
+            class="text-lg font-semibold text-[#0A2540]"
+            *ngIf="(subtotal$ | async) as subtotal"
+          >
+            $ {{ subtotal | number: '1.2-2' }} USD
+          </span>
+        </div>
+      </div>
+
+      <!-- DATOS DEL CLIENTE -->
+      <div class="border border-[#0070D2] rounded-xl bg-white p-4 space-y-3">
+        <p class="text-sm font-bold text-[#0A2540]">Leydis Jadiar López</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <div class="md:col-span-1">
+            <label class="block text-xs font-semibold text-[#0A2540] mb-1">
+              Teléfono
+            </label>
+            <input
+              type="text"
+              class="w-full border border-[#0070D2] rounded-md px-3 py-2 text-sm outline-none"
+              placeholder="Teléfono"
+              [(ngModel)]="customer.phone"
+              name="phone"
+            />
+          </div>
+
+          <div class="md:col-span-1">
+            <label class="block text-xs font-semibold text-[#0A2540] mb-1">
+              Carnet de Identidad
+            </label>
+            <input
+              type="text"
+              class="w-full border border-[#0070D2] rounded-md px-3 py-2 text-sm outline-none"
+              placeholder="Carnet de Identidad"
+              [(ngModel)]="customer.idCard"
+              name="idCard"
+            />
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-[#0A2540] mb-1">
+              Provincia
+            </label>
+            <select
+              class="w-full border border-[#0070D2] rounded-md px-3 py-2 text-sm outline-none"
+              [(ngModel)]="customer.province"
+              name="province"
+            >
+              <option value="">Seleccione provincia</option>
+              <option value="La Habana">La Habana</option>
+              <option value="Mayabeque">Mayabeque</option>
+              <option value="Villa Clara">Villa Clara</option>
+              <!-- agrega las demás -->
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-[#0A2540] mb-1">
+              Municipio
+            </label>
+            <input
+              type="text"
+              class="w-full border border-[#0070D2] rounded-md px-3 py-2 text-sm outline-none"
+              placeholder="Seleccione municipio"
+              [(ngModel)]="customer.municipality"
+              name="municipality"
+            />
+          </div>
+        </div>
+
+        <label class="mt-2 flex items-center gap-2 text-xs text-gray-600">
+          <input
+            type="checkbox"
+            class="accent-[#0070D2]"
+            [(ngModel)]="customer.homeDelivery"
+            name="homeDelivery"
+          />
+          <span>
+            ¿Necesitas entrega a domicilio?
+            <span class="text-[10px] text-[#F7941D]">
+              (Disponible solo en La Habana)
+            </span>
+          </span>
+        </label>
+      </div>
+
+      <!-- RESUMEN DEL PEDIDO -->
+      <div class="border border-[#0070D2] rounded-xl bg-white">
+        <div
+          class="border-b border-[#0070D2] px-4 py-2 text-sm font-bold text-[#0A2540]"
+        >
+          RESUMEN DEL PEDIDO
+        </div>
+
+        <div class="px-4 py-3 space-y-3">
+          <div class="flex items-center justify-between text-sm text-gray-600">
+            <span>Subtotal</span>
+            <span *ngIf="(subtotal$ | async) as subtotal">
+              $ {{ subtotal | number: '1.2-2' }} USD
+            </span>
+          </div>
+
+          <div
+            class="mt-3 px-3 py-3 bg-[#F2F4F7] rounded-md flex items-center justify-between"
+            *ngIf="(subtotal$ | async) as subtotal"
+          >
+            <span class="text-sm font-semibold text-[#0A2540]">
+              Total a pagar
+            </span>
+            <span class="text-xl font-bold text-[#0A2540]">
+              $ {{ getTotal(subtotal) | number: '1.2-2' }} USD
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- BOTÓN CONFIRMAR -->
+      <button
+        type="button"
+        class="w-full mt-2 py-3 rounded-md bg-[#0A2540] text-white text-sm font-semibold hover:opacity-90"
+        (click)="confirmOrder()"
+      >
+        Confirmar Orden
+      </button>
+    </aside>
+  </div>
+</div>
