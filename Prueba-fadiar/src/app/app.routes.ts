@@ -8,6 +8,7 @@ import { ContactoPage } from './pages/contactoPage/contactoPage';
 import { CartPage } from './pages/cartPage/cartPage';
 import { PaymentPage } from './pages/paymentPage/paymentPage';
 import { DeliveryPage } from './pages/deliveryPage/deliveryPage';
+import { SummaryPage } from './pages/summaryPage/summaryPage';
 
 export const routes: Routes = [
   {
@@ -48,6 +49,11 @@ export const routes: Routes = [
   {
     path: 'cart/delivery',
     component: DeliveryPage,
+    data: { breadcrumb: 'Datos de Pago' },
+  },
+  {
+    path: 'cart/summary',
+    component: SummaryPage,
     data: { breadcrumb: 'Datos de Pago' },
   },
 ];

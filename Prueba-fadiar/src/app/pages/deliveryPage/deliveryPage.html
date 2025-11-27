@@ -1,60 +1,60 @@
-<div class="max-w-6xl mx-auto px-4 lg:px-0 py-8">
-  <!-- Migas + título -->
-  <p class="text-sm text-gray-500 mb-1">
-    Home <span class="mx-1">›</span> Carrito de compras
-    <span class="mx-1">›</span>
-    <span class="font-semibold">Datos de pago</span>
-  </p>
+<div class="mx-28 px-4 lg:px-0 py-8">
+  <app-breadcrumb></app-breadcrumb>
 
   <h1 class="text-2xl lg:text-3xl font-bold text-[#0A2540] mb-6">
     Datos de pago
   </h1>
 
   <!-- Pasos (ahora currentStep = 3) -->
- <app-cart-ruta-envio [currentStep]="3"></app-cart-ruta-envio>
+  <app-cart-ruta-envio [currentStep]="3"></app-cart-ruta-envio>
 
-  <!-- Contenido principal -->
-  <div class="mt-6 grid gap-8 lg:grid-cols-[2.1fr,1.1fr]">
-    <!-- IZQUIERDA -->
-    <div class="space-y-6">
-      <!-- 01 - Datos del beneficiario -->
-      <section>
-        <h2 class="text-sm font-bold text-[#0A2540] mb-1">
-          01 - Datos del beneficiario
-        </h2>
-        <p class="text-xs text-gray-500 mb-3">
-          Persona que recibirá y será propietaria del producto.
-        </p>
+  <div class="flex flex-row justify-between gap-1">
+    <!-- 01 - Datos del beneficiario -->
+    <section>
+      <h2 class="text-xl font-bold text-primary mb-1">
+        01 - Datos del beneficiario
+      </h2>
+      <p class="text-[16px] text-text-muted mb-3">
+        Persona que recibirá y será propietaria del producto.
+      </p>
 
-        <div class="space-y-3">
+      <div class="space-y-3">
+        <div class="w-[385px] h-14">
           <input
             type="text"
-            class="w-full rounded-xl bg-[#F5F7FA] px-4 py-3 text-sm outline-none"
+            class="w-full h-full rounded-2xl bg-[#F5F7FA] px-4 py-3 text-sm outline-none"
             placeholder="Nombre"
             [(ngModel)]="beneficiary.firstName"
             name="firstName"
           />
+        </div>
 
+        <div class="w-[385px] h-14">
           <input
             type="text"
-            class="w-full rounded-xl bg-[#F5F7FA] px-4 py-3 text-sm outline-none"
+            class="w-full h-full rounded-2xl bg-[#F5F7FA] px-4 py-3 text-sm outline-none"
             placeholder="Apellidos"
             [(ngModel)]="beneficiary.lastName"
             name="lastName"
           />
+        </div>
 
+        <div class="w-[385px] h-14">
           <input
             type="email"
-            class="w-full rounded-xl bg-[#F5F7FA] px-4 py-3 text-sm outline-none"
+            class="w-full h-full rounded-2xl bg-[#F5F7FA] px-4 py-3 text-sm outline-none"
             placeholder="Correo electrónico"
             [(ngModel)]="beneficiary.email"
             name="email"
           />
+        </div>
 
-          <!-- Teléfono con código -->
-          <div class="flex gap-2">
+        <!-- Teléfono con código -->
+        <div class="md:col-span-1">
+          <div class="flex bg-relleno h-14 rounded-2xl w-[385px]">
+            <!-- Select código de país -->
             <select
-              class="w-28 rounded-xl bg-[#F5F7FA] px-2 py-3 text-sm outline-none"
+              class="w-20 rounded-2xl pl-2 py-2 text-[16px] outline-none"
               [(ngModel)]="beneficiary.countryCode"
               name="countryCode"
             >
@@ -63,72 +63,95 @@
               }
             </select>
 
+            <!-- Número sin código -->
             <input
-              type="tel"
-              class="flex-1 rounded-xl bg-[#F5F7FA] px-4 py-3 text-sm outline-none"
-              placeholder="Teléfono"
+              type="text"
+              class="flex-1 rounded-md px-3 py-2 text-[16px] outline-none"
+              placeholder="Número de teléfono"
               [(ngModel)]="beneficiary.phone"
               name="phone"
             />
           </div>
+        </div>
 
+        <div class="w-[385px] h-14">
           <input
             type="text"
-            class="w-full rounded-xl bg-[#F5F7FA] px-4 py-3 text-sm outline-none"
+            class="w-full h-full rounded-2xl bg-[#F5F7FA] px-4 py-3 text-sm outline-none"
             placeholder="Carnet de Identidad"
             [(ngModel)]="beneficiary.idCard"
             name="idCard"
           />
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- 02 - Forma de entrega -->
-      <section>
-        <h2 class="text-sm font-bold text-[#0A2540] mb-1">
-          02 - Forma de entrega
-        </h2>
-        <p class="text-xs text-gray-500 mb-3">
-          Añadir domicilio del beneficiario
-        </p>
+    <!-- 02 - Forma de entrega -->
+    <section>
+      <h2 class="text-xl font-bold text-primary mb-1">02 - Forma de entrega</h2>
+      <p class="text-[16px] text-gray-500 mb-3">
+        Añadir domicilio del beneficiario
+      </p>
 
-        <div class="space-y-3">
-          <input
-            type="text"
-            class="w-full rounded-xl bg-[#F5F7FA] px-4 py-3 text-sm outline-none"
-            placeholder="Dirección"
-            [(ngModel)]="beneficiary.address"
-            name="address"
-          />
+      <div class="space-y-3 w-[789px]">
+        <input
+          type="text"
+          class="w-full h-14 rounded-2xl bg-[#F5F7FA] px-4 py-3 text-sm outline-none"
+          placeholder="Dirección"
+          [(ngModel)]="beneficiary.address"
+          name="address"
+        />
 
-          <textarea
-            rows="3"
-            class="w-full rounded-xl bg-[#F5F7FA] px-4 py-3 text-sm outline-none resize-none"
-            placeholder="Nota"
-            [(ngModel)]="beneficiary.note"
-            name="note"
-          ></textarea>
-        </div>
-      </section>
-    </div>
+        <textarea
+          rows="3"
+          class="w-full h-[136px] rounded-2xl bg-[#F5F7FA] px-4 py-3 text-sm outline-none resize-none"
+          placeholder="Nota"
+          [(ngModel)]="beneficiary.note"
+          name="note"
+        ></textarea>
+      </div>
+    </section>
 
     <!-- DERECHA -->
-    <aside class="space-y-4">
-      <div class="border-t border-gray-200 pt-3">
-        <h3 class="text-sm font-bold text-[#0A2540] mb-3">METODO DE ENTREGA</h3>
-        <p class="text-sm text-gray-700">Entrega a Domicilio</p>
+    <aside class="space-y-5">
+      <div class="border-b-2 border-deafuera pt-3 w-[385px]">
+        <h3 class="text-xl ml-2 font-bold text-primary mb-1">
+          METODO DE ENTREGA
+        </h3>
       </div>
+      <p class="text-[16px] ml-2 text-primary">Entrega a Domicilio</p>
 
-      <div class="border-t border-gray-200 pt-3">
-        <h3 class="text-sm font-bold text-[#0A2540] mb-3">FORMA DE PAGO</h3>
-        <div
-          class="h-10 w-16 rounded-lg bg-[#EB001B] flex items-center justify-center"
+      <div class="border-b-2 border-deafuera">
+        <h3 class="text-xl ml-2 font-bold text-primary mb-1">FORMA DE PAGO</h3>
+      </div>
+      <div class="h-10 w-16 flex items-center justify-center">
+        <svg
+          width="47"
+          height="32"
+          viewBox="0 0 47 32"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
         >
-          <!-- logo tarjeta -->
-        </div>
+          <rect width="46.0444" height="31.5733" rx="2.48889" fill="black" />
+          <path
+            d="M29.1738 6.57779C34.1316 6.57783 38.1503 10.6435 38.1504 15.6588C38.1504 20.6743 34.1317 24.7399 29.1738 24.7399C26.9509 24.7399 24.9184 23.9209 23.3506 22.567C21.7828 23.9207 19.7502 24.7399 17.5273 24.7399C12.5697 24.7396 8.55078 20.6741 8.55078 15.6588C8.55089 10.6437 12.5697 6.57806 17.5273 6.57779C19.7498 6.57779 21.7829 7.39633 23.3506 8.74966C24.9183 7.39621 26.9512 6.57779 29.1738 6.57779Z"
+            fill="#ED0006"
+          />
+          <path
+            d="M29.1748 6.57779C34.1326 6.57783 38.1513 10.6435 38.1514 15.6588C38.1514 20.6743 34.1327 24.7399 29.1748 24.7399C26.9519 24.7399 24.9194 23.9209 23.3516 22.567C25.2807 20.9014 26.5059 18.4256 26.5059 15.6588C26.5058 12.8918 25.281 10.4153 23.3516 8.74966C24.9193 7.39621 26.9522 6.57779 29.1748 6.57779Z"
+            fill="#F9A000"
+          />
+          <path
+            d="M23.3496 8.74969C25.2791 10.4153 26.5038 12.8918 26.5039 15.6589C26.5039 18.4257 25.2787 20.9014 23.3496 22.5671C21.4206 20.9014 20.1953 18.4256 20.1953 15.6589C20.1954 12.8919 21.4203 10.4153 23.3496 8.74969Z"
+            fill="#FF5E00"
+          />
+        </svg>
       </div>
 
       <div class="space-y-3">
-        <h3 class="text-sm font-bold text-[#0A2540]">IMPORTE</h3>
+        <div class="border-b-2 border-deafuera">
+          <h3 class="text-xl ml-2 font-bold text-primary mb-1">IMPORTE</h3>
+        </div>
 
         <div
           class="rounded-xl bg-[#F5F7FA] px-4 py-4 space-y-3 text-sm text-gray-700"
@@ -154,10 +177,10 @@
       </div>
 
       <!-- Botones -->
-      <div class="mt-4 flex gap-3">
+      <div class="mt-4 flex gap-3 h-16">
         <button
           type="button"
-          class="flex-1 rounded-xl border border-[#0A2540] py-2 text-sm font-semibold text-[#0A2540] hover:bg-[#EFF2F7]"
+          class="flex-1 rounded-xl border border-primary py-2 text-xl font-semibold text-primary hover:bg-[#EFF2F7]"
           (click)="goBack()"
         >
           Atrás
@@ -165,7 +188,7 @@
 
         <button
           type="button"
-          class="flex-1 rounded-xl bg-[#0A2540] py-2 text-sm font-semibold text-white hover:opacity-90"
+          class="flex-1 rounded-xl bg-primary py-2 text-xl font-semibold text-white hover:opacity-90"
           (click)="continue()"
         >
           Continuar
@@ -174,3 +197,4 @@
     </aside>
   </div>
 </div>
+<app-download-app-banner></app-download-app-banner>

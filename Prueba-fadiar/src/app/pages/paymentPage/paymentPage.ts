@@ -4,21 +4,21 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CartService } from '../../services/cart.service';
 import { map, Observable } from 'rxjs';
-import { CartRutaEnvio } from '../../components/cartRutaEnvio/cartRutaEnvio';
+import { CheckoutService, PaymentMethod, PayerData } from '../../services/checkout.service';
+import { DownloadAppBanner } from "../../components/DownloadAppBanner/DownloadAppBanner";
+import { CartRutaEnvio } from "../../components/cartRutaEnvio/cartRutaEnvio";
 import { BreadcrumbComponent } from "../../components/breadcrumb/breadcrumb";
 
 @Component({
   selector: 'app-payment-page',
   standalone: true,
-  imports: [CommonModule, FormsModule, CartRutaEnvio, BreadcrumbComponent],
+  imports: [CommonModule, FormsModule, DownloadAppBanner, CartRutaEnvio, BreadcrumbComponent],
   templateUrl: './paymentPage.html',
 })
 export class PaymentPage {
-  // método de pago seleccionado
-  paymentMethod: 'card' | 'tropipay' = 'card';
+  paymentMethod: PaymentMethod = 'card';
 
-  // datos del comprador
-  buyer = {
+  buyer: PayerData = {
     firstName: '',
     lastName: '',
     email: '',
@@ -37,17 +37,29 @@ export class PaymentPage {
 
   subtotal$!: Observable<number>;
 
-  constructor(private cartService: CartService, private router: Router) {
+  constructor(
+    private cartService: CartService,
+    private router: Router,
+    private checkoutService: CheckoutService
+  ) {
+    // rellenar con lo que hubiese ya en el servicio (por si vuelve atrás)
+    this.paymentMethod = this.checkoutService.paymentMethod;
+    this.buyer = { ...this.checkoutService.payer };
+
     this.subtotal$ = this.cartService.cartItems$.pipe(
-      map((items) =>
-        items.reduce((acc, item) => acc + item.product.price * item.quantity, 0)
+      map(items =>
+        items.reduce(
+          (acc, item) => acc + item.product.price * item.quantity,
+          0
+        )
       )
     );
   }
 
-  // 4% si paga con tarjeta, 0 si TropiPay
   getCommission(subtotal: number): number {
-    return this.paymentMethod === 'card' ? +(subtotal * 0.04).toFixed(2) : 0;
+    return this.paymentMethod === 'card'
+      ? +(subtotal * 0.04).toFixed(2)
+      : 0;
   }
 
   getTotal(subtotal: number): number {
@@ -59,7 +71,9 @@ export class PaymentPage {
   }
 
   continue() {
-    // más adelante aquí puedes validar el formulario, etc.
+    // guardar en el servicio
+    this.checkoutService.setPaymentData(this.paymentMethod, this.buyer);
+    // ir a datos de entrega
     this.router.navigate(['/cart/delivery']);
   }
 }
