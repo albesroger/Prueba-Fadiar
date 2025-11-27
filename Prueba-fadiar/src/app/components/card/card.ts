@@ -24,32 +24,38 @@ export class ProductCardComponent {
   @Input() price: number = 0;
   @Input() warranty: number = 0;
   @Input() layout: 'vertical' | 'horizontal' = 'vertical';
+
   @Input() product!: Product;
 
-  // cantidad actual que viene del carrito
+  // cantidad (solo tiene sentido en modo carrito)
   @Input() quantity: number = 1;
 
-  // mostrar o no el controlador de cantidad (para reusar la card en otras vistas)
-  @Input() showQuantityControls = false;
+  // ya no necesitamos showQuantityControls si usamos mode
+  // @Input() showQuantityControls = false;
+  @Input() mode: 'catalog' | 'cart' = 'catalog';
 
   @Output() increment = new EventEmitter<void>();
   @Output() decrement = new EventEmitter<void>();
   @Output() remove = new EventEmitter<void>();
 
   constructor(private cartService: CartService) {}
-  increase() {
-    this.quantity++;
+
+
+  get isCatalogMode() {
+    return this.mode === 'catalog';
   }
 
-  decrease() {
-    if (this.quantity > 1) {
-      this.quantity--;
-    }
+  get isCartMode() {
+    return this.mode === 'cart';
   }
 
+ 
   addToCart() {
+   
     this.cartService.addToCart(this.product);
   }
+
+ 
   onIncrement() {
     this.increment.emit();
   }
@@ -61,4 +67,9 @@ export class ProductCardComponent {
   onRemove() {
     this.remove.emit();
   }
+
+  // si todavía usabas increase/decrease en otros lados,
+  // puedes hacerlos delegar a los eventos:
+  // increase() { this.onIncrement(); }
+  // decrease() { this.onDecrement(); }
 }

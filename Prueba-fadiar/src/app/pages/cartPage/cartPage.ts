@@ -2,16 +2,22 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CartService } from '../../services/cart.service';
-import { map, Observable } from 'rxjs';
+import { count, map, Observable } from 'rxjs';
 import { CartItem } from '../../model/cartItem.model';
 import { BreadcrumbComponent } from '../../components/breadcrumb/breadcrumb';
 import { CartRutaEnvio } from '../../components/cartRutaEnvio/cartRutaEnvio';
-import { ProductCardComponent } from "../../components/card/card";
+import { ProductCardComponent } from '../../components/card/card';
 
 @Component({
   selector: 'app-cart-page',
   standalone: true,
-  imports: [CommonModule, FormsModule, BreadcrumbComponent, CartRutaEnvio, ProductCardComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    BreadcrumbComponent,
+    CartRutaEnvio,
+    ProductCardComponent,
+  ],
   templateUrl: './cartPage.html',
 })
 export class CartPage {
@@ -25,7 +31,16 @@ export class CartPage {
     province: '',
     municipality: '',
     homeDelivery: false,
+    countryCode: '+53', // Código de país por defecto
   };
+  // Opcional: lista de códigos de país
+  countryCodes = [
+    { code: '+53', label: '🇨🇺 +53' },
+    { code: '+34', label: '🇪🇸 +34' },
+    { code: '+1', label: '🇺🇸 +1' },
+    { code: '+52', label: '🇲🇽 +52' },
+    // agrega los que necesites
+  ];
 
   constructor(private cartService: CartService) {
     this.cartItems$ = this.cartService.cartItems$;
@@ -53,6 +68,7 @@ export class CartPage {
   }
 
   confirmOrder() {
+    const fullPhone = `${this.customer.countryCode}${this.customer.phone}`;
     console.log('Orden confirmada:', {
       customer: this.customer,
       items: this.cartService.currentCart,
