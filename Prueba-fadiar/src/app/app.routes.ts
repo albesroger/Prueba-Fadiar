@@ -6,6 +6,8 @@ import { FaqPage } from './pages/faqPage/faqPage';
 import { AboutusPage } from './pages/aboutusPage/aboutusPage';
 import { ContactoPage } from './pages/contactoPage/contactoPage';
 import { CartPage } from './pages/cartPage/cartPage';
+import { PaymentPage } from './pages/paymentPage/paymentPage';
+import { DeliveryPage } from './pages/deliveryPage/deliveryPage';
 
 export const routes: Routes = [
   {
@@ -36,6 +38,16 @@ export const routes: Routes = [
   {
     path: 'cart',
     component: CartPage,
-    data: { breadcrumb: 'Carrito' },
+    data: { breadcrumb: 'Carrito de Compras' },
+  },
+  {
+    path: 'cart/payment',
+    component: PaymentPage,
+    data: { breadcrumb: 'Datos de Pago' },
+  },
+  {
+    path: 'cart/delivery',
+    component: DeliveryPage,
+    data: { breadcrumb: 'Datos de Pago' },
   },
 ];

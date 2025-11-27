@@ -7,6 +7,8 @@ import { CartItem } from '../../model/cartItem.model';
 import { BreadcrumbComponent } from '../../components/breadcrumb/breadcrumb';
 import { CartRutaEnvio } from '../../components/cartRutaEnvio/cartRutaEnvio';
 import { ProductCardComponent } from '../../components/card/card';
+import { DownloadAppBanner } from '../../components/DownloadAppBanner/DownloadAppBanner';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-cart-page',
@@ -17,6 +19,8 @@ import { ProductCardComponent } from '../../components/card/card';
     BreadcrumbComponent,
     CartRutaEnvio,
     ProductCardComponent,
+    DownloadAppBanner,
+    RouterLink,
   ],
   templateUrl: './cartPage.html',
 })

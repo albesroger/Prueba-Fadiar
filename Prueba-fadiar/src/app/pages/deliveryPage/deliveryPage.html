@@ -1,0 +1,176 @@
+<div class="max-w-6xl mx-auto px-4 lg:px-0 py-8">
+  <!-- Migas + título -->
+  <p class="text-sm text-gray-500 mb-1">
+    Home <span class="mx-1">›</span> Carrito de compras
+    <span class="mx-1">›</span>
+    <span class="font-semibold">Datos de pago</span>
+  </p>
+
+  <h1 class="text-2xl lg:text-3xl font-bold text-[#0A2540] mb-6">
+    Datos de pago
+  </h1>
+
+  <!-- Pasos (ahora currentStep = 3) -->
+ <app-cart-ruta-envio [currentStep]="3"></app-cart-ruta-envio>
+
+  <!-- Contenido principal -->
+  <div class="mt-6 grid gap-8 lg:grid-cols-[2.1fr,1.1fr]">
+    <!-- IZQUIERDA -->
+    <div class="space-y-6">
+      <!-- 01 - Datos del beneficiario -->
+      <section>
+        <h2 class="text-sm font-bold text-[#0A2540] mb-1">
+          01 - Datos del beneficiario
+        </h2>
+        <p class="text-xs text-gray-500 mb-3">
+          Persona que recibirá y será propietaria del producto.
+        </p>
+
+        <div class="space-y-3">
+          <input
+            type="text"
+            class="w-full rounded-xl bg-[#F5F7FA] px-4 py-3 text-sm outline-none"
+            placeholder="Nombre"
+            [(ngModel)]="beneficiary.firstName"
+            name="firstName"
+          />
+
+          <input
+            type="text"
+            class="w-full rounded-xl bg-[#F5F7FA] px-4 py-3 text-sm outline-none"
+            placeholder="Apellidos"
+            [(ngModel)]="beneficiary.lastName"
+            name="lastName"
+          />
+
+          <input
+            type="email"
+            class="w-full rounded-xl bg-[#F5F7FA] px-4 py-3 text-sm outline-none"
+            placeholder="Correo electrónico"
+            [(ngModel)]="beneficiary.email"
+            name="email"
+          />
+
+          <!-- Teléfono con código -->
+          <div class="flex gap-2">
+            <select
+              class="w-28 rounded-xl bg-[#F5F7FA] px-2 py-3 text-sm outline-none"
+              [(ngModel)]="beneficiary.countryCode"
+              name="countryCode"
+            >
+              @for (cc of countryCodes; track cc.code) {
+              <option [value]="cc.code">{{ cc.label }}</option>
+              }
+            </select>
+
+            <input
+              type="tel"
+              class="flex-1 rounded-xl bg-[#F5F7FA] px-4 py-3 text-sm outline-none"
+              placeholder="Teléfono"
+              [(ngModel)]="beneficiary.phone"
+              name="phone"
+            />
+          </div>
+
+          <input
+            type="text"
+            class="w-full rounded-xl bg-[#F5F7FA] px-4 py-3 text-sm outline-none"
+            placeholder="Carnet de Identidad"
+            [(ngModel)]="beneficiary.idCard"
+            name="idCard"
+          />
+        </div>
+      </section>
+
+      <!-- 02 - Forma de entrega -->
+      <section>
+        <h2 class="text-sm font-bold text-[#0A2540] mb-1">
+          02 - Forma de entrega
+        </h2>
+        <p class="text-xs text-gray-500 mb-3">
+          Añadir domicilio del beneficiario
+        </p>
+
+        <div class="space-y-3">
+          <input
+            type="text"
+            class="w-full rounded-xl bg-[#F5F7FA] px-4 py-3 text-sm outline-none"
+            placeholder="Dirección"
+            [(ngModel)]="beneficiary.address"
+            name="address"
+          />
+
+          <textarea
+            rows="3"
+            class="w-full rounded-xl bg-[#F5F7FA] px-4 py-3 text-sm outline-none resize-none"
+            placeholder="Nota"
+            [(ngModel)]="beneficiary.note"
+            name="note"
+          ></textarea>
+        </div>
+      </section>
+    </div>
+
+    <!-- DERECHA -->
+    <aside class="space-y-4">
+      <div class="border-t border-gray-200 pt-3">
+        <h3 class="text-sm font-bold text-[#0A2540] mb-3">METODO DE ENTREGA</h3>
+        <p class="text-sm text-gray-700">Entrega a Domicilio</p>
+      </div>
+
+      <div class="border-t border-gray-200 pt-3">
+        <h3 class="text-sm font-bold text-[#0A2540] mb-3">FORMA DE PAGO</h3>
+        <div
+          class="h-10 w-16 rounded-lg bg-[#EB001B] flex items-center justify-center"
+        >
+          <!-- logo tarjeta -->
+        </div>
+      </div>
+
+      <div class="space-y-3">
+        <h3 class="text-sm font-bold text-[#0A2540]">IMPORTE</h3>
+
+        <div
+          class="rounded-xl bg-[#F5F7FA] px-4 py-4 space-y-3 text-sm text-gray-700"
+          *ngIf="(subtotal$ | async) as subtotal"
+        >
+          <div class="flex items-center justify-between">
+            <span>Subtotal:</span>
+            <span>$ {{ subtotal | number: '1.2-2' }} USD</span>
+          </div>
+
+          <div class="flex items-center justify-between">
+            <span>Comisión por forma de pago:</span>
+            <span> $ {{ getCommission(subtotal) | number: '1.2-2' }} USD </span>
+          </div>
+
+          <div
+            class="mt-2 pt-3 border-t border-gray-300 flex items-center justify-between text-base font-semibold text-[#0A2540]"
+          >
+            <span>Total</span>
+            <span> $ {{ getTotal(subtotal) | number: '1.2-2' }} USD </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Botones -->
+      <div class="mt-4 flex gap-3">
+        <button
+          type="button"
+          class="flex-1 rounded-xl border border-[#0A2540] py-2 text-sm font-semibold text-[#0A2540] hover:bg-[#EFF2F7]"
+          (click)="goBack()"
+        >
+          Atrás
+        </button>
+
+        <button
+          type="button"
+          class="flex-1 rounded-xl bg-[#0A2540] py-2 text-sm font-semibold text-white hover:opacity-90"
+          (click)="continue()"
+        >
+          Continuar
+        </button>
+      </div>
+    </aside>
+  </div>
+</div>

@@ -1,0 +1,373 @@
+<div class="mx-28 px-4 lg:px-0 py-8">
+  <app-breadcrumb></app-breadcrumb>
+
+  <h1 class="text-2xl lg:text-3xl font-bold text-[#0A2540] mb-6">
+    Datos de pago
+  </h1>
+
+  <!-- Pasos -->
+  <app-cart-ruta-envio [currentStep]="2"></app-cart-ruta-envio>
+
+  <div class="flex flex-row justify-between gap-10">
+    <!-- Forma de pago -->
+    <div class="w-full">
+      <h2 class="text-xl font-bold text-primary mb-3">01 - Forma de pago</h2>
+
+      <div class="space-y-5 w-[385px] h-36">
+        <!-- Tarjeta -->
+        <label
+          class="flex cursor-pointer items-center gap-3 rounded-xl border px-4 py-4"
+          [ngClass]="{
+              'border-deafuera bg-white':
+                paymentMethod === 'card',
+              'border-gray-200 bg-white': paymentMethod !== 'card'
+            }"
+        >
+          <input
+            type="radio"
+            class="h-4 w-4 accent-[#0070D2]"
+            name="paymentMethod"
+            value="card"
+            [(ngModel)]="paymentMethod"
+          />
+          <div class="flex-1">
+            <p class="text-sm font-semibold text-[#0A2540]">
+              Tarjetas de crédito o débito
+            </p>
+            <p class="text-xs text-gray-500">Comisión por forma de pago: 4%</p>
+
+            <div class="mt-2 flex gap-2">
+              <span class="h-6 w-10 rounded bg-[#1A1F71]"
+                ><svg
+                  width="47"
+                  height="32"
+                  viewBox="0 0 47 32"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <rect
+                    width="46.6667"
+                    height="32"
+                    rx="2.48889"
+                    fill="#00579F"
+                  />
+                  <path
+                    d="M19.9648 21.4437H17.3262L18.9766 11.2389H21.6151L19.9648 21.4437Z"
+                    fill="white"
+                  />
+                  <path
+                    d="M29.5304 11.4885C29.01 11.282 28.1845 11.054 27.1638 11.054C24.558 11.054 22.7231 12.4436 22.7118 14.4302C22.6902 15.8959 24.0256 16.7099 25.0244 17.1987C26.0452 17.698 26.3923 18.024 26.3923 18.4691C26.3819 19.1528 25.5673 19.4679 24.8077 19.4679C23.7542 19.4679 23.1897 19.3054 22.3319 18.9251L21.9845 18.762L21.6152 21.0528C22.2341 21.3347 23.3743 21.5849 24.558 21.5959C27.3267 21.5959 29.1292 20.2279 29.1505 18.1109C29.161 16.9492 28.4559 16.0591 26.9357 15.3317C26.0128 14.8648 25.4476 14.5499 25.4476 14.0722C25.4584 13.6379 25.9256 13.193 26.9674 13.193C27.8252 13.1712 28.4555 13.3774 28.9329 13.5837L29.1716 13.6921L29.5304 11.4885Z"
+                    fill="white"
+                  />
+                  <path
+                    d="M33.0375 17.8285C33.2548 17.2423 34.091 14.9733 34.091 14.9733C34.08 14.9951 34.3078 14.3762 34.4381 13.9963L34.6225 14.8756C34.6225 14.8756 35.1222 17.3183 35.2307 17.8285C34.8183 17.8285 33.5587 17.8285 33.0375 17.8285ZM36.2946 11.2389H34.2536C33.6242 11.2389 33.146 11.4233 32.8744 12.0856L28.9551 21.4436H31.7237C31.7237 21.4436 32.1795 20.1841 32.2775 19.9128C32.5812 19.9128 35.2746 19.9128 35.6653 19.9128C35.7411 20.2711 35.9801 21.4436 35.9801 21.4436H38.4233L36.2946 11.2389V11.2389Z"
+                    fill="white"
+                  />
+                  <path
+                    d="M15.122 11.2389L12.5379 18.1976L12.2555 16.7863C11.7778 15.1579 10.2795 13.3886 8.60742 12.5088L10.9744 21.4329H13.7647L17.9121 11.2389H15.122V11.2389Z"
+                    fill="white"
+                  />
+                  <path
+                    d="M10.1384 11.2389H5.89304L5.84961 11.4451C9.16122 12.292 11.3544 14.3332 12.2555 16.7867L11.3326 12.0967C11.1807 11.445 10.7138 11.2604 10.1384 11.2389Z"
+                    fill="#FAA61A"
+                  />
+                </svg>
+              </span>
+              <span class="h-6 w-10 rounded bg-[#EB001B]"
+                ><svg
+                  width="47"
+                  height="32"
+                  viewBox="0 0 47 32"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <rect
+                    width="46.0444"
+                    height="31.5733"
+                    rx="2.48889"
+                    fill="black"
+                  />
+                  <path
+                    d="M29.1738 6.57776C34.1316 6.5778 38.1503 10.6435 38.1504 15.6588C38.1504 20.6742 34.1317 24.7398 29.1738 24.7399C26.9509 24.7399 24.9184 23.9208 23.3506 22.567C21.7828 23.9207 19.7502 24.7399 17.5273 24.7399C12.5697 24.7396 8.55078 20.6741 8.55078 15.6588C8.55089 10.6436 12.5697 6.57802 17.5273 6.57776C19.7498 6.57776 21.7829 7.3963 23.3506 8.74963C24.9183 7.39618 26.9512 6.57776 29.1738 6.57776Z"
+                    fill="#ED0006"
+                  />
+                  <path
+                    d="M29.1748 6.57776C34.1326 6.5778 38.1513 10.6435 38.1514 15.6588C38.1514 20.6742 34.1327 24.7398 29.1748 24.7399C26.9519 24.7399 24.9194 23.9208 23.3516 22.567C25.2807 20.9014 26.5059 18.4256 26.5059 15.6588C26.5058 12.8918 25.281 10.4153 23.3516 8.74963C24.9193 7.39618 26.9522 6.57776 29.1748 6.57776Z"
+                    fill="#F9A000"
+                  />
+                  <path
+                    d="M23.3496 8.74966C25.2791 10.4153 26.5039 12.8918 26.5039 15.6588C26.5039 18.4257 25.2787 20.9014 23.3496 22.567C21.4206 20.9014 20.1953 18.4256 20.1953 15.6588C20.1954 12.8919 21.4203 10.4153 23.3496 8.74966Z"
+                    fill="#FF5E00"
+                  />
+                </svg>
+              </span>
+              <span class="h-6 w-10 rounded bg-[#016FD0]"
+                ><svg
+                  width="47"
+                  height="33"
+                  viewBox="0 0 47 33"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <mask
+                    id="mask0_327_2586"
+                    style="mask-type: alpha"
+                    maskUnits="userSpaceOnUse"
+                    x="0"
+                    y="0"
+                    width="47"
+                    height="33"
+                  >
+                    <rect width="46.6667" height="32.3556" fill="#016FD0" />
+                  </mask>
+                  <g mask="url(#mask0_327_2586)">
+                    <rect
+                      width="46.6667"
+                      height="32.3556"
+                      rx="2.48889"
+                      fill="#016FD0"
+                    />
+                    <path
+                      d="M9.07617 24.7528V17.3296H16.8497L17.6837 18.4289L18.5453 17.3296H46.7611V24.2409C46.7611 24.2409 46.0232 24.7454 45.1698 24.7528H29.5461L28.6058 23.5827V24.7528H25.5244V22.7553C25.5244 22.7553 25.1035 23.0342 24.1935 23.0342H23.1447V24.7528H18.4793L17.6465 23.63L16.8009 24.7528H9.07617Z"
+                      fill="white"
+                    />
+                    <path
+                      d="M0 11.7348L1.75295 7.60269H4.7845L5.77932 9.91736V7.60269H9.54781L10.14 9.27566L10.7142 7.60269H27.6308V8.44375C27.6308 8.44375 28.5201 7.60269 29.9816 7.60269L35.4704 7.62209L36.448 9.90646V7.60269H39.6017L40.4697 8.91488V7.60269H43.6523V15.0259H40.4697L39.6379 13.7095V15.0259H35.0044L34.5385 13.8558H33.2928L32.8345 15.0259H29.6922C28.4347 15.0259 27.6308 14.2021 27.6308 14.2021V15.0259H22.893L21.9527 13.8558V15.0259H4.33539L3.86976 13.8558H2.6281L2.16576 15.0259H0V11.7348Z"
+                      fill="white"
+                    />
+                    <path
+                      d="M2.37216 8.51758L0.0078125 14.0759H1.54713L1.98338 12.9629H4.51951L4.95351 14.0759H6.52672L4.16463 8.51758H2.37216ZM3.24692 9.81116L4.01997 11.7561H2.47162L3.24692 9.81116Z"
+                      fill="#016FD0"
+                    />
+                    <path
+                      d="M6.68945 14.0746V8.51627L8.8769 8.52448L10.1492 12.1081L11.391 8.51627H13.561V14.0746H12.1867V9.97898L10.7299 14.0746H9.52461L8.06376 9.97898V14.0746H6.68945Z"
+                      fill="#016FD0"
+                    />
+                    <path
+                      d="M14.502 14.0746V8.51627H18.9866V9.75959H15.8907V10.7104H18.9142V11.8805H15.8907V12.8679H18.9866V14.0746H14.502Z"
+                      fill="#016FD0"
+                    />
+                    <path
+                      d="M19.7812 8.51758V14.0759H21.1556V12.1013H21.7342L23.3821 14.0759H25.0615L23.2532 12.0281C23.9954 11.9648 24.7609 11.3208 24.7609 10.3208C24.7609 9.15118 23.8529 8.51758 22.8396 8.51758H19.7812ZM21.1556 9.76089H22.7265C23.1034 9.76089 23.3775 10.059 23.3775 10.346C23.3775 10.7153 23.0223 10.9311 22.7469 10.9311H21.1556V9.76089Z"
+                      fill="#016FD0"
+                    />
+                    <path
+                      d="M26.7275 14.0746H25.3242V8.51627H26.7275V14.0746Z"
+                      fill="#016FD0"
+                    />
+                    <path
+                      d="M30.0547 14.0746H29.7518C28.2863 14.0746 27.3965 12.9072 27.3965 11.3183C27.3965 9.69016 28.2763 8.51627 30.127 8.51627H31.646V9.83272H30.0715C29.3202 9.83272 28.7889 10.4255 28.7889 11.332C28.7889 12.4085 29.3964 12.8606 30.2717 12.8606H30.6334L30.0547 14.0746Z"
+                      fill="#016FD0"
+                    />
+                    <path
+                      d="M33.046 8.51758L30.6816 14.0759H32.221L32.6572 12.9629H35.1933L35.6273 14.0759H37.2006L34.8385 8.51758H33.046ZM33.9208 9.81116L34.6938 11.7561H33.1454L33.9208 9.81116Z"
+                      fill="#016FD0"
+                    />
+                    <path
+                      d="M37.3594 14.0746V8.51627H39.1067L41.3377 12.0085V8.51627H42.712V14.0746H41.0212L38.7337 10.4909V14.0746H37.3594Z"
+                      fill="#016FD0"
+                    />
+                    <path
+                      d="M10.0176 23.8022V18.2439H14.5022V19.4872H11.4064V20.438H14.4299V21.6081H11.4064V22.5955H14.5022V23.8022H10.0176Z"
+                      fill="#016FD0"
+                    />
+                    <path
+                      d="M31.9902 23.8022V18.2439H36.4749V19.4872H33.379V20.438H36.3881V21.6081H33.379V22.5955H36.4749V23.8022H31.9902Z"
+                      fill="#016FD0"
+                    />
+                    <path
+                      d="M14.677 23.8022L16.8605 21.0573L14.625 18.2439H16.3564L17.6878 19.9831L19.0237 18.2439H20.6873L18.4812 21.023L20.6687 23.8022H18.9376L17.6449 22.0903L16.3836 23.8022H14.677Z"
+                      fill="#016FD0"
+                    />
+                    <path
+                      d="M20.832 18.2445V23.8029H22.2425V22.0476H23.6892C24.9132 22.0476 25.8411 21.391 25.8411 20.1141C25.8411 19.0562 25.1134 18.2445 23.8677 18.2445H20.832ZM22.2425 19.5015H23.766C24.1615 19.5015 24.4441 19.7466 24.4441 20.1415C24.4441 20.5124 24.1629 20.7814 23.7615 20.7814H22.2425V19.5015Z"
+                      fill="#016FD0"
+                    />
+                    <path
+                      d="M26.4375 18.2439V23.8022H27.8118V21.8275H28.3905L30.0383 23.8022H31.7178L29.9095 21.7544C30.6516 21.6911 31.4171 21.047 31.4171 20.0471C31.4171 18.8775 30.5092 18.2439 29.4958 18.2439H26.4375ZM27.8118 19.4872H29.3828C29.7596 19.4872 30.0338 19.7852 30.0338 20.0723C30.0338 20.4415 29.6786 20.6574 29.4031 20.6574H27.8118V19.4872Z"
+                      fill="#016FD0"
+                    />
+                    <path
+                      d="M37.114 23.8022V22.5955H39.8644C40.2714 22.5955 40.4476 22.3731 40.4476 22.1292C40.4476 21.8956 40.2719 21.6593 39.8644 21.6593H38.6215C37.5411 21.6593 36.9395 20.9938 36.9395 19.9946C36.9395 19.1033 37.4905 18.2439 39.0959 18.2439H41.7722L41.1935 19.4945H38.8789C38.4364 19.4945 38.3002 19.7293 38.3002 19.9534C38.3002 20.1839 38.4685 20.438 38.8065 20.438H40.1085C41.3129 20.438 41.8355 21.1287 41.8355 22.0332C41.8355 23.0057 41.2531 23.8022 40.043 23.8022H37.114Z"
+                      fill="#016FD0"
+                    />
+                    <path
+                      d="M42.1569 23.8022V22.5955H44.9074C45.3143 22.5955 45.4906 22.3731 45.4906 22.1292C45.4906 21.8956 45.3149 21.6593 44.9074 21.6593H43.6645C42.5841 21.6593 41.9824 20.9938 41.9824 19.9946C41.9824 19.1033 42.5334 18.2439 44.1388 18.2439H46.7605L46.2365 19.4945H43.9218C43.4794 19.4945 43.3432 19.7292 43.3432 19.9534C43.3432 20.1839 43.5115 20.438 43.8495 20.438H45.1515C46.3558 20.438 46.8784 21.1287 46.8784 22.0332C46.8784 23.0057 46.2961 23.8022 45.0859 23.8022H42.1569Z"
+                      fill="#016FD0"
+                    />
+                  </g>
+                </svg>
+              </span>
+            </div>
+          </div>
+        </label>
+
+        <!-- TropiPay -->
+        <label
+          class="flex cursor-pointer items-center gap-3 rounded-xl border px-4 py-4"
+          [ngClass]="{
+              'border-[#0070D2] bg-white shadow-sm':
+                paymentMethod === 'tropipay',
+              'border-gray-200 bg-white': paymentMethod !== 'tropipay'
+            }"
+        >
+          <input
+            type="radio"
+            class="h-4 w-4 accent-[#0070D2]"
+            name="paymentMethod"
+            value="tropipay"
+            [(ngModel)]="paymentMethod"
+          />
+          <div class="flex-1">
+            <p class="text-sm font-semibold text-[#0A2540]">Saldo TropiPay</p>
+          </div>
+        </label>
+      </div>
+    </div>
+
+    <!-- Datos del comprador -->
+    <div class="w-full">
+      <h2 class="text-sm font-bold text-[#0A2540] mb-1">
+        02 - Datos del comprador
+      </h2>
+      <p class="text-xs text-gray-500 mb-3">
+        Propietario de la cuenta desde donde se realiza la compra
+      </p>
+
+      <div class="space-y-3">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <div>
+            <input
+              type="text"
+              class="w-full rounded-xl bg-[#F5F7FA] px-4 py-3 text-sm outline-none"
+              placeholder="Nombre"
+              [(ngModel)]="buyer.firstName"
+              name="firstName"
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              class="w-full rounded-xl bg-[#F5F7FA] px-4 py-3 text-sm outline-none"
+              placeholder="Apellidos"
+              [(ngModel)]="buyer.lastName"
+              name="lastName"
+            />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-[1.6fr,1.4fr] gap-3">
+          <div>
+            <input
+              type="email"
+              class="w-full rounded-xl bg-[#F5F7FA] px-4 py-3 text-sm outline-none"
+              placeholder="Correo electrónico"
+              [(ngModel)]="buyer.email"
+              name="email"
+            />
+          </div>
+
+          <!-- Teléfono con código de país -->
+          <div>
+            <div class="flex gap-2">
+              <select
+                class="w-28 rounded-xl bg-[#F5F7FA] px-2 py-3 text-sm outline-none"
+                [(ngModel)]="buyer.countryCode"
+                name="countryCode"
+              >
+                @for (cc of countryCodes; track cc.code) {
+                <option [value]="cc.code">{{ cc.label }}</option>
+                }
+              </select>
+
+              <input
+                type="tel"
+                class="flex-1 rounded-xl bg-[#F5F7FA] px-4 py-3 text-sm outline-none"
+                placeholder="Teléfono"
+                [(ngModel)]="buyer.phone"
+                name="phone"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <input
+            type="text"
+            class="w-full rounded-xl bg-[#F5F7FA] px-4 py-3 text-sm outline-none"
+            placeholder="Dirección"
+            [(ngModel)]="buyer.address"
+            name="address"
+          />
+        </div>
+
+        <div>
+          <textarea
+            rows="3"
+            class="w-full rounded-xl bg-[#F5F7FA] px-4 py-3 text-sm outline-none resize-none"
+            placeholder="Nota"
+            [(ngModel)]="buyer.note"
+            name="note"
+          ></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- DERECHA: resumen -->
+    <div class="w-full">
+      <div class="border-t border-gray-200 pt-3">
+        <h3 class="text-sm font-bold text-[#0A2540] mb-3">FORMA DE PAGO</h3>
+        <div
+          class="h-10 w-16 rounded-lg bg-[#EB001B] flex items-center justify-center"
+        >
+          <!-- aquí podrías poner el logo de la tarjeta -->
+        </div>
+      </div>
+
+      <div class="space-y-3">
+        <h3 class="text-sm font-bold text-[#0A2540]">IMPORTE</h3>
+
+        <div
+          class="rounded-xl bg-[#F5F7FA] px-4 py-4 space-y-3 text-sm text-gray-700"
+          *ngIf="(subtotal$ | async) as subtotal"
+        >
+          <div class="flex items-center justify-between">
+            <span>Subtotal:</span>
+            <span>$ {{ subtotal | number: '1.2-2' }} USD</span>
+          </div>
+
+          <div class="flex items-center justify-between">
+            <span>Comisión por forma de pago:</span>
+            <span> $ {{ getCommission(subtotal) | number: '1.2-2' }} USD </span>
+          </div>
+
+          <div
+            class="mt-2 pt-3 border-t border-gray-300 flex items-center justify-between text-base font-semibold text-[#0A2540]"
+          >
+            <span>Total</span>
+            <span> $ {{ getTotal(subtotal) | number: '1.2-2' }} USD </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Botones -->
+      <div class="mt-4 flex gap-3">
+        <button
+          type="button"
+          class="flex-1 rounded-xl border border-[#0A2540] py-2 text-sm font-semibold text-[#0A2540] hover:bg-[#EFF2F7]"
+          (click)="goBack()"
+        >
+          Atrás
+        </button>
+
+        <button
+          type="button"
+          class="flex-1 rounded-xl bg-[#0A2540] py-2 text-sm font-semibold text-white hover:opacity-90"
+          (click)="continue()"
+        >
+          Continuar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
