@@ -1,17 +1,17 @@
-<div
-  class="mb-8 rounded-xl px-90 py-4 flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between"
->
-  <div class="flex-1 flex items-center justify-center">
+<div class="mb-8 rounded-xl px-4 py-4 sm:px-8 lg:px-[90px]">
+  <div
+    class="flex flex-row items-center justify-between gap-2 sm:gap-4 lg:gap-6"
+  >
     <!-- Paso 1 -->
     <div
-      class="flex flex-col items-center justify-center gap-3"
+      class="flex flex-col items-center justify-center gap-2 text-center min-w-[70px]"
       [ngClass]="{
         'opacity-100': isActive(1) || isCompleted(1),
         'opacity-60': !isActive(1) && !isCompleted(1)
       }"
     >
       <div
-        class="w-12 h-12 rounded-full flex items-center justify-center"
+        class="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center"
         [ngClass]="
           isActive(1) || isCompleted(1)
             ? 'border-2 border-accent bg-white text-[#0070D2]'
@@ -31,17 +31,16 @@
           />
         </svg>
       </div>
-      <div class="flex flex-col">
-        <span
-          class="text-[16px] font-semibold"
-          [ngClass]="
-            isActive(1) || isCompleted(1)
-              ? 'text-primary'
-              : 'text-gray-500'
-          "
-          >Carrito de compra</span
-        >
-      </div>
+      <span
+        class="text-[12px] sm:text-[14px] lg:text-[16px] font-semibold"
+        [ngClass]="
+          isActive(1) || isCompleted(1)
+            ? 'text-primary'
+            : 'text-gray-500'
+        "
+      >
+        Carrito de compra
+      </span>
     </div>
 
     <!-- Línea entre 1 y 2 -->
@@ -52,14 +51,14 @@
 
     <!-- Paso 2 -->
     <div
-      class="flex flex-col items-center justify-center gap-3"
+      class="flex flex-col items-center justify-center gap-2 text-center min-w-[70px]"
       [ngClass]="{
         'opacity-100': isActive(2) || isCompleted(2),
         'opacity-60': !isActive(2) && !isCompleted(2)
       }"
     >
       <div
-        class="w-12 h-12 rounded-full flex items-center justify-center"
+        class="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center"
         [ngClass]="
           isActive(2) || isCompleted(2)
             ? 'border-2 border-accent bg-white text-[#0070D2]'
@@ -87,14 +86,15 @@
         </svg>
       </div>
       <span
-        class="text-sm font-medium"
+        class="text-[12px] sm:text-[14px] font-medium"
         [ngClass]="
           isActive(2) || isCompleted(2)
             ? 'text-primary'
             : 'text-gray-500'
         "
-        >Datos de pago</span
       >
+        Datos de pago
+      </span>
     </div>
 
     <!-- Línea entre 2 y 3 -->
@@ -105,14 +105,14 @@
 
     <!-- Paso 3 -->
     <div
-      class="flex flex-col items-center justify-center gap-3"
+      class="flex flex-col items-center justify-center gap-2 text-center min-w-[70px]"
       [ngClass]="{
         'opacity-100': isActive(3) || isCompleted(3),
         'opacity-60': !isActive(3) && !isCompleted(3)
       }"
     >
       <div
-        class="w-12 h-12 rounded-full flex items-center justify-center"
+        class="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center"
         [ngClass]="
           isActive(3) || isCompleted(3)
             ? 'border-2 border-accent bg-white text-[#0070D2]'
@@ -128,7 +128,7 @@
         >
           <g clip-path="url(#clip0_327_2669)">
             <path
-              d="M1.5 0C0.671875 0 0 0.671875 0 1.5V11.5C0 12.3281 0.671875 13 1.5 13H2C2 14.6562 3.34375 16 5 16C6.65625 16 8 14.6562 8 13H12C12 14.6562 13.3438 16 15 16C16.6562 16 18 14.6562 18 13H19C19.5531 13 20 12.5531 20 12C20 11.4469 19.5531 11 19 11V9V8V7.41563C19 6.88438 18.7906 6.375 18.4156 6L16 3.58437C15.625 3.20937 15.1156 3 14.5844 3H13V1.5C13 0.671875 12.3281 0 11.5 0H1.5ZM13 5H14.5844L17 7.41563V8H13V5ZM3.5 13C3.5 12.6022 3.65804 12.2206 3.93934 11.9393C4.22064 11.658 4.60218 11.5 5 11.5C5.39782 11.5 5.77936 11.658 6.06066 11.9393C6.34196 12.2206 6.5 12.6022 6.5 13C6.5 13.3978 6.34196 13.7794 6.06066 14.0607C5.77936 14.342 5.39782 14.5 5 14.5C4.60218 14.5 4.22064 14.342 3.93934 14.0607C3.65804 13.7794 3.5 13.3978 3.5 13ZM15 11.5C15.3978 11.5 15.7794 11.658 16.0607 11.9393C16.342 12.2206 16.5 12.6022 16.5 13C16.5 13.3978 16.342 13.7794 16.0607 14.0607C15.7794 14.342 15.3978 14.5 15 14.5C14.6022 14.5 14.2206 14.342 13.9393 14.0607C13.658 13.7794 13.5 13.3978 13.5 13C13.5 12.6022 13.658 12.2206 13.9393 11.9393C14.2206 11.658 14.6022 11.5 15 11.5Z"
+              d="M1.5 0C0.671875 0 0 0.671875 0 1.5V11.5C0 12.3281 0.671875 13 1.5 13H2C2 14.6562 3.34375 16 5 16C6.65625 16 8 14.6562 8 13H12C12 14.6562 13.3438 16 15 16C16.6562 16 18 14.6562 18 13H19C19.5531 13 20 12.5531 20 12C20 11.4469 19.5531 11 19 11V9V8V7.41563C19 6.88438 18.7906 6.375 18.4156 6L16 3.58437C15.625 3.20937 15.1156 3 14.5844 3H13V1.5C13 0.671875 12.3281 0 11.5 0H1.5ZM13 5H14.5844L17 7.41563V8H13V5ZM3.5 13C3.5 12.6022 3.59004 12.5404 3.65705 12.3786C3.72406 12.2169 3.82227 12.0699 3.94608 11.9461C4.06989 11.8223 4.21688 11.7241 4.37864 11.657C4.54041 11.59 4.71379 11.5556 4.88889 11.5556C5.06398 11.5556 5.23737 11.59 5.39913 11.657C5.5609 11.7241 5.70789 11.8223 5.8317 11.9461C5.95551 12.0699 6.05372 12.2169 6.12073 12.3786C6.18773 12.5404 6.22222 12.7138 6.22222 12.8889C6.22222 13.064 6.18773 13.2374 6.12073 13.3991C6.05372 13.5609 5.95551 13.7079 5.8317 13.8317C5.70789 13.9555 5.5609 14.0537 5.39913 14.1207C5.23737 14.1877 5.06398 14.2222 4.88889 14.2222C4.71379 14.2222 4.54041 14.1877 4.37864 14.1207C4.21688 14.0537 4.06989 13.9555 3.94608 13.8317C3.82227 13.7079 3.72406 13.5609 3.65705 13.3991C3.59004 13.2374 3.55556 13.064 3.55556 12.8889ZM15 11.5C15.3978 11.5 15.7794 11.658 16.0607 11.9393C16.342 12.2206 16.5 12.6022 16.5 13C16.5 13.3978 16.342 13.7794 16.0607 14.0607C15.7794 14.342 15.3978 14.5 15 14.5C14.6022 14.5 14.2206 14.342 13.9393 14.0607C13.658 13.7794 13.5 13.3978 13.5 13C13.5 12.6022 13.658 12.2206 13.9393 11.9393C14.2206 11.658 14.6022 11.5 15 11.5Z"
               fill="#777777"
             />
           </g>
@@ -140,14 +140,15 @@
         </svg>
       </div>
       <span
-        class="text-sm font-medium"
+        class="text-[12px] sm:text-[14px] font-medium"
         [ngClass]="
           isActive(3) || isCompleted(3)
             ? 'text-primary'
             : 'text-gray-500'
         "
-        >Datos de entrega</span
       >
+        Datos de entrega
+      </span>
     </div>
 
     <!-- Línea entre 3 y 4 -->
@@ -158,14 +159,14 @@
 
     <!-- Paso 4 -->
     <div
-      class="flex flex-col items-center justify-center gap-3"
+      class="flex flex-col items-center justify-center gap-2 text-center min-w-[70px]"
       [ngClass]="{
         'opacity-100': isActive(4) || isCompleted(4),
         'opacity-60': !isActive(4) && !isCompleted(4)
       }"
     >
       <div
-        class="w-12 h-12 rounded-full flex items-center justify-center"
+        class="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center"
         [ngClass]="
           isActive(4) || isCompleted(4)
             ? 'border-2 border-accent bg-white text-[#0070D2]'
@@ -193,14 +194,15 @@
         </svg>
       </div>
       <span
-        class="text-sm font-medium"
+        class="text-[12px] sm:text-[14px] font-medium"
         [ngClass]="
           isActive(4) || isCompleted(4)
             ? 'text-primary'
             : 'text-gray-500'
         "
-        >Completar</span
       >
+        Completar
+      </span>
     </div>
   </div>
 </div>

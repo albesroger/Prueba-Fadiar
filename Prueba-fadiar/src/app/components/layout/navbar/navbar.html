@@ -1,5 +1,5 @@
-<div class="flex items-start justify-between w-full bg-background px-20 z-50">
-  <div class="mt-5">
+<div class="flex items-start justify-center sm:justify-between w-full bg-background px-20 z-50">
+  <div class="mt-5 hidden md:inline">
     <img
       src="/assets/icons/fadiarLogo.png"
       alt="Grupo Fadiar"
@@ -12,7 +12,7 @@
       (termChange)="onTermChange($event)"
     ></app-product-search>
 
-    <div class="bg-background px-8 pb-4">
+    <div class="bg-background px-8 pb-4 hidden md:inline">
       <ul class="flex items-center justify-center gap-10 text-sm font-sans">
         <li>
           <a
@@ -67,7 +67,7 @@
     </div>
   </div>
 
-  <div class="flex items-center gap-6 mt-5">
+  <div class="flex items-center gap-6 mt-3 sm:mt-5">
     <!--Carrito-->
     <button
       type="button"
