@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-
 export interface FilterOption {
   id: string;
   label: string;
@@ -24,10 +23,10 @@ export interface SidebarFilters {
 export class SidebarFilterComponent {
   // Secciones colapsables
   sectionsOpen = {
-    categories: true,
-    price: true,
-    brands: true,
-    relevant: true,
+    categories: false,
+    price: false,
+    brands: false,
+    relevant: false,
   };
 
   // IDs alineados con la API (categoria.id)
@@ -78,8 +77,8 @@ export class SidebarFilterComponent {
 
   @Output() filtersChange = new EventEmitter<SidebarFilters>();
 
-  toggleSection(key: keyof typeof this.sectionsOpen) {
-    this.sectionsOpen[key] = !this.sectionsOpen[key];
+  toggleSection(section: keyof typeof this.sectionsOpen) {
+    this.sectionsOpen[section] = !this.sectionsOpen[section];
   }
 
   onToggleCategory(id: string) {
