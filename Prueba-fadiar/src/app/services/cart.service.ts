@@ -8,20 +8,47 @@ import { Product } from '../model/products.model';
   providedIn: 'root',
 })
 export class CartService {
-  private cartItemsSubject = new BehaviorSubject<CartItem[]>([]);
+  private storageKey = 'fadiar_cart';
+
+  // inicializa el carrito leyendo de localStorage
+  private cartItemsSubject = new BehaviorSubject<CartItem[]>(this.loadCart());
   cartItems$ = this.cartItemsSubject.asObservable();
 
   // para mostrar contador en el icono
-  get cartCount$() {
-    return this.cartItems$.pipe(
-      // importa map de rxjs
-      map((items) => items.reduce((acc, item) => acc + item.quantity, 0))
-    );
-  }
+  cartCount$ = this.cartItems$.pipe(
+    map((items) => items.reduce((acc, item) => acc + item.quantity, 0))
+  );
 
   get currentCart(): CartItem[] {
     return this.cartItemsSubject.value;
   }
+
+  // ------- PERSISTENCIA -------
+
+  /** Lee carrito desde localStorage */
+  private loadCart(): CartItem[] {
+    try {
+      if (typeof window === 'undefined') return [];
+      const raw = localStorage.getItem(this.storageKey);
+      return raw ? (JSON.parse(raw) as CartItem[]) : [];
+    } catch {
+      return [];
+    }
+  }
+
+  /** Guarda carrito en localStorage */
+  private saveCart(items: CartItem[]) {
+    if (typeof window === 'undefined') return;
+    localStorage.setItem(this.storageKey, JSON.stringify(items));
+  }
+
+  /** Actualiza subject + localStorage */
+  private updateCart(items: CartItem[]) {
+    this.cartItemsSubject.next(items);
+    this.saveCart(items);
+  }
+
+  // ------- MÉTODOS PÚBLICOS -------
 
   addToCart(product: Product, quantity = 1) {
     const items = [...this.currentCart];
@@ -36,12 +63,12 @@ export class CartService {
       items.push({ product, quantity });
     }
 
-    this.cartItemsSubject.next(items);
+    this.updateCart(items);
   }
 
   removeFromCart(productId: number) {
     const items = this.currentCart.filter((i) => i.product.id !== productId);
-    this.cartItemsSubject.next(items);
+    this.updateCart(items);
   }
 
   updateQuantity(productId: number, quantity: number) {
@@ -53,11 +80,11 @@ export class CartService {
     const items = this.currentCart.map((i) =>
       i.product.id === productId ? { ...i, quantity } : i
     );
-    this.cartItemsSubject.next(items);
+    this.updateCart(items);
   }
 
   clearCart() {
-    this.cartItemsSubject.next([]);
+    this.updateCart([]);
   }
 
   getTotal(): number {

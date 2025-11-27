@@ -3,9 +3,20 @@
 >
   <div class="flex-1 flex items-center justify-center">
     <!-- Paso 1 -->
-    <div class="flex flex-col items-center justify-center gap-3">
+    <div
+      class="flex flex-col items-center justify-center gap-3"
+      [ngClass]="{
+        'opacity-100': isActive(1) || isCompleted(1),
+        'opacity-60': !isActive(1) && !isCompleted(1)
+      }"
+    >
       <div
-        class="w-12 h-12 rounded-full border-2 border-accent flex items-center justify-center bg-white text-[#0070D2]"
+        class="w-12 h-12 rounded-full flex items-center justify-center"
+        [ngClass]="
+          isActive(1) || isCompleted(1)
+            ? 'border-2 border-accent bg-white text-[#0070D2]'
+            : 'bg-rellenoEnvio text-gray-400'
+        "
       >
         <svg
           width="16"
@@ -21,18 +32,39 @@
         </svg>
       </div>
       <div class="flex flex-col">
-        <span class="text-[16px] font-semibold text-primary"
+        <span
+          class="text-[16px] font-semibold"
+          [ngClass]="
+            isActive(1) || isCompleted(1)
+              ? 'text-primary'
+              : 'text-gray-500'
+          "
           >Carrito de compra</span
         >
       </div>
     </div>
 
-    <div class="h-0.5 flex-1 bg-[#FFD26F] hidden lg:block mb-8"></div>
+    <!-- Línea entre 1 y 2 -->
+    <div
+      class="h-0.5 flex-1 hidden lg:block mb-8"
+      [ngClass]="isCompleted(1) ? 'bg-[#FFD26F]' : 'bg-gray-200'"
+    ></div>
 
     <!-- Paso 2 -->
-    <div class="flex flex-col items-center justify-center gap-3 opacity-60">
+    <div
+      class="flex flex-col items-center justify-center gap-3"
+      [ngClass]="{
+        'opacity-100': isActive(2) || isCompleted(2),
+        'opacity-60': !isActive(2) && !isCompleted(2)
+      }"
+    >
       <div
-        class="w-12 h-12 rounded-full bg-rellenoEnvio flex items-center justify-center text-gray-400"
+        class="w-12 h-12 rounded-full flex items-center justify-center"
+        [ngClass]="
+          isActive(2) || isCompleted(2)
+            ? 'border-2 border-accent bg-white text-[#0070D2]'
+            : 'bg-rellenoEnvio text-gray-400'
+        "
       >
         <svg
           width="10"
@@ -54,15 +86,38 @@
           </defs>
         </svg>
       </div>
-      <span class="text-sm font-medium text-gray-500">Datos de pago</span>
+      <span
+        class="text-sm font-medium"
+        [ngClass]="
+          isActive(2) || isCompleted(2)
+            ? 'text-primary'
+            : 'text-gray-500'
+        "
+        >Datos de pago</span
+      >
     </div>
 
-    <div class="h-0.5 flex-1 bg-[#FFD26F] hidden lg:block mb-8"></div>
+    <!-- Línea entre 2 y 3 -->
+    <div
+      class="h-0.5 flex-1 hidden lg:block mb-8"
+      [ngClass]="isCompleted(2) ? 'bg-[#FFD26F]' : 'bg-gray-200'"
+    ></div>
 
     <!-- Paso 3 -->
-    <div class="flex flex-col items-center justify-center gap-3 opacity-60">
+    <div
+      class="flex flex-col items-center justify-center gap-3"
+      [ngClass]="{
+        'opacity-100': isActive(3) || isCompleted(3),
+        'opacity-60': !isActive(3) && !isCompleted(3)
+      }"
+    >
       <div
-        class="w-12 h-12 rounded-full bg-rellenoEnvio flex items-center justify-center text-gray-400"
+        class="w-12 h-12 rounded-full flex items-center justify-center"
+        [ngClass]="
+          isActive(3) || isCompleted(3)
+            ? 'border-2 border-accent bg-white text-[#0070D2]'
+            : 'bg-rellenoEnvio text-gray-400'
+        "
       >
         <svg
           width="20"
@@ -84,15 +139,38 @@
           </defs>
         </svg>
       </div>
-      <span class="text-sm font-medium text-gray-500">Datos de entrega</span>
+      <span
+        class="text-sm font-medium"
+        [ngClass]="
+          isActive(3) || isCompleted(3)
+            ? 'text-primary'
+            : 'text-gray-500'
+        "
+        >Datos de entrega</span
+      >
     </div>
 
-    <div class="h-0.5 flex-1 bg-[#FFD26F] hidden lg:block mb-8"></div>
+    <!-- Línea entre 3 y 4 -->
+    <div
+      class="h-0.5 flex-1 hidden lg:block mb-8"
+      [ngClass]="isCompleted(3) ? 'bg-[#FFD26F]' : 'bg-gray-200'"
+    ></div>
 
     <!-- Paso 4 -->
-    <div class="flex flex-col items-center justify-center gap-3 opacity-60">
+    <div
+      class="flex flex-col items-center justify-center gap-3"
+      [ngClass]="{
+        'opacity-100': isActive(4) || isCompleted(4),
+        'opacity-60': !isActive(4) && !isCompleted(4)
+      }"
+    >
       <div
-        class="w-12 h-12 rounded-full bg-rellenoEnvio flex items-center justify-center text-gray-400"
+        class="w-12 h-12 rounded-full flex items-center justify-center"
+        [ngClass]="
+          isActive(4) || isCompleted(4)
+            ? 'border-2 border-accent bg-white text-[#0070D2]'
+            : 'bg-rellenoEnvio text-gray-400'
+        "
       >
         <svg
           width="18"
@@ -114,7 +192,15 @@
           </defs>
         </svg>
       </div>
-      <span class="text-sm font-medium text-gray-500">Completar</span>
+      <span
+        class="text-sm font-medium"
+        [ngClass]="
+          isActive(4) || isCompleted(4)
+            ? 'text-primary'
+            : 'text-gray-500'
+        "
+        >Completar</span
+      >
     </div>
   </div>
 </div>

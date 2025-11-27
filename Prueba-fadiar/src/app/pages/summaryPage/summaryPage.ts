@@ -7,11 +7,12 @@ import { CheckoutService } from '../../services/checkout.service';
 import { CartItem } from '../../model/cartItem.model';
 import { CartRutaEnvio } from '../../components/cartRutaEnvio/cartRutaEnvio';
 import { BreadcrumbComponent } from "../../components/breadcrumb/breadcrumb";
+import { DownloadAppBanner } from "../../components/DownloadAppBanner/DownloadAppBanner";
 
 @Component({
   selector: 'app-summary-page',
   standalone: true,
-  imports: [CommonModule, CartRutaEnvio, BreadcrumbComponent],
+  imports: [CommonModule, CartRutaEnvio, BreadcrumbComponent, DownloadAppBanner],
   templateUrl: './summaryPage.html',
 })
 export class SummaryPage {
