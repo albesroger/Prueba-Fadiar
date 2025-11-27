@@ -106,7 +106,7 @@
       <button
         type="button"
         class="font-medium hover:opacity-90"
-        (click)="addToCart()"
+        (click)="$event.stopPropagation(); addToCart()"
       >
         <svg
           width="20"
@@ -130,7 +130,7 @@
       <button
         type="button"
         class="text-background-dark flex items-center gap-1"
-        (click)="onRemove()"
+        (click)="$event.stopPropagation(); onRemove()"
       >
         <svg
           width="24"
@@ -258,7 +258,7 @@
           <button
             type="button"
             class="font-medium hover:opacity-90"
-            (click)="addToCart()"
+            (click)="$event.stopPropagation(); addToCart()"
           >
             <svg
               width="20"
@@ -281,7 +281,7 @@
           <button
             type="button"
             class="text-background-dark flex items-center"
-            (click)="onRemove()"
+            (click)="$event.stopPropagation(); onRemove()"
           >
             <svg
               width="24"

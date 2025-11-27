@@ -12,7 +12,7 @@
         <img
           [src]="getImageUrl(mainImage || product.img)"
           [alt]="product.name"
-          class="max-w-full max-h-[420px] object-contain"
+          class="max-w-full max-h-[600px] object-contain rounded-xl"
         />
       </div>
 
@@ -21,7 +21,7 @@
         <!-- galería extra si existe -->
         <button
           type="button"
-          class="w-24 h-24 border rounded-xl overflow-hidden bg-white flex items-center justify-center"
+          class="w-40 h-40 border rounded-xl overflow-hidden bg-white flex items-center justify-center"
         >
           <img
             [src]="getImageUrl(product.img)"
