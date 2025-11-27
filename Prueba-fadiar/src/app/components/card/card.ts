@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Product } from '../../model/products.model';
 import { CartService } from '../../services/cart.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-card',
@@ -38,8 +39,7 @@ export class ProductCardComponent {
   @Output() decrement = new EventEmitter<void>();
   @Output() remove = new EventEmitter<void>();
 
-  constructor(private cartService: CartService) {}
-
+  constructor(private cartService: CartService, private router: Router) {}
 
   get isCatalogMode() {
     return this.mode === 'catalog';
@@ -49,13 +49,10 @@ export class ProductCardComponent {
     return this.mode === 'cart';
   }
 
- 
   addToCart() {
-   
     this.cartService.addToCart(this.product);
   }
 
- 
   onIncrement() {
     this.increment.emit();
   }
@@ -66,6 +63,10 @@ export class ProductCardComponent {
 
   onRemove() {
     this.remove.emit();
+  }
+  goToDetail() {
+    if (!this.product) return;
+    this.router.navigate(['/product', this.product.id]);
   }
 
   // si todavía usabas increase/decrease en otros lados,

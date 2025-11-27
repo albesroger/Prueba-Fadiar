@@ -9,6 +9,7 @@ import { CartPage } from './pages/cartPage/cartPage';
 import { PaymentPage } from './pages/paymentPage/paymentPage';
 import { DeliveryPage } from './pages/deliveryPage/deliveryPage';
 import { SummaryPage } from './pages/summaryPage/summaryPage';
+import { DetailProductPage } from './pages/detailProductPage/detailProductPage';
 
 export const routes: Routes = [
   {
@@ -20,6 +21,11 @@ export const routes: Routes = [
     path: 'product',
     component: ProductPage,
     data: { breadcrumb: 'Product' },
+  },
+  {
+    path: 'product/:id',
+    component: DetailProductPage,
+    data: { breadcrumb: 'Product Details' },
   },
   {
     path: 'about',

@@ -2,6 +2,7 @@
 <article
   *ngIf="layout === 'vertical'; else horizontalCard"
   class="w-[250px] h-[500px] p-3 rounded-2xl border border-deafuera bg-white box-border flex flex-col"
+  (click)="goToDetail()"
 >
   <!-- Imagen -->
   <div class="w-full flex justify-center items-start h-60 overflow-hidden">
@@ -155,6 +156,7 @@
 <ng-template #horizontalCard>
   <article
     class="w-[500px] p-3 pl-5 rounded-2xl border border-deafuera bg-white box-border flex flex-row items-center gap-6"
+    (click)="goToDetail()"
   >
     <!-- Imagen izquierda -->
     <div class="w-[220px] h-full flex items-center justify-center">

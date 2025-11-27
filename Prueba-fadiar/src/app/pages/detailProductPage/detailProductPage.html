@@ -1,0 +1,200 @@
+<div class="mx-28 px-4 lg:px-0 py-2 mb-10">
+  <app-breadcrumb></app-breadcrumb>
+  <h1 class="text-2xl lg:text-3xl font-bold text-primary mb-6">
+    Detalles del Producto
+  </h1>
+  <div class="grid gap-15 lg:grid-cols-2">
+    @if (product) {
+    <!-- Columna izquierda: imagen grande + miniaturas -->
+    <div>
+      <!-- Imagen principal -->
+      <div class="bg-white flex items-center justify-center min-h-80">
+        <img
+          [src]="getImageUrl(mainImage || product.img)"
+          [alt]="product.name"
+          class="max-w-full max-h-[420px] object-contain"
+        />
+      </div>
+
+      <!-- Miniaturas -->
+      <div class="mt-4 flex gap-3 justify-center">
+        <!-- galería extra si existe -->
+        <button
+          type="button"
+          class="w-24 h-24 border rounded-xl overflow-hidden bg-white flex items-center justify-center"
+        >
+          <img
+            [src]="getImageUrl(product.img)"
+            [alt]="product.name"
+            class="max-w-full max-h-full object-contain"
+          />
+        </button>
+      </div>
+    </div>
+
+    <!-- Columna derecha: info del producto -->
+    <div class="flex flex-col gap-4">
+      <!-- título, marca, categoría -->
+      <div>
+        <p class="text-xl text-text-muted font-light mb-1">
+          {{ product.categoria.name }}
+        </p>
+        <h2 class="text-4xl lg:text-3xl font-bold text-[#0A2540]">
+          {{ product.name }}
+        </h2>
+        <p class="text-4xl font-light text-gray-500 mt-1">
+          Marca {{ product.brand }}
+        </p>
+      </div>
+
+      <!-- descripción -->
+      <p class="text-xl leading-relaxed text-background-dark">
+        {{ product.description }}
+      </p>
+
+      <!-- garantía -->
+      <p class="text-[32px] font-semibold text-accent">
+        Garantía {{ product.warranty }} Días
+      </p>
+
+      <!-- precios -->
+      <div class="flex items-baseline gap-4">
+        <p class="text-[40px] font-bold text-primary">
+          $ {{ product.temporal_price | number : '1.2-2' }}
+          <span class="text-[40px] font-light text-primary">USD</span>
+        </p>
+
+        <p class="text-[32px] text-text-muted line-through">
+          $ {{ product.price | number : '1.2-2' }} USD
+        </p>
+      </div>
+
+      <!-- contador + botón carrito -->
+      <div class="flex items-center gap-4 mt-2">
+        <!-- contador -->
+        <div
+          class="flex items-center justify-center w-30 h-10 rounded-xl border border-deafuera bg-white"
+        >
+          <!-- botón menos -->
+          <button class="px-2 py-1 text-accent" (click)="onDecrement()">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g id="Edit / Remove_Minus">
+                <path
+                  id="Vector"
+                  d="M6 12H18"
+                  stroke="gold"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </g>
+            </svg>
+          </button>
+
+          <div class="flex gap-1">
+            <span class="text-2xl text-deafuera font-light">|</span>
+            <span class="text-2xl text-primary">{{quantity}}</span>
+            <span class="text-2xl text-deafuera font-light">|</span>
+          </div>
+
+          <!-- botón más -->
+          <button class="px-2 py-1 text-accent" (click)="onIncrement()">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g id="Edit / Add_Plus">
+                <path
+                  id="Vector"
+                  d="M6 12H12M12 12H18M12 12V18M12 12V6"
+                  stroke="gold"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </g>
+            </svg>
+          </button>
+        </div>
+        <div
+          class="flex flex-row justify-center border w-20 h-10 rounded-2xl border-primary"
+        >
+          <!-- MODO CATÁLOGO: botón Añadir al carrito -->
+
+          <button
+            type="button"
+            class="font-medium hover:opacity-90"
+            (click)="addToCart()"
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M15 15C13.8954 15 13 15.8954 13 17C13 18.1046 13.8954 19 15 19C16.1046 19 17 18.1046 17 17C17 15.8954 16.1046 15 15 15ZM15 15H7.29395C6.83288 15 6.60193 15 6.41211 14.918C6.24466 14.8456 6.09938 14.7291 5.99354 14.5805C5.8749 14.414 5.82719 14.1913 5.73274 13.7505L3.27148 2.26465C3.17484 1.81363 3.12587 1.58838 3.00586 1.41992C2.90002 1.27135 2.75477 1.15441 2.58732 1.08205C2.39746 1 2.16779 1 1.70653 1H1M4 4H16.8732C17.595 4 17.9555 4 18.1978 4.15036C18.41 4.28206 18.5653 4.48862 18.633 4.729C18.7104 5.00343 18.611 5.34996 18.411 6.04346L17.0264 10.8435C16.9068 11.2581 16.8469 11.465 16.7256 11.6189C16.6185 11.7547 16.4772 11.861 16.317 11.9263C16.1361 12 15.9211 12 15.4921 12H5.73047M6 19C4.89543 19 4 18.1046 4 17C4 15.8954 4.89543 15 6 15C7.10457 15 8 15.8954 8 17C8 18.1046 7.10457 19 6 19Z"
+                stroke="#022954"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Propiedades -->
+      </div>
+      <div
+        class="mt-6 rounded-2xl border border-deafuera bg-relleno overflow-hidden"
+      >
+        <div class="px-4 py-3 text-[20px] font-semibold text-primary flex items-center justify-between">
+          Propiedades
+          <svg
+            width="13"
+            height="8"
+            viewBox="0 0 13 8"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M11.4725 8L6.5 3.05533L1.5275 8L-1.77427e-06 6.47773L6.5 3.85426e-07L13 6.47773L11.4725 8Z"
+              fill="#022954"
+            />
+          </svg>
+        </div>
+
+        @if (productProperties.length) { @for (prop of productProperties; track
+        prop.label || $index; let idx = $index) {
+        <div class="flex text-[16px]">
+          <div
+            class="w-1/2 px-4 py-2 border-b text-deafuera uppercase text-[16px] font-light tracking-wide"
+          >
+            <p class="text-background-dark">{{ prop.label }}</p>
+          </div>
+          <div
+            class="w-1/2 px-4 py-2 border-b text-right text-deafuera text-[16px] font-light"
+          >
+            <p class="text-background-dark">{{ prop.value }}</p>
+          </div>
+        </div>
+        } } @else {
+        <div class="px-4 py-3 text-sm text-gray-500">
+          No hay propiedades adicionales para este producto.
+        </div>
+        }
+      </div>
+    </div>
+    }
+  </div>
+</div>
