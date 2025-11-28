@@ -1,0 +1,245 @@
+<!-- BACKDROP -->
+<div
+  class="fixed inset-0 z-50 flex items-center justify-center bg-black/40"
+  (click)="onBackdropClick($event)"
+  data-backdrop="true"
+>
+  <!-- CARD -->
+  <div
+    class="w-[90%] max-w-md bg-white rounded-3xl shadow-xl p-6 sm:p-8 relative"
+    (click)="$event.stopPropagation()"
+  >
+    <!-- Cerrar -->
+    <button
+      class="absolute top-4 right-4 p-1 rounded-full hover:bg-slate-100"
+      (click)="close.emit()"
+    >
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M6 6L18 18M18 6L6 18"
+          stroke="#111827"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </button>
+
+    <!-- Tabs login / registro (no se muestran en modo verify) -->
+    <div class="flex mb-6 border-b border-slate-200" *ngIf="mode !== 'verify'">
+      <button
+        class="flex-1 py-2 text-sm font-semibold"
+        [ngClass]="
+          mode === 'login'
+            ? 'text-primary border-b-2 border-primary'
+            : 'text-slate-400'
+        "
+        (click)="switchMode('login')"
+      >
+        Iniciar sesión
+      </button>
+      <button
+        class="flex-1 py-2 text-sm font-semibold"
+        [ngClass]="
+          mode === 'register'
+            ? 'text-primary border-b-2 border-primary'
+            : 'text-slate-400'
+        "
+        (click)="switchMode('register')"
+      >
+        Crear cuenta
+      </button>
+    </div>
+
+    <!-- Mensajes -->
+    <p *ngIf="errorMsg" class="mb-3 text-sm text-red-600">
+      {{ errorMsg }}
+    </p>
+    <p *ngIf="verificationMsg" class="mb-3 text-sm text-emerald-600">
+      {{ verificationMsg }}
+    </p>
+
+    <!-- FORM LOGIN -->
+    <form
+      *ngIf="mode === 'login'"
+      (ngSubmit)="onSubmitLogin()"
+      class="space-y-4"
+    >
+      <div>
+        <label class="block text-sm font-medium text-primary mb-1">
+          Correo electrónico
+        </label>
+        <input
+          type="email"
+          [(ngModel)]="loginForm.email"
+          name="loginEmail"
+          class="w-full h-10 px-3 rounded-xl border border-slate-300 outline-none text-sm"
+          placeholder="ejemplo@correo.com"
+        />
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-primary mb-1">
+          Contraseña
+        </label>
+        <input
+          type="password"
+          [(ngModel)]="loginForm.password"
+          name="loginPassword"
+          class="w-full h-10 px-3 rounded-xl border border-slate-300 outline-none text-sm"
+          placeholder="••••••••"
+        />
+      </div>
+
+      <button
+        type="submit"
+        class="w-full h-10 rounded-xl bg-primary text-white text-sm font-semibold hover:bg-[#001b3a] transition flex items-center justify-center gap-2"
+        [disabled]="loading"
+      >
+        <span *ngIf="!loading">Entrar</span>
+        <span *ngIf="loading" class="text-xs">Cargando...</span>
+      </button>
+    </form>
+
+    <!-- FORM REGISTRO -->
+    <form
+      *ngIf="mode === 'register'"
+      (ngSubmit)="onSubmitRegister()"
+      class="space-y-4"
+    >
+      <div>
+        <label class="block text-sm font-medium text-primary mb-1">
+          Nombre
+        </label>
+        <input
+          type="text"
+          [(ngModel)]="registerForm.name"
+          name="registerName"
+          class="w-full h-10 px-3 rounded-xl border border-slate-300 outline-none text-sm"
+          placeholder="Tu nombre"
+        />
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-primary mb-1">
+          Primer apellido
+        </label>
+        <input
+          type="text"
+          [(ngModel)]="registerForm.lastname1"
+          name="registerLastname1"
+          class="w-full h-10 px-3 rounded-xl border border-slate-300 outline-none text-sm"
+          placeholder="Tu primer apellido"
+        />
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-primary mb-1">
+          Segundo apellido
+        </label>
+        <input
+          type="text"
+          [(ngModel)]="registerForm.lastname2"
+          name="registerLastname2"
+          class="w-full h-10 px-3 rounded-xl border border-slate-300 outline-none text-sm"
+          placeholder="Tu segundo apellido"
+        />
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-primary mb-1">
+          Correo electrónico
+        </label>
+        <input
+          type="email"
+          [(ngModel)]="registerForm.email"
+          name="registerEmail"
+          class="w-full h-10 px-3 rounded-xl border border-slate-300 outline-none text-sm"
+          placeholder="ejemplo@correo.com"
+        />
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-primary mb-1">
+          Contraseña
+        </label>
+        <input
+          type="password"
+          [(ngModel)]="registerForm.password"
+          name="registerPassword"
+          class="w-full h-10 px-3 rounded-xl border border-slate-300 outline-none text-sm"
+          placeholder="••••••••"
+        />
+      </div>
+
+      <button
+        type="submit"
+        class="w-full h-10 rounded-xl bg-primary text-white text-sm font-semibold hover:bg-[#001b3a] transition flex items-center justify-center gap-2"
+        [disabled]="loading"
+      >
+        <span *ngIf="!loading">Crear cuenta</span>
+        <span *ngIf="loading" class="text-xs">Cargando...</span>
+      </button>
+    </form>
+
+    <!-- FORM VERIFICACIÓN DE CÓDIGO -->
+    <div *ngIf="mode === 'verify'" class="space-y-4">
+      <h3 class="text-lg font-semibold text-primary">
+        Verifica tu correo electrónico
+      </h3>
+
+      <p class="text-sm text-slate-600">
+        Hemos enviado un código de verificación a:
+        <span class="font-semibold text-primary">
+          {{ pendingEmail }}
+        </span>
+      </p>
+
+      <div>
+        <label class="block text-sm font-medium text-primary mb-1">
+          Código de verificación
+        </label>
+        <input
+          type="text"
+          [(ngModel)]="verificationCode"
+          name="verificationCode"
+          class="w-full h-10 px-3 rounded-xl border border-slate-300 outline-none text-sm tracking-[0.2em]"
+          placeholder="Ej: Gs5gzB"
+        />
+      </div>
+
+      <button
+        type="button"
+        class="w-full h-10 rounded-xl bg-primary text-white text-sm font-semibold hover:bg-[#001b3a] transition flex items-center justify-center gap-2"
+        (click)="onConfirmCode()"
+        [disabled]="loading"
+      >
+        <span *ngIf="!loading">Verificar código</span>
+        <span *ngIf="loading" class="text-xs">Verificando...</span>
+      </button>
+
+      <button
+        type="button"
+        class="w-full h-10 rounded-xl border border-primary text-primary text-sm font-semibold hover:bg-primary/5 transition"
+        (click)="onResendCode()"
+        [disabled]="loading"
+      >
+        Reenviar código
+      </button>
+
+      <button
+        type="button"
+        class="w-full h-8 text-xs text-slate-500 underline"
+        (click)="switchMode('login')"
+      >
+        Volver a iniciar sesión
+      </button>
+    </div>
+  </div>
+</div>
