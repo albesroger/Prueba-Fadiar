@@ -10,6 +10,7 @@ import { PaymentPage } from './pages/paymentPage/paymentPage';
 import { DeliveryPage } from './pages/deliveryPage/deliveryPage';
 import { SummaryPage } from './pages/summaryPage/summaryPage';
 import { DetailProductPage } from './pages/detailProductPage/detailProductPage';
+import { PerfilPage } from './pages/perfilPage/perfilPage';
 
 export const routes: Routes = [
   {
@@ -61,5 +62,9 @@ export const routes: Routes = [
     path: 'cart/summary',
     component: SummaryPage,
     data: { breadcrumb: 'Datos de Pago' },
+  },
+  {
+    path: 'perfil',
+    component: PerfilPage,
   },
 ];

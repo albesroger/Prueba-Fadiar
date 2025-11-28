@@ -131,26 +131,19 @@
       <!-- Botón de perfil SIEMPRE visible -->
       <button
         type="button"
-        class="flex items-center justify-center w-9 h-9 rounded-full border border-primary text-primary hover:bg-slate-50 relative"
+        class="flex items-center justify-center w-9 h-9 text-primary hover:bg-slate-50 relative"
         (click)="handleProfileClick()"
       >
         <svg
-          width="20"
-          height="20"
-          viewBox="0 0 24 24"
+          width="26"
+          height="26"
+          viewBox="0 0 26 26"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            d="M12 12C14.2091 12 16 10.2091 16 8C16 5.79086 14.2091 4 12 4C9.79086 4 8 5.79086 8 8C8 10.2091 9.79086 12 12 12Z"
-            stroke="#022954"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-          <path
-            d="M4 20C4.90234 18.3937 7.14062 16 12 16C16.8594 16 19.0977 18.3937 20 20"
-            stroke="#022954"
+            d="M19.9555 22.7764C18.2466 20.8677 15.7635 19.6667 13 19.6667C10.2365 19.6667 7.75323 20.8677 6.04427 22.7764M13 25C6.37258 25 1 19.6274 1 13C1 6.37258 6.37258 1 13 1C19.6274 1 25 6.37258 25 13C25 19.6274 19.6274 25 13 25ZM13 15.6667C10.7909 15.6667 9 13.8758 9 11.6667C9 9.45753 10.7909 7.66667 13 7.66667C15.2091 7.66667 17 9.45753 17 11.6667C17 13.8758 15.2091 15.6667 13 15.6667Z"
+            stroke="#1E1E1E"
             stroke-width="2"
             stroke-linecap="round"
             stroke-linejoin="round"
@@ -160,7 +153,7 @@
         <!-- indicador de logueado: puntico verde -->
         <span
           *ngIf="currentUser"
-          class="absolute -top-0.5 -right-0.5 h-2.5 w-2.5 rounded-full bg-emerald-500 border border-white"
+          class="absolute top-0.5 right-0 h-2.5 w-2.5 rounded-full bg-emerald-500 border border-white"
         ></span>
       </button>
 

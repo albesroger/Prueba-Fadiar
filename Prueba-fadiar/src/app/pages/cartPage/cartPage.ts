@@ -9,6 +9,7 @@ import { CartRutaEnvio } from '../../components/cartRutaEnvio/cartRutaEnvio';
 import { ProductCardComponent } from '../../components/card/card';
 import { DownloadAppBanner } from '../../components/DownloadAppBanner/DownloadAppBanner';
 import { RouterLink } from '@angular/router';
+import { AuthService, User } from '../../core/auth/auth.service';
 
 @Component({
   selector: 'app-cart-page',
@@ -27,6 +28,7 @@ import { RouterLink } from '@angular/router';
 export class CartPage {
   cartItems$!: Observable<CartItem[]>;
   subtotal$!: Observable<number>;
+  user: User | null = null;
 
   customer = {
     name: '',
@@ -46,13 +48,19 @@ export class CartPage {
     // agrega los que necesites
   ];
 
-  constructor(private cartService: CartService) {
+  constructor(
+    private cartService: CartService,
+    private authService: AuthService
+  ) {
     this.cartItems$ = this.cartService.cartItems$;
     this.subtotal$ = this.cartItems$.pipe(
       map((items) =>
         items.reduce((acc, item) => acc + item.product.price * item.quantity, 0)
       )
     );
+    this.authService.currentUser$.subscribe((u) => {
+      this.user = u;
+    });
   }
 
   increase(item: CartItem) {

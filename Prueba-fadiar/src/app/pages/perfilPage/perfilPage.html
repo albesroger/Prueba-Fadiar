@@ -1,0 +1,292 @@
+<section class="flex flex-row justify-center">
+  <div class="max-w-9xl bg-white px-4 sm:px-6 lg:px-[120px] py-10">
+    <!-- Título -->
+    <header class="mb-8">
+      <h1 class="text-[26px] lg:text-[32px] font-bold text-primary">
+        Mi Perfil
+      </h1>
+      <p class="mt-1 text-[14px] lg:text-[16px] text-slate-600">
+        Hola
+        <span class="font-semibold"> {{ user?.name || 'cliente' }} </span>
+        , aquí puedes gestionar y configurar tu cuenta.
+      </p>
+    </header>
+
+    <!-- Layout principal -->
+    <div class="flex flex-col lg:flex-row gap-10 lg:gap-16">
+      <!-- Columna izquierda: Avatar -->
+      <aside
+        class="w-full lg:w-[220px] flex flex-col items-center lg:items-start gap-4"
+      >
+        <span class="text-[16px] font-semibold text-primary">Avatar</span>
+
+        <div class="relative">
+          <div
+            class="h-[120px] w-[120px] rounded-full overflow-hidden bg-slate-200"
+          >
+            <img
+              [src]="'/assets/images/avatar.png'"
+              alt="Avatar"
+              class="h-full w-full object-cover"
+            />
+          </div>
+
+          <!-- Botón circular (recargar / cambiar) -->
+          <button
+            type="button"
+            class="absolute bottom-2 right-1 h-8 w-8 rounded-full bg-accent flex items-center justify-center shadow-md hover:bg-[#d19810]"
+            (click)="onChangeAvatar()"
+          >
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 16 16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M2 8C2 5.79086 3.79086 4 6 4H9V2.5C9 2.22386 9.22386 2 9.5 2C9.63261 2 9.75979 2.05268 9.85355 2.14645L12.3536 4.64645C12.5488 4.84171 12.5488 5.15829 12.3536 5.35355L9.85355 7.85355C9.75979 7.94732 9.63261 8 9.5 8C9.22386 8 9 7.77614 9 7.5V6H6C4.89543 6 4 6.89543 4 8C4 9.10457 4.89543 10 6 10H8C8.55228 10 9 10.4477 9 11C9 11.5523 8.55228 12 8 12H6C3.79086 12 2 10.2091 2 8Z"
+                fill="white"
+              />
+            </svg>
+          </button>
+        </div>
+      </aside>
+
+      <!-- Columna derecha: formularios -->
+      <div class="flex-1 space-y-10">
+        <!-- DATOS PERSONALES -->
+        <form
+          #personalForm="ngForm"
+          (ngSubmit)="onSavePersonal(personalForm)"
+          class="space-y-5"
+        >
+          <div class="flex items-center justify-between">
+            <h2 class="text-[18px] lg:text-[20px] font-semibold text-primary">
+              Datos personales
+            </h2>
+            <button
+              type="submit"
+              class="text-[13px] lg:text-[14px] font-semibold text-accent hover:text-[#d19810]"
+              [disabled]="savingPersonal"
+            >
+              {{ savingPersonal ? 'Guardando...' : 'Guardar' }}
+            </button>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            <!-- Nombre -->
+            <div>
+              <label class="block text-[16px] font-light text-primary mb-1">
+                Nombre
+              </label>
+              <input
+                type="text"
+                required
+                name="personalName"
+                [(ngModel)]="personal.name"
+                #name="ngModel"
+                class="w-[411px] h-11 px-3 rounded-2xl bg-relleno border border-transparent outline-none text-[14px] placeholder:text-[16px]"
+                placeholder="Nombre"
+              />
+              <p
+                *ngIf="name.invalid && personalSubmitted"
+                class="mt-1 text-[12px] text-red-500"
+              >
+                El nombre es requerido
+              </p>
+            </div>
+
+            <!-- Apellidos -->
+            <div>
+              <label class="block text-[16px] font-light text-primary mb-1">
+                Apellidos
+              </label>
+              <input
+                type="text"
+                required
+                name="personalLastnames"
+                [(ngModel)]="personal.lastnames"
+                #lastnames="ngModel"
+                class="w-[411px] h-11 px-3 rounded-2xl bg-relleno border border-transparent outline-none text-[14px] placeholder:text-[16px]"
+                placeholder="Apellidos"
+              />
+              <p
+                *ngIf="lastnames.invalid && personalSubmitted"
+                class="mt-1 text-[12px] text-red-500"
+              >
+                Los apellidos son requeridos
+              </p>
+            </div>
+
+            <!-- Teléfono -->
+            <div>
+              <label class="block text-[16px] font-light text-primary mb-1">
+                Teléfono
+              </label>
+              <div
+                class="flex w-[411px] items-center h-11 rounded-2xl bg-relleno px-3 border border-transparent"
+              >
+                <!-- banderita Cuba dummy -->
+                <div class="flex items-center gap-2 mr-2">
+                  <img
+                    src="/assets/images/cuba-flag.svg"
+                    alt="Cuba"
+                    class="h-4 w-6 object-cover rounded-xs"
+                  />
+                  <span class="text-[13px] text-primary">+53</span>
+                </div>
+                <span class="h-5 w-px bg-relleno mr-2"></span>
+                <input
+                  type="tel"
+                  name="personalPhone"
+                  [(ngModel)]="personal.phone"
+                  #phone="ngModel"
+                  required
+                  class="flex-1 bg-transparent outline-none text-[14px] placeholder:text-[16px]"
+                  placeholder="Teléfono"
+                />
+              </div>
+              <p
+                *ngIf="phone.invalid && personalSubmitted"
+                class="mt-1 text-[12px] text-red-500"
+              >
+                El campo teléfono es requerido
+              </p>
+            </div>
+
+            <!-- Correo -->
+            <div>
+              <label class="block text-[16px] font-light text-primary mb-1">
+                Correo Electrónico
+              </label>
+              <input
+                type="email"
+                required
+                name="personalEmail"
+                [(ngModel)]="personal.email"
+                #email="ngModel"
+                class="w-[411px] h-11 px-3 rounded-2xl bg-relleno border border-transparent outline-none text-[14px] placeholder:text-[14px]"
+                placeholder="Correo"
+              />
+              <p
+                *ngIf="email.invalid && personalSubmitted"
+                class="mt-1 text-[12px] text-red-500"
+              >
+                El correo es requerido
+              </p>
+            </div>
+          </div>
+        </form>
+
+        <!-- DIRECCIÓN -->
+        <form
+          #addressForm="ngForm"
+          (ngSubmit)="onSaveAddress(addressForm)"
+          class="space-y-4"
+        >
+          <div class="flex items-center justify-between">
+            <h2 class="text-[18px] lg:text-[20px] font-semibold text-primary">
+              Dirección
+            </h2>
+            <button
+              type="submit"
+              class="text-[13px] lg:text-[14px] font-semibold text-accent hover:text-[#d19810]"
+              [disabled]="savingAddress"
+            >
+              {{ savingAddress ? 'Guardando...' : 'Guardar' }}
+            </button>
+          </div>
+
+          <div>
+            <label class="block text-[16px] font-light text-primary mb-1">
+              Dirección
+            </label>
+            <textarea
+              name="address"
+              required
+              #addressControl="ngModel"
+              [(ngModel)]="address.address"
+              rows="3"
+              class="w-[842px] px-3 py-3 rounded-2xl placeholder:text-[16px] bg-relleno border border-transparent outline-none text-[16px] resize-none"
+              placeholder="Escriba su dirección"
+            ></textarea>
+            <p
+              *ngIf="addressControl.invalid && addressSubmitted"
+              class="mt-1 text-[12px] text-red-500"
+            >
+              La dirección es requerida
+            </p>
+          </div>
+        </form>
+
+        <!-- CONTRASEÑA -->
+        <form
+          #passwordForm="ngForm"
+          (ngSubmit)="onUpdatePassword(passwordForm)"
+          class="space-y-4"
+        >
+          <div class="flex items-center justify-between">
+            <h2 class="text-[18px] lg:text-[20px] font-semibold text-primary">
+              Contraseña
+            </h2>
+            <button
+              type="submit"
+              class="text-[13px] lg:text-[14px] font-semibold text-accent hover:text-[#d19810]"
+              [disabled]="savingPassword"
+            >
+              {{ savingPassword ? 'Actualizando...' : 'Actualizar' }}
+            </button>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            <!-- Contraseña actual -->
+            <div>
+              <label class="block text-[16px] font-light text-primary mb-1">
+                Contraseña actual
+              </label>
+              <input
+                type="password"
+                required
+                name="currentPassword"
+                [(ngModel)]="passwords.current"
+                #currentPass="ngModel"
+                class="w-[411px] h-11 px-3 rounded-2xl bg-relleno border border-transparent outline-none text-[14px]"
+                placeholder="Contraseña"
+              />
+              <p
+                *ngIf="currentPass.invalid && passwordSubmitted"
+                class="mt-1 text-[12px] text-red-500"
+              >
+                Ingresa tu contraseña actual
+              </p>
+            </div>
+
+            <!-- Nueva contraseña -->
+            <div>
+              <label class="block text-[16px] font-light text-primary mb-1">
+                Nueva contraseña
+              </label>
+              <input
+                type="password"
+                required
+                name="newPassword"
+                [(ngModel)]="passwords.newPassword"
+                #newPass="ngModel"
+                class="w-[411px] h-11 px-3 rounded-2xl bg-relleno border border-transparent outline-none text-[14px]"
+                placeholder="Contraseña"
+              />
+              <p
+                *ngIf="newPass.invalid && passwordSubmitted"
+                class="mt-1 text-[12px] text-red-500"
+              >
+                Ingresa la nueva contraseña
+              </p>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+<app-download-app-banner></app-download-app-banner>

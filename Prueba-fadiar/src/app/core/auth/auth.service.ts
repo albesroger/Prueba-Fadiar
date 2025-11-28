@@ -297,4 +297,32 @@ export class AuthService {
       email,
     });
   }
+
+  updateProfile(payload: {
+    name: string;
+    lastname1: string;
+    lastname2: string;
+    phone?: string;
+    email: string;
+  }) {
+    return this.http
+      .post(`${this.apiUrl}/update-profile`, payload)
+      .pipe(
+        tap(() => {
+          const current = this.currentUserSubject.value;
+          if (!current) return;
+
+          const updated: User = {
+            ...current,
+            name: payload.name,
+            lastname1: payload.lastname1,
+            lastname2: payload.lastname2,
+            email: payload.email,
+          };
+
+          localStorage.setItem(this.userKey, JSON.stringify(updated));
+          this.currentUserSubject.next(updated);
+        })
+      );
+  }
 }
