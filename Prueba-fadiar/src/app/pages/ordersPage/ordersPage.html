@@ -1,0 +1,213 @@
+<section
+  class="w-full bg-white px-4 sm:px-6 lg:px-[120px] py-10 flex flex-col items-center"
+>
+  <div class="flex justify-start w-[1000px]">
+    <h1 class="text-[24px] lg:text-[28px] font-bold text-primary text-center">
+      Mis pedidos
+    </h1>
+  </div>
+
+  <!-- Contenedor -->
+  <div class="w-full max-w-[1100px] mt-8">
+    <!-- Cabecera (solo escritorio) -->
+    <div
+      class="flex justify-between text-[16px] font-semibold text-text-muted px-6 pb-2"
+    >
+      <span class="justify-center flex">Pedido</span>
+      <span class="w-full justify-end pr-8 flex">Fecha</span>
+      <span class="w-full justify-center pl-5 flex">Hora</span>
+      <span class="w-full justify-start pl-2 flex">Carnet de identidad</span>
+      <span class="w-full justify-start pl-8 flex">Teléfono</span>
+      <span class="w-full justify-start pl-2 flex">Estado</span>
+      <span class="justify-center flex"
+        ><svg
+          width="16"
+          height="16"
+          viewBox="0 0 20 20"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M5 8H8M8 8H11M8 8V5M8 8V11M13 13L19 19M8 15C4.13401 15 1 11.866 1 8C1 4.13401 4.13401 1 8 1C11.866 1 15 4.13401 15 8C15 11.866 11.866 15 8 15Z"
+            stroke="#022954"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </span>
+    </div>
+
+    <!-- Lista de pedidos -->
+    <div class="space-y-3">
+      <div
+        *ngFor="let order of orders"
+        class="w-full rounded-3xl overflow-hidden bg-[#F5F7FB]"
+      >
+        <!-- Fila principal -->
+        <button type="button" class="w-full" (click)="toggleOrder(order)">
+          <div
+            class="flex justify-between items-center gap-y-1 lg:gap-0 px-4 py-3 text-[13px] lg:text-[16px]"
+            [ngClass]="
+              activeOrderId === order.id
+                ? 'bg-primary text-white'
+                : 'bg-[#F5F7FB] text-primary'
+            "
+          >
+            <!-- Código -->
+            <div class="font-semibold text-xl">{{ order.code }}</div>
+
+            <!-- Fecha -->
+            <div class="text-center lg:text-left">
+              <span
+                [ngClass]="
+                  activeOrderId === order.id ? 'opacity-90' : 'text-text-muted '
+                "
+              >
+                {{ order.date }}
+              </span>
+            </div>
+
+            <!-- Hora -->
+            <div class="text-center lg:text-left">
+              <span
+                [ngClass]="
+                  activeOrderId === order.id ? 'opacity-90' : 'text-text-muted'
+                "
+              >
+                {{ order.time }}
+              </span>
+            </div>
+
+            <!-- CI -->
+            <div class="hidden lg:block">
+              <span
+                [ngClass]="
+                  activeOrderId === order.id ? 'opacity-90' : 'text-text-muted'
+                "
+              >
+                {{ order.ci }}
+              </span>
+            </div>
+
+            <!-- Teléfono -->
+            <div class="hidden lg:block">
+              <span
+                [ngClass]="
+                  activeOrderId === order.id ? 'opacity-90' : 'text-text-muted'
+                "
+              >
+                {{ order.phone }}
+              </span>
+            </div>
+
+            <!-- Estado -->
+            <div class="flex justify-start lg:justify-center">
+              <span
+                class="px-3 py-1 rounded-full text-[15px] font-semibold"
+                [ngClass]="getStatusClasses(order.status)"
+              >
+                {{ order.status }}
+              </span>
+            </div>
+
+            <!-- Icono expandir / cerrar -->
+            <div class="flex justify-end">
+              <!-- plus / close -->
+              <div class="h-7 w-7 flex items-center justify-center">
+                <ng-container
+                  *ngIf="activeOrderId !== order.id; else closeIcon"
+                >
+                  <!-- + -->
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M6 10H10M10 10H14M10 10V14M10 10V6M10 19C5.02944 19 1 14.9706 1 10C1 5.02944 5.02944 1 10 1C14.9706 1 19 5.02944 19 10C19 14.9706 14.9706 19 10 19Z"
+                      stroke="#777777"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </ng-container>
+
+                <ng-template #closeIcon>
+                  <!-- x -->
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M7 7L9.99994 9.99994M9.99994 9.99994L12.9999 12.9999M9.99994 9.99994L7 12.9999M9.99994 9.99994L12.9999 7M10 19C5.02944 19 1 14.9706 1 10C1 5.02944 5.02944 1 10 1C14.9706 1 19 5.02944 19 10C19 14.9706 14.9706 19 10 19Z"
+                      stroke="white"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </ng-template>
+              </div>
+            </div>
+          </div>
+        </button>
+
+        <!-- Panel expandido -->
+        <div
+          *ngIf="activeOrderId === order.id"
+          class="bg-[#E8EEF8] px-4 lg:px-6 pb-4 pt-3"
+        >
+          <div
+            class="hidden lg:grid grid-cols-[1.3fr,1fr,1fr,1.8fr,1.2fr,1.2fr,40px] items-center px-0 py-0 mb-4"
+          ></div>
+
+          <!-- productos -->
+          <div
+            class="w-full flex flex-col lg:flex-row gap-4 overflow-x-auto pb-1"
+          >
+            <div
+              *ngFor="let item of order.items"
+              class="min-w-[220px] lg:w-[350px] bg-white rounded-2xl border border-[#E0E0E0] flex flex-row gap-2 items-center px-2 py-1"
+            >
+              <div class="flex justify-center mb-2">
+                <img
+                  [src]="`https://app.fadiar.com:444/prueba/api/${item.img}`"
+                  [alt]="item.name"
+                  class="h-[140px] w-auto object-contain"
+                />
+              </div>
+
+              <div class="flex flex-col gap-1">
+                <h3 class="text-[20px] font-semibold text-primary leading-snug">
+                  {{ item.name }}
+                </h3>
+                <p class="text-[20px] text-slate-500">Marca {{ item.brand }}</p>
+                <p class="mt-2 text-[24px] font-bold text-primary">
+                  $ {{ item.price }}
+                  <span class="text-[24px] font-light text-primary">
+                    {{ item.currency }}
+                  </span>
+                </p>
+              </div>
+            </div>
+
+            <p
+              *ngIf="order.items.length === 0"
+              class="text-[13px] text-slate-500"
+            >
+              Este pedido no tiene productos detallados.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<app-download-app-banner></app-download-app-banner>

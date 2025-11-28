@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
 import { Home } from './pages/home/home';
 import { ProductPage } from './pages/productPage/productPage';
-import { FaqQuestions } from './components/faqQuestions/faqQuestions';
 import { FaqPage } from './pages/faqPage/faqPage';
 import { AboutusPage } from './pages/aboutusPage/aboutusPage';
 import { ContactoPage } from './pages/contactoPage/contactoPage';
@@ -11,6 +10,7 @@ import { DeliveryPage } from './pages/deliveryPage/deliveryPage';
 import { SummaryPage } from './pages/summaryPage/summaryPage';
 import { DetailProductPage } from './pages/detailProductPage/detailProductPage';
 import { PerfilPage } from './pages/perfilPage/perfilPage';
+import { OrdersPage } from './pages/ordersPage/ordersPage';
 
 export const routes: Routes = [
   {
@@ -67,4 +67,5 @@ export const routes: Routes = [
     path: 'perfil',
     component: PerfilPage,
   },
+  { path: 'pedidos', component: OrdersPage },
 ];
