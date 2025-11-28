@@ -51,4 +51,5 @@ export class OfertasSeccion implements OnInit {
       return { altura: 556, ancho: 250 }; // Ejemplo de medidas para vertical
     }
   }
+
 }

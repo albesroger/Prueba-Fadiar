@@ -149,8 +149,14 @@ export class AuthService {
   // POST /email_verification { email, code }
   // Asumimos que responde igual que /login (message + data.user_info + data.currencys)
   verifyEmailCode(payload: VerifyCodeRequest) {
+    const email = payload.email.trim();
+    const code = payload.code.trim();
+
     return this.http
-      .post<LoginApiResponse>(`${this.apiUrl}/email_verification`, payload)
+      .post<LoginApiResponse>(`${this.apiUrl}/email_verification`, {
+        email,
+        code,
+      })
       .pipe(
         tap((res) => {
           this.handleLoginLikeResponse(res);
