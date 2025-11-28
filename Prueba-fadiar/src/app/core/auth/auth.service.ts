@@ -1,19 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {
-  BehaviorSubject,
-  tap,
-  throwError,
-  Observable,
-} from 'rxjs';
+import { BehaviorSubject, tap, throwError, Observable } from 'rxjs';
 
-// ---- MODELOS SIMPLIFICADOS PARA EL FRONT ----
+
 export interface User {
-  id: number;        // id del user en backend
+  id: number;
   name: string;
   lastname1: string;
   lastname2: string;
-  type: string;      // "Cliente"
+  type: string;
   email: string;
 }
 
@@ -35,8 +30,6 @@ export interface VerifyCodeRequest {
   email: string;
   code: string;
 }
-
-// ---- MODELOS SEGÚN RESPUESTA REAL DEL BACKEND ----
 
 // user_info.person
 interface Person {
@@ -68,7 +61,7 @@ interface UserEntity {
 // user_info.type
 interface UserType {
   id: number;
-  type: string; // "Cliente"
+  type: string;
   category: number;
 }
 
@@ -93,7 +86,7 @@ interface Currencys {
   main: CurrencyItem;
 }
 
-// Respuesta del /login y (asumimos) de /email_verification
+// Respuesta del login
 interface LoginApiResponse {
   message: string;
   data: {
@@ -102,14 +95,14 @@ interface LoginApiResponse {
   };
 }
 
-// Respuesta del /refresh-token
+// Respuesta del refresh-token
 interface RefreshApiResponse {
   refresh_token: string;
   access_token: string;
   login_data?: BackendUserInfo;
 }
 
-// Estructura de sesión interna en el front
+
 interface AuthSession {
   accessToken: string;
   refreshToken: string;
@@ -242,7 +235,10 @@ export class AuthService {
     localStorage.setItem(this.refreshTokenKey, session.refreshToken);
     localStorage.setItem(this.userKey, JSON.stringify(session.user));
     if (session.currencys) {
-      localStorage.setItem(this.currencysKey, JSON.stringify(session.currencys));
+      localStorage.setItem(
+        this.currencysKey,
+        JSON.stringify(session.currencys)
+      );
     }
     this.currentUserSubject.next(session.user);
   }

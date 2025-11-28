@@ -24,11 +24,14 @@ import { AuthModalComponent } from '../../auth-modal.component/auth-modal.compon
 export class Navbar {
   mobileMenuOpen = false;
   searchTerm = '';
-  showAuthModal = false;
 
   cartCount$: Observable<number>;
 
   currentUser$!: Observable<User | null>;
+  currentUser: User | null = null;
+
+  isProfileMenuOpen = false;
+  showAuthModal = false;
 
   constructor(
     private productSearchService: ProductSearchService,
@@ -36,8 +39,18 @@ export class Navbar {
     private router: Router,
     private authService: AuthService
   ) {
-    this.cartCount$ = this.cartService.cartCount$; // ✅ aquí
+    this.cartCount$ = this.cartService.cartCount$;
     this.currentUser$ = this.authService.currentUser$;
+
+    // guardamos el usuario actual en una propiedad normal
+    this.currentUser$.subscribe((user) => {
+      this.currentUser = user;
+
+      // si se hace logout desde otro sitio, cerramos menú
+      if (!user) {
+        this.isProfileMenuOpen = false;
+      }
+    });
   }
 
   navItems = [
@@ -58,7 +71,43 @@ export class Navbar {
   }
 
   logout() {
+    this.isProfileMenuOpen = false;
     this.authService.logout();
+    this.router.navigate(['/']);
+  }
+
+  onProfileClick(user: User | null) {
+    if (!user) {
+      this.openAuth();
+    } else {
+      this.isProfileMenuOpen = !this.isProfileMenuOpen;
+    }
+  }
+
+  closeProfileMenu() {
+    this.isProfileMenuOpen = false;
+  }
+
+  handleProfileClick() {
+    if (!this.currentUser) {
+      // no logueado → abrimos modal
+      this.showAuthModal = true;
+    } else {
+      // logueado → togglear menú
+      this.isProfileMenuOpen = !this.isProfileMenuOpen;
+    }
+  }
+
+  // navegar a Perfil
+  goToProfile() {
+    this.isProfileMenuOpen = false;
+    this.router.navigate(['/perfil']);
+  }
+
+  // navegar a Mis pedidos
+  goToOrders() {
+    this.isProfileMenuOpen = false;
+    this.router.navigate(['/pedidos']); // ajusta si tu ruta es distinta
   }
 
   //boton de hamburguesa
