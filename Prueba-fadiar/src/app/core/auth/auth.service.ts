@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, tap, throwError, Observable } from 'rxjs';
 
-
 export interface User {
   id: number;
   name: string;
@@ -102,12 +101,15 @@ interface RefreshApiResponse {
   login_data?: BackendUserInfo;
 }
 
-
 interface AuthSession {
   accessToken: string;
   refreshToken: string;
   user: User;
   currencys?: Currencys | null;
+}
+interface VerifyEmailApiResponse {
+  message: string; // "Correo verificado"
+  login_info: LoginApiResponse; // misma estructura que /login
 }
 
 @Injectable({
@@ -147,19 +149,19 @@ export class AuthService {
 
   // ---- VERIFICAR CÓDIGO DE EMAIL ----
   // POST /email_verification { email, code }
-  // Asumimos que responde igual que /login (message + data.user_info + data.currencys)
   verifyEmailCode(payload: VerifyCodeRequest) {
     const email = payload.email.trim();
     const code = payload.code.trim();
 
     return this.http
-      .post<LoginApiResponse>(`${this.apiUrl}/email_verification`, {
+      .post<VerifyEmailApiResponse>(`${this.apiUrl}/email_verification`, {
         email,
         code,
       })
       .pipe(
         tap((res) => {
-          this.handleLoginLikeResponse(res);
+          // 👇 aquí sí le pasamos al helper la parte que tiene data.user_info
+          this.handleLoginLikeResponse(res.login_info);
         })
       );
   }
@@ -270,15 +272,32 @@ export class AuthService {
   }
 
   // 👇 helper común para respuestas tipo login (/login, /email_verification)
-  private handleLoginLikeResponse(res: LoginApiResponse) {
-    const info = res.data.user_info;
+  // helper común para respuestas tipo login (/login, /email_verification, etc.)
+  private handleLoginLikeResponse(res: any) {
+    // Intentamos encontrar user_info en varias formas posibles
+    const info: BackendUserInfo | undefined =
+      res?.data?.user_info ?? // caso /login
+      res?.user_info ?? // caso /email_verification simple
+      res?.login_data ?? // por si viene como en /refresh-token
+      undefined;
+
+    const currencys: Currencys | null =
+      res?.data?.currencys ?? res?.currencys ?? null;
+
+    if (!info) {
+      console.error(
+        '[AuthService] Respuesta de login/verification sin user_info esperado:',
+        res
+      );
+      return;
+    }
 
     const user: User = {
       id: info.user.id,
       name: info.person.name,
       lastname1: info.person.lastname1,
       lastname2: info.person.lastname2,
-      type: info.type.type, // "Cliente"
+      type: info.type.type,
       email: info.user.email,
     };
 
@@ -286,7 +305,7 @@ export class AuthService {
       accessToken: info.access_token,
       refreshToken: info.refresh_token,
       user,
-      currencys: res.data.currencys,
+      currencys,
     };
 
     this.storeSession(session);
@@ -311,24 +330,22 @@ export class AuthService {
     phone?: string;
     email: string;
   }) {
-    return this.http
-      .post(`${this.apiUrl}/update-profile`, payload)
-      .pipe(
-        tap(() => {
-          const current = this.currentUserSubject.value;
-          if (!current) return;
+    return this.http.post(`${this.apiUrl}/update-profile`, payload).pipe(
+      tap(() => {
+        const current = this.currentUserSubject.value;
+        if (!current) return;
 
-          const updated: User = {
-            ...current,
-            name: payload.name,
-            lastname1: payload.lastname1,
-            lastname2: payload.lastname2,
-            email: payload.email,
-          };
+        const updated: User = {
+          ...current,
+          name: payload.name,
+          lastname1: payload.lastname1,
+          lastname2: payload.lastname2,
+          email: payload.email,
+        };
 
-          localStorage.setItem(this.userKey, JSON.stringify(updated));
-          this.currentUserSubject.next(updated);
-        })
-      );
+        localStorage.setItem(this.userKey, JSON.stringify(updated));
+        this.currentUserSubject.next(updated);
+      })
+    );
   }
 }
