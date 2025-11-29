@@ -80,7 +80,9 @@
           type="range"
           min="0"
           max="200"
-          (change)="onPriceChange()"
+          step="1"
+          [(ngModel)]="maxPrice"
+          (input)="onPriceChange()"
           class="w-full text-primary"
         />
 
@@ -100,7 +102,9 @@
 
             <input
               type="number"
-              (change)="onPriceChange()"
+              min="0"
+              [(ngModel)]="minPrice"
+              (input)="onPriceChange()"
               class="w-full outline-none bg-transparent text-right"
             />
           </div>
@@ -123,7 +127,9 @@
             <span class="text-[#808080]">Máx.</span>
             <input
               type="number"
-              (change)="onPriceChange()"
+              min="0"
+              [(ngModel)]="maxPrice"
+              (input)="onPriceChange()"
               class="w-full outline-none bg-transparent text-right"
             />
           </div>

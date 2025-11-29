@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 export interface FilterOption {
   id: string;
@@ -17,7 +18,7 @@ export interface SidebarFilters {
 @Component({
   selector: 'app-sidebar-filter',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './sidebarFilter.html',
 })
 export class SidebarFilterComponent {
@@ -124,6 +125,7 @@ export class SidebarFilterComponent {
   }
 
   onPriceChange() {
+    this.normalizePriceRange();
     this.emitFilters();
   }
 
@@ -143,5 +145,18 @@ export class SidebarFilterComponent {
       minPrice: this.minPrice,
       maxPrice: this.maxPrice,
     });
+  }
+
+  private normalizePriceRange() {
+    // Normaliza valores vacíos/NaN y asegura min <= max
+    this.minPrice = isNaN(Number(this.minPrice)) ? 0 : Number(this.minPrice);
+    this.maxPrice = isNaN(Number(this.maxPrice)) ? 200 : Number(this.maxPrice);
+
+    if (this.minPrice < 0) this.minPrice = 0;
+    if (this.maxPrice < 0) this.maxPrice = 0;
+
+    if (this.minPrice > this.maxPrice) {
+      this.maxPrice = this.minPrice;
+    }
   }
 }
