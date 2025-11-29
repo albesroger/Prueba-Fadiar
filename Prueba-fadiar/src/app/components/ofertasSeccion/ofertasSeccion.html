@@ -11,175 +11,25 @@
     <!-- CONTENEDOR GENERAL -->
     <div
       *ngIf="ofertas && ofertas.length >= 9"
-      class="w-full mx-auto px-3 sm:px-4 lg:px-0 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 sm:gap-4 md:gap-5 xl:gap-6"
+      class="w-full mx-auto px-3 sm:px-4 lg:px-0 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4 md:gap-5 xl:gap-6"
     >
-      <!-- BLOQUE 1: horizontal arriba y dos verticales debajo -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-3 h-full">
-        <!-- Horizontal arriba ocupando 2 columnas -->
-        <div class="md:col-span-2">
-          <app-product-card
-            [categoria]="{
-          id: ofertas[0].categoria.id,
-          name: ofertas[0].categoria.name,
-          id_padre: ofertas[0].categoria.id_padre
+      @for (product of ofertas; track product.id; let i = $index) { @if (i < 9)
+      {
+      <app-product-card
+        [categoria]="{
+          id: product.categoria.id,
+          name: product.categoria.name,
+          id_padre: product.categoria.id_padre
         }"
-            [name]="ofertas[0].name"
-            [img]="ofertas[0].img"
-            [brand]="ofertas[0].brand"
-            [price]="ofertas[0].price"
-            [warranty]="ofertas[0].warranty"
-            layout="horizontal"
-            [product]="ofertas[0]"
-          ></app-product-card>
-        </div>
-
-        <!-- Dos verticales debajo -->
-        <div>
-          <app-product-card
-            [categoria]="{
-          id: ofertas[1].categoria.id,
-          name: ofertas[1].categoria.name,
-          id_padre: ofertas[1].categoria.id_padre
-        }"
-            [name]="ofertas[1].name"
-            [img]="ofertas[1].img"
-            [brand]="ofertas[1].brand"
-            [price]="ofertas[1].price"
-            [warranty]="ofertas[1].warranty"
-            layout="vertical"
-            [product]="ofertas[1]"
-          ></app-product-card>
-        </div>
-
-        <div>
-          <app-product-card
-            [categoria]="{
-          id: ofertas[2].categoria.id,
-          name: ofertas[2].categoria.name,
-          id_padre: ofertas[2].categoria.id_padre
-        }"
-            [name]="ofertas[2].name"
-            [img]="ofertas[2].img"
-            [brand]="ofertas[2].brand"
-            [price]="ofertas[2].price"
-            [warranty]="ofertas[2].warranty"
-            layout="vertical"
-            [product]="ofertas[2]"
-          ></app-product-card>
-        </div>
-      </div>
-
-      <!-- BLOQUE 2: vertical izquierda + dos horizontales a la derecha -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-3 h-full">
-        <!-- Vertical ocupando 2 filas -->
-        <div class="md:row-span-2">
-          <app-product-card
-            [categoria]="{
-          id: ofertas[3].categoria.id,
-          name: ofertas[3].categoria.name,
-          id_padre: ofertas[3].categoria.id_padre
-        }"
-            [name]="ofertas[3].name"
-            [img]="ofertas[3].img"
-            [brand]="ofertas[3].brand"
-            [price]="ofertas[3].price"
-            [warranty]="ofertas[3].warranty"
-            layout="vertical"
-            [product]="ofertas[3]"
-          ></app-product-card>
-        </div>
-
-        <!-- Dos horizontales a la derecha -->
-        <div>
-          <app-product-card
-            [categoria]="{
-          id: ofertas[4].categoria.id,
-          name: ofertas[4].categoria.name,
-          id_padre: ofertas[4].categoria.id_padre
-        }"
-            [name]="ofertas[4].name"
-            [img]="ofertas[4].img"
-            [brand]="ofertas[4].brand"
-            [price]="ofertas[4].price"
-            [warranty]="ofertas[4].warranty"
-            layout="vertical"
-            [product]="ofertas[4]"
-          ></app-product-card>
-        </div>
-
-        <div>
-          <app-product-card
-            [categoria]="{
-          id: ofertas[5].categoria.id,
-          name: ofertas[5].categoria.name,
-          id_padre: ofertas[5].categoria.id_padre
-        }"
-            [name]="ofertas[5].name"
-            [img]="ofertas[5].img"
-            [brand]="ofertas[5].brand"
-            [price]="ofertas[5].price"
-            [warranty]="ofertas[5].warranty"
-            layout="vertical"
-            [product]="ofertas[5]"
-          ></app-product-card>
-        </div>
-      </div>
-
-      <!-- BLOQUE 3: dos verticales arriba + una horizontal abajo -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-3 h-full">
-        <!-- Dos verticales arriba -->
-        <div>
-          <app-product-card
-            [categoria]="{
-          id: ofertas[6].categoria.id,
-          name: ofertas[6].categoria.name,
-          id_padre: ofertas[6].categoria.id_padre
-        }"
-            [name]="ofertas[6].name"
-            [img]="ofertas[6].img"
-            [brand]="ofertas[6].brand"
-            [price]="ofertas[6].price"
-            [warranty]="ofertas[6].warranty"
-            layout="vertical"
-            [product]="ofertas[6]"
-          ></app-product-card>
-        </div>
-
-        <div>
-          <app-product-card
-            [categoria]="{
-          id: ofertas[7].categoria.id,
-          name: ofertas[7].categoria.name,
-          id_padre: ofertas[7].categoria.id_padre
-        }"
-            [name]="ofertas[7].name"
-            [img]="ofertas[7].img"
-            [brand]="ofertas[7].brand"
-            [price]="ofertas[7].price"
-            [warranty]="ofertas[7].warranty"
-            layout="vertical"
-            [product]="ofertas[7]"
-          ></app-product-card>
-        </div>
-
-        <!-- Horizontal abajo ocupando 2 columnas -->
-        <div class="md:col-span-2">
-          <app-product-card
-            [categoria]="{
-          id: ofertas[8].categoria.id,
-          name: ofertas[8].categoria.name,
-          id_padre: ofertas[8].categoria.id_padre
-        }"
-            [name]="ofertas[8].name"
-            [img]="ofertas[8].img"
-            [brand]="ofertas[8].brand"
-            [price]="ofertas[8].price"
-            [warranty]="ofertas[8].warranty"
-            layout="horizontal"
-            [product]="ofertas[8]"
-          ></app-product-card>
-        </div>
-      </div>
+        [name]="product.name"
+        [img]="product.img"
+        [brand]="product.brand"
+        [price]="product.price"
+        [warranty]="product.warranty"
+        layout="vertical"
+        [product]="product"
+      ></app-product-card>
+      } }
     </div>
   </div>
 </section>
