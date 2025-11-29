@@ -24,7 +24,7 @@ npm install
 
 ## Desarrollo
 1) Instala dependencias (`npm install`).
-2) Arranca el dev server (`npm start`).
+2) Arranca el dev server (`npm run dev`).
 3) Ajusta estilos con Tailwind desde las clases utilitarias en los templates.
 
 ## Notas
