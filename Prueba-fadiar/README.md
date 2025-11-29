@@ -1,59 +1,33 @@
-# PruebaFadiar
+# Prueba Fadiar
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.17.
+Front-end de comercio electrónico construido con Angular 19 y Tailwind. Incluye listado de productos con filtros, páginas de detalle, carrito, perfil y secciones de marketing.
 
-## Development server
+## Requisitos
+- Node.js 20+ (recomendado LTS)
+- npm 10+
 
-To start a local development server, run:
-
+## Instalación
 ```bash
-ng serve
+npm install
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Scripts principales
+- `npm start` — levanta el servidor de desarrollo en `http://localhost:4200/`.
+- `npm run build` — genera el build de producción en `dist/`.
+- `npm test` — ejecuta las pruebas unitarias con Karma.
 
-## Code scaffolding
+## Estructura rápida
+- `src/app/components` — UI modular (navbar, grids, banners, filtros, etc.).
+- `src/app/pages` — páginas principales (productos, carrito, perfil, FAQ, etc.).
+- `src/app/services` — servicios compartidos (productos, búsqueda global, sidebar toggle).
+- `src/app/model` — modelos de datos.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Desarrollo
+1) Instala dependencias (`npm install`).
+2) Arranca el dev server (`npm start`).
+3) Ajusta estilos con Tailwind desde las clases utilitarias en los templates.
 
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## Notas
+- El buscador en el navbar sincroniza el término global para `productPage`.
+- El sidebar de filtros se abre en móvil desde el botón de filtros y permanece fijo en desktop.
+- Ajusta variables de precio y filtros en `sidebarFilter` según la API real.
