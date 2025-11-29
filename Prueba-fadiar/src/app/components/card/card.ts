@@ -1,5 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  OnChanges,
+  SimpleChanges,
+} from '@angular/core';
 import { Product } from '../../model/products.model';
 import { CartService } from '../../services/cart.service';
 import { Router } from '@angular/router';
@@ -9,7 +16,7 @@ import { Router } from '@angular/router';
   imports: [CommonModule],
   templateUrl: './card.html',
 })
-export class ProductCardComponent {
+export class ProductCardComponent implements OnChanges {
   @Input() img: string = '';
   @Input() categoria: {
     id: number | null;
@@ -30,6 +37,7 @@ export class ProductCardComponent {
 
   // cantidad (solo tiene sentido en modo carrito)
   @Input() quantity: number = 1;
+  private localQuantity = 1;
 
   // ya no necesitamos showQuantityControls si usamos mode
   // @Input() showQuantityControls = false;
@@ -49,16 +57,40 @@ export class ProductCardComponent {
     return this.mode === 'cart';
   }
 
+  get currentQuantity(): number {
+    return this.isCartMode ? this.quantity : this.localQuantity;
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['quantity'] && this.isCartMode) {
+      this.quantity = changes['quantity'].currentValue ?? 1;
+    }
+    if (changes['quantity'] && this.isCatalogMode) {
+      this.localQuantity = changes['quantity'].currentValue ?? 1;
+    }
+  }
+
   addToCart() {
-    this.cartService.addToCart(this.product);
+    const qtyToAdd = this.isCartMode ? this.quantity : this.localQuantity;
+    this.cartService.addToCart(this.product, qtyToAdd);
   }
 
   onIncrement() {
-    this.increment.emit();
+    if (this.isCartMode) {
+      this.increment.emit();
+      return;
+    }
+    this.localQuantity += 1;
   }
 
   onDecrement() {
-    this.decrement.emit();
+    if (this.isCartMode) {
+      this.decrement.emit();
+      return;
+    }
+    if (this.localQuantity > 1) {
+      this.localQuantity -= 1;
+    }
   }
 
   onRemove() {
