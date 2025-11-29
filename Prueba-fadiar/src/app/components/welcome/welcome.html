@@ -1,42 +1,35 @@
-<div class="relative bg-primary text-white font-sans">
-  <!-- CONTENIDO (solo texto) -->
+<div class="bg-primary text-white font-sans relative h-[305px] sm:h-[355px]">
   <div
-    class="mx-auto max-w-6xl flex flex-col lg:flex-row items-center gap-10 pt-24 pb-24 px-4 lg:px-0"
+    class="mx-auto max-w-7xl  grid grid-cols-1 md:grid-cols-2 items-center gap-10 pt-1 md:pt-16 lg:pt-20 pb-16 lg:pb-20 px-4 sm:px-6 lg:px-0"
   >
     <!-- COLUMNA IZQUIERDA: TEXTOS -->
-    <div class="w-full lg:w-1/2 space-y-4">
-      <div class="max-w-xl">
+    <div class="space-y-4 text-center lg:text-left">
+      <div class="max-w-xl mx-auto lg:mx-0">
         <h1
-          class="text-3xl lg:text-5xl font-extrabold leading-tight text-accent"
+          class="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight text-accent"
         >
           Variedad de productos
         </h1>
 
-        <h1 class="text-3xl lg:text-5xl font-extrabold leading-tight">
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight">
           Electrodomésticos
         </h1>
       </div>
 
-      <p class="text-sm lg:text-base text-background-soft/90 max-w-md mt-4">
+      <p class="text-sm sm:text-base text-background-soft/90 max-w-xl mx-auto lg:mx-0">
         Lorem ipsum dolor sit amet consectetur adipisicing elit hendrerit
         scelerisque, blandit duis sapien phasellus turpis sem convallis
         imperdiet tempus.
       </p>
     </div>
 
-    <!-- COLUMNA DERECHA VACÍA (solo para equilibrar el layout en desktop) -->
-    <div class="hidden lg:block w-1/2"></div>
-  </div>
-
-  <!-- 🔹 IMAGEN DE LAS OLLAS SUPERPUESTA -->
-
-  <div
-    class="mx-auto absolute top-5 right-58 max-w-6xl px-4 lg:px-0 flex justify-center lg:justify-end"
-  >
-    <img
-      src="assets/images/ollas1.png"
-      alt="Ollas"
-      class="h-[260px] lg:h-[400px] object-contain drop-shadow-xl"
-    />
+    <!-- IMAGEN -->
+    <div class="w-full flex justify-center lg:justify-end">
+      <img
+        src="assets/images/ollas1.png"
+        alt="Ollas"
+        class="max-w-[280px] sm:max-w-[360px] xl:max-w-[660px] h-auto absolute top-40 md:top-4 drop-shadow-xl"
+      />
+    </div>
   </div>
 </div>

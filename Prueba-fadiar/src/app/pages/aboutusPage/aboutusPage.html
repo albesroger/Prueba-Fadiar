@@ -1,16 +1,20 @@
-<div class="flex flex-col mx-28">
-  <div class=" mt-10 mb-6">
+<div class="flex flex-col max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-0">
+  <div class="mt-10 mb-6">
     <app-breadcrumb></app-breadcrumb>
   </div>
   <div>
-    <span class="text-[32px] font-bold text-primary tracking-[0.08em]">
+    <span
+      class="text-[28px] sm:text-[32px] font-bold text-primary tracking-[0.08em]"
+    >
       About Us
     </span>
   </div>
 
-  <div class="flex flex-row justify-between mt-5 mb-10">
-    <div class="py-5 w-[790px] h-[598px]">
-      <p class="text-[20px] text-telInfo mb-4">
+  <div
+    class="flex flex-col lg:flex-row justify-between gap-8 lg:gap-12 mt-6 mb-10"
+  >
+    <div class="py-3 lg:py-5 w-full space-y-4">
+      <p class="text-base sm:text-lg text-telInfo leading-relaxed">
         <span class="font-bold text-[#003366]">Grupo Fadiar</span>
         Sit amet consectetur. At tristique est adipiscing pellentesque vel sit
         id at. Malesuada congue bibendum pretium faucibus orci sit urna. Turpis
@@ -18,14 +22,14 @@
         viverra condimentum vestibulum commodo. Sed proin dictum risus in nam.
       </p>
 
-      <p class="text-[20px] text-telInfo mb-4">
+      <p class="text-base sm:text-lg text-telInfo leading-relaxed">
         Sit amet consectetur. At tristique est adipiscing pellentesque vel sit
         id at. Malesuada congue bibendum pretium faucibus orci sit urna. Turpis
         mattis tortor eget egestas diam natoque ultrices ornare lectus. Tortor
         viverra condimentum vestibulum commodo. Sed proin dictum risus in nam.
       </p>
 
-      <p class="text-[20px] text-telInfo mb-4">
+      <p class="text-base sm:text-lg text-telInfo leading-relaxed">
         Sit amet consectetur. At tristique est adipiscing pellentesque vel sit
         id at. Malesuada congue bibendum pretium faucibus orci sit urna. Turpis
         mattis tortor eget egestas diam natoque ultrices ornare lectus. Tortor
@@ -36,7 +40,7 @@
         viverra condimentum vestibulum commodo. Sed proin dictum risus in nam.
       </p>
 
-      <p class="text-[20px] text-telInfo mb-2">
+      <p class="text-base sm:text-lg text-telInfo">
         Para más información sobre la empresa matriz consulte el siguiente sitio
         web:
       </p>
@@ -55,22 +59,22 @@
       <img
         src="/assets/images/tipo.jpg"
         alt="Entrega Grupo Fadiar"
-        class="w-[650px] h-[600px]"
+        class="w-full max-w-[540px] lg:max-w-[600px] h-auto rounded-2xl object-cover shadow-lg"
       />
     </div>
   </div>
 
   <!-- Stats -->
-  <div class="rounded-md bg-relleno px-8 py-6 mt-10 mb-10">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+  <div class="rounded-md bg-relleno px-4 sm:px-6 lg:px-8 py-6 mt-10 mb-10">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 xl:gap-8">
       @for (item of stats; track $index) {
       <div
-        class="flex flex-col gap-2 bg-relleno2 rounded-lg px-6 py-4 w-91 h-50"
+        class="flex flex-col gap-2 bg-relleno2 rounded-lg px-6 py-5 text-center md:text-left items-center md:items-start"
       >
-        <span class="text-[40px] font-extrabold text-primary">
+        <span class="text-3xl sm:text-4xl font-extrabold text-primary">
           {{ item.value }}
         </span>
-        <p class="text-xl text-gray-800 leading-snug">
+        <p class="text-lg sm:text-xl text-gray-800 leading-snug">
           {{ item.title }}
           <span *ngIf="item.description"> {{ item.description }}</span>
         </p>

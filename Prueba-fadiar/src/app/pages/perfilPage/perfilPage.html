@@ -1,5 +1,5 @@
-<section class="flex flex-row justify-center">
-  <div class="max-w-9xl bg-white px-4 sm:px-6 lg:px-[120px] py-10">
+<section class="flex justify-center px-4 sm:px-6 lg:px-10">
+  <div class="w-full max-w-6xl bg-white py-10">
     <!-- Título -->
     <header class="mb-8">
       <h1 class="text-[26px] lg:text-[32px] font-bold text-primary">
@@ -61,7 +61,7 @@
           (ngSubmit)="onSavePersonal(personalForm)"
           class="space-y-5"
         >
-          <div class="flex items-center justify-between">
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
             <h2 class="text-[18px] lg:text-[20px] font-semibold text-primary">
               Datos personales
             </h2>
@@ -86,7 +86,7 @@
                 name="personalName"
                 [(ngModel)]="personal.name"
                 #name="ngModel"
-                class="w-[411px] h-11 px-3 rounded-2xl bg-relleno border border-transparent outline-none text-[14px] placeholder:text-[16px]"
+                class="w-full h-11 px-3 rounded-2xl bg-relleno border border-transparent outline-none text-[14px] placeholder:text-[16px]"
                 placeholder="Nombre"
               />
               <p
@@ -108,7 +108,7 @@
                 name="personalLastnames"
                 [(ngModel)]="personal.lastnames"
                 #lastnames="ngModel"
-                class="w-[411px] h-11 px-3 rounded-2xl bg-relleno border border-transparent outline-none text-[14px] placeholder:text-[16px]"
+                class="w-full h-11 px-3 rounded-2xl bg-relleno border border-transparent outline-none text-[14px] placeholder:text-[16px]"
                 placeholder="Apellidos"
               />
               <p
@@ -125,7 +125,7 @@
                 Teléfono
               </label>
               <div
-                class="flex w-[411px] items-center h-11 rounded-2xl bg-relleno px-3 border border-transparent"
+                class="flex w-full items-center h-11 rounded-2xl bg-relleno px-3 border border-transparent"
               >
                 <!-- banderita Cuba dummy -->
                 <div class="flex items-center gap-2 mr-2">
@@ -166,7 +166,7 @@
                 name="personalEmail"
                 [(ngModel)]="personal.email"
                 #email="ngModel"
-                class="w-[411px] h-11 px-3 rounded-2xl bg-relleno border border-transparent outline-none text-[14px] placeholder:text-[14px]"
+                class="w-full h-11 px-3 rounded-2xl bg-relleno border border-transparent outline-none text-[14px] placeholder:text-[14px]"
                 placeholder="Correo"
               />
               <p
@@ -185,7 +185,7 @@
           (ngSubmit)="onSaveAddress(addressForm)"
           class="space-y-4"
         >
-          <div class="flex items-center justify-between">
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
             <h2 class="text-[18px] lg:text-[20px] font-semibold text-primary">
               Dirección
             </h2>
@@ -208,7 +208,7 @@
               #addressControl="ngModel"
               [(ngModel)]="address.address"
               rows="3"
-              class="w-[842px] px-3 py-3 rounded-2xl placeholder:text-[16px] bg-relleno border border-transparent outline-none text-[16px] resize-none"
+              class="w-full px-3 py-3 rounded-2xl placeholder:text-[16px] bg-relleno border border-transparent outline-none text-[16px] resize-none"
               placeholder="Escriba su dirección"
             ></textarea>
             <p
@@ -226,7 +226,7 @@
           (ngSubmit)="onUpdatePassword(passwordForm)"
           class="space-y-4"
         >
-          <div class="flex items-center justify-between">
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
             <h2 class="text-[18px] lg:text-[20px] font-semibold text-primary">
               Contraseña
             </h2>
@@ -251,7 +251,7 @@
                 name="currentPassword"
                 [(ngModel)]="passwords.current"
                 #currentPass="ngModel"
-                class="w-[411px] h-11 px-3 rounded-2xl bg-relleno border border-transparent outline-none text-[14px]"
+                class="w-full h-11 px-3 rounded-2xl bg-relleno border border-transparent outline-none text-[14px]"
                 placeholder="Contraseña"
               />
               <p
@@ -273,7 +273,7 @@
                 name="newPassword"
                 [(ngModel)]="passwords.newPassword"
                 #newPass="ngModel"
-                class="w-[411px] h-11 px-3 rounded-2xl bg-relleno border border-transparent outline-none text-[14px]"
+                class="w-full h-11 px-3 rounded-2xl bg-relleno border border-transparent outline-none text-[14px]"
                 placeholder="Contraseña"
               />
               <p

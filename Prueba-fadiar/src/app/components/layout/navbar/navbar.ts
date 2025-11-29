@@ -1,13 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { NavigationEnd, Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { ProductSearchService } from '../../../services/product-search.service';
 import { CartService } from '../../../services/cart.service';
 import { Observable } from 'rxjs/internal/Observable';
 import { ProductSearch } from '../../product-search/product-search';
 import { AuthService, User } from '../../../core/auth/auth.service';
 import { AuthModalComponent } from '../../auth-modal.component/auth-modal.component';
+import { SidebarToggleService } from '../../../services/sidebar-toggle.service';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-navbar',
@@ -32,15 +34,23 @@ export class Navbar {
 
   isProfileMenuOpen = false;
   showAuthModal = false;
+  isProductRoute = false;
 
   constructor(
     private productSearchService: ProductSearchService,
     private cartService: CartService,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private sidebarToggleService: SidebarToggleService
   ) {
     this.cartCount$ = this.cartService.cartCount$;
     this.currentUser$ = this.authService.currentUser$;
+    this.isProductRoute = this.router.url.startsWith('/product');
+    this.router.events
+      .pipe(filter((e): e is NavigationEnd => e instanceof NavigationEnd))
+      .subscribe((event) => {
+        this.isProductRoute = event.urlAfterRedirects.startsWith('/product');
+      });
 
     // guardamos el usuario actual en una propiedad normal
     this.currentUser$.subscribe((user) => {
@@ -126,6 +136,10 @@ export class Navbar {
   //barra buscar
   onSearch() {
     console.log('Buscar:', this.searchTerm);
+  }
+
+  onToggleFilters() {
+    this.sidebarToggleService.toggle();
   }
 
   goToCart() {

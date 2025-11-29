@@ -25,7 +25,7 @@ export class MasVendidos implements OnInit {
       next: (products: Product[]) => {
         console.debug('Most sold images received:', products?.length ?? 0);
         const lista = products ?? [];
-        this.masVendidos = lista.slice(10, 14);
+        this.masVendidos = lista.slice(10, 16);
       },
       error: (err: any) => {
         console.error('Error fetching most sold images for ofertas:', err);

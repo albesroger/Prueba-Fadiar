@@ -14,7 +14,7 @@ export class ProductsGrid {
   @Input() searchTerm: string = '';
   @Input() filters?: SidebarFilters | null;
 
-  pageSize = 10; // productos por página
+  pageSize = 10;
   currentPage = 1;
 
   get filteredProducts(): Product[] {
@@ -23,17 +23,14 @@ export class ProductsGrid {
     const term = this.searchTerm?.trim().toLowerCase() ?? '';
 
     return this.products.filter((p) => {
-      // 🔍 Filtro por nombre (búsqueda)
       const matchesName = term ? p.name?.toLowerCase().includes(term) : true;
 
-      // 🏷️ Filtro por categorías
       let matchesCategory = true;
       if (this.filters?.categories?.length) {
         const catId = String((p as any).categoria?.id ?? p.categoria);
         matchesCategory = this.filters.categories.includes(catId);
       }
 
-      // 🏭 Filtro por marca
       let matchesBrand = true;
       if (this.filters?.brands?.length) {
         const brand = (p.brand || '').toLowerCase();
@@ -42,7 +39,6 @@ export class ProductsGrid {
         );
       }
 
-      // 💲 Filtro por precio
       let matchesPrice = true;
       if (typeof this.filters?.minPrice === 'number') {
         matchesPrice = p.price >= this.filters.minPrice!;
@@ -63,22 +59,18 @@ export class ProductsGrid {
     const maxVisible = 4;
     const total = this.totalPages;
 
-    // Si hay 4 páginas o menos, muéstralas todas
     if (total <= maxVisible) {
       return Array.from({ length: total }, (_, i) => i + 1);
     }
 
-    // Ventana deslizante de 4 páginas
     let start = this.currentPage - Math.floor(maxVisible / 2); // centro en la actual
     let end = start + maxVisible - 1;
 
-    // Ajustar si se pasa por abajo
     if (start < 1) {
       start = 1;
       end = maxVisible;
     }
 
-    // Ajustar si se pasa por arriba
     if (end > total) {
       end = total;
       start = total - maxVisible + 1;

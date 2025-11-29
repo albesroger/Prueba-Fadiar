@@ -8,11 +8,15 @@
       </h2>
     </div>
 
-    <div class="grid grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-5 lg:gap-6">
-      <!-- BLOQUE 1: horizontal con dos verticales debajo -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-1">
+    <!-- CONTENEDOR GENERAL -->
+    <div
+      *ngIf="ofertas && ofertas.length >= 9"
+      class="w-full mx-auto px-3 sm:px-4 lg:px-0 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 sm:gap-4 md:gap-5 xl:gap-6"
+    >
+      <!-- BLOQUE 1: horizontal arriba y dos verticales debajo -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-3 h-full">
         <!-- Horizontal arriba ocupando 2 columnas -->
-        <div class="sm:col-span-2">
+        <div class="md:col-span-2">
           <app-product-card
             [categoria]="{
           id: ofertas[0].categoria.id,
@@ -65,10 +69,10 @@
         </div>
       </div>
 
-      <!-- BLOQUE 2: vertical con dos horizontales a la derecha -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <!-- BLOQUE 2: vertical izquierda + dos horizontales a la derecha -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-3 h-full">
         <!-- Vertical ocupando 2 filas -->
-        <div class="sm:row-span-2">
+        <div class="md:row-span-2">
           <app-product-card
             [categoria]="{
           id: ofertas[3].categoria.id,
@@ -121,8 +125,8 @@
         </div>
       </div>
 
-      <!-- BLOQUE 3: dos verticales arriba y una horizontal debajo -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <!-- BLOQUE 3: dos verticales arriba + una horizontal abajo -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-3 h-full">
         <!-- Dos verticales arriba -->
         <div>
           <app-product-card
@@ -159,7 +163,7 @@
         </div>
 
         <!-- Horizontal abajo ocupando 2 columnas -->
-        <div class="sm:col-span-2">
+        <div class="md:col-span-2">
           <app-product-card
             [categoria]="{
           id: ofertas[8].categoria.id,

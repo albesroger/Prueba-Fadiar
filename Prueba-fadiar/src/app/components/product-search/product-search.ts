@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -9,11 +9,17 @@ import { FormsModule } from '@angular/forms';
 })
 export class ProductSearch {
   term: string = '';
+  @Input() showFilterButton = false;
 
   @Output() termChange = new EventEmitter<string>();
+  @Output() filterClick = new EventEmitter<void>();
 
   onTermChange(value: string) {
     this.term = value;
     this.termChange.emit(value);
+  }
+
+  onFilterClick(): void {
+    this.filterClick.emit();
   }
 }

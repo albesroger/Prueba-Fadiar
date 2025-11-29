@@ -1,27 +1,39 @@
-<div class=" mx-5 md:mx-10 lg:mx-28 px-4 lg:px-0 py-8">
-  <!-- Rutas -->
-  <app-breadcrumb></app-breadcrumb>
+<div
+  class="w-full max-w-[1400px] flex-col  mx-auto px-4 sm:px-6 lg:px-0 py-6 sm:py-8 md:py-10"
+>
+  <div class="w-full items-start">
+    <!-- Rutas -->
+    <app-breadcrumb></app-breadcrumb>
 
-  <h1 class="text-2xl lg:text-3xl font-bold text-primary mb-6">Carrito</h1>
+    <h1 class="text-2xl md:text-3xl font-bold text-primary mb-4 md:mb-6">
+      Carrito
+    </h1>
+  </div>
 
   <app-cart-ruta-envio [currentStep]="1"></app-cart-ruta-envio>
 
   <!-- CONTENIDO PRINCIPAL -->
-  <div class="flex justify-between">
+  <div
+    class="mt-6 flex flex-col lg:flex-row gap-6 lg:gap-8 xl:gap-10 items-start"
+  >
     <!-- LISTA DE PRODUCTOS -->
-    <section>
+    <section class="w-full lg:w-2/3 space-y-4 min-w-0">
       @if (cartItems$ | async; as items) { @if (items.length === 0) {
-      <div class="rounded-xl p-6 text-center text-gray-500">
+      <div class="rounded-xl p-6 text-center text-gray-500 bg-white">
         Tu carrito está vacío.
       </div>
       } @else {
       <div class="space-y-4">
         @for (item of items; track item.product.id) {
 
-        <article class="rounded-xl bg-white flex gap-4 items-stretch">
+        <article class="rounded-xl bg-white p-3 sm:p-4 flex flex-col">
           <app-product-card
-            class="col-span-1"
-            [categoria]="{ id: item.product.categoria.id, name:item.product.categoria.name , id_padre: item.product.categoria.id_padre  }"
+            class="w-full"
+            [categoria]="{
+              id: item.product.categoria.id,
+              name: item.product.categoria.name,
+              id_padre: item.product.categoria.id_padre
+            }"
             [name]="item.product.name"
             [img]="item.product.img"
             [brand]="item.product.brand"
@@ -43,19 +55,23 @@
     </section>
 
     <!-- COLUMNA DERECHA: IMPORTE + FORM + RESUMEN -->
-    <aside class="space-y-5 w-[800px] flex flex-col items-center">
-      <div>
+    <aside
+      class="mt-2 lg:mt-0 space-y-5 w-full lg:w-2/3 flex flex-col items-stretch"
+    >
+      <div class="space-y-5 w-full">
         <!-- IMPORTE -->
-        <div class="] rounded-xl bg-white">
+        <div class="rounded-xl bg-white w-full">
           <div
-            class="border-b border-deafuera px-4 py-2 text-xl font-bold text-primary"
+            class="border-b border-deafuera px-4 py-2 text-lg sm:text-xl font-bold text-primary"
           >
             IMPORTE
           </div>
-          <div class="px-8 py-3 flex items-center justify-between">
+          <div
+            class="px-4 sm:px-6 py-3 flex items-center justify-between text-sm sm:text-base"
+          >
             <span class="text-sm text-text-muted font-light">Subtotal</span>
             <span
-              class="text-xl text-text-muted font-light"
+              class="text-lg sm:text-xl text-text-muted font-light"
               *ngIf="(subtotal$ | async) as subtotal"
             >
               $ {{ subtotal | number: '1.2-2' }} USD
@@ -64,23 +80,26 @@
         </div>
 
         <!-- DATOS DEL CLIENTE -->
-        <div class="bg-white p-4 space-y-8">
-          <p class="text-sm font-bold text-primary">
-            {{ user?.name }} {{user?.lastname1}} {{user?.lastname2}}
+        <div class="bg-white p-4 sm:p-5 space-y-6 w-full rounded-xl">
+          <p class="text-sm sm:text-base font-bold text-primary">
+            {{ user?.name }} {{ user?.lastname1 }} {{ user?.lastname2 }}
           </p>
 
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
+            <!-- Teléfono -->
             <div class="md:col-span-1">
               <label
-                class="block text-[16px] font-light text-background-dark mb-1"
+                class="block text-[14px] sm:text-[16px] font-light text-background-dark mb-1"
               >
                 Teléfono
               </label>
 
-              <div class="flex gap bg-relleno h-14 rounded-2xl">
+              <div
+                class="flex flex-col sm:flex-row gap-2 bg-relleno rounded-2xl p-2 sm:p-0 sm:h-14"
+              >
                 <!-- Select código de país -->
                 <select
-                  class="w-20 rounded-2xl px-2 py-2 text-sm outline-none"
+                  class="w-full sm:w-20 rounded-2xl px-2 py-2 text-sm sm:text-base outline-none bg-white sm:bg-transparent"
                   [(ngModel)]="customer.countryCode"
                   name="countryCode"
                 >
@@ -92,7 +111,7 @@
                 <!-- Número sin código -->
                 <input
                   type="text"
-                  class="flex-1 rounded-md px-3 py-2 text-sm outline-none"
+                  class="flex-1 rounded-2xl sm:rounded-md px-3 py-2 text-sm sm:text-base outline-none bg-white sm:bg-transparent"
                   placeholder="Número de teléfono"
                   [(ngModel)]="customer.phone"
                   name="phone"
@@ -100,33 +119,38 @@
               </div>
             </div>
 
+            <!-- CI -->
             <div class="md:col-span-1">
               <label
-                class="block text-[16px] font-light text-background-dark mb-1"
+                class="block text-[14px] sm:text-[16px] font-light text-background-dark mb-1"
               >
                 Carnet de Identidad
               </label>
               <input
                 type="text"
-                class="w-[385px] h-14 rounded-2xl px-3 py-2 text-sm outline-none bg-relleno placeholder:text-[16px] placeholder:text-text-muted placeholder:font-light"
+                class="w-full h-12 sm:h-14 rounded-2xl px-3 py-2 text-sm sm:text-base outline-none bg-relleno placeholder:text-[14px] sm:placeholder:text-[16px] placeholder:text-text-muted placeholder:font-light"
                 placeholder="Carnet de Identidad"
                 [(ngModel)]="customer.idCard"
                 name="idCard"
               />
             </div>
 
+            <!-- Provincia -->
             <div>
               <label
-                class="block text-[16px] font-light text-background-dark mb-1"
+                class="block text-[14px] sm:text-[16px] font-light text-background-dark mb-1"
               >
                 Provincia
               </label>
               <select
-                class="w-[385px] h-14 rounded-2xl px-3 py-2 text-sm outline-none bg-relleno placeholder:text-[16px] placeholder:text-text-muted placeholder:font-light"
+                class="w-full h-12 sm:h-14 rounded-2xl px-3 py-2 text-sm sm:text-base outline-none bg-relleno placeholder:text-[16px] placeholder:text-text-muted placeholder:font-light"
                 [(ngModel)]="customer.province"
                 name="province"
               >
-                <option value="" class="font-light text-text-muted text-[16px]">
+                <option
+                  value=""
+                  class="font-light text-text-muted text-[14px] sm:text-[16px]"
+                >
                   Seleccione provincia
                 </option>
                 <option value="La Habana">La Habana</option>
@@ -141,15 +165,16 @@
               </select>
             </div>
 
+            <!-- Municipio -->
             <div>
               <label
-                class="block text-[16px] font-light text-background-dark] mb-1"
+                class="block text-[14px] sm:text-[16px] font-light text-background-dark mb-1"
               >
                 Municipio
               </label>
               <input
                 type="text"
-                class="w-[385px] h-14 rounded-2xl px-3 py-2 text-sm outline-none bg-relleno placeholder:text-[16px] placeholder:text-text-muted placeholder:font-light"
+                class="w-full h-12 sm:h-14 rounded-2xl px-3 py-2 text-sm sm:text-base outline-none bg-relleno placeholder:text-[14px] sm:placeholder:text-[16px] placeholder:text-text-muted placeholder:font-light"
                 placeholder="Seleccione municipio"
                 [(ngModel)]="customer.municipality"
                 name="municipality"
@@ -157,16 +182,16 @@
             </div>
           </div>
 
-          <label class="mt-2 flex items-center gap-2 text-xs text-gray-600">
+          <label class="mt-1 flex items-start gap-2 text-xs text-gray-600">
             <input
               type="checkbox"
-              class="accent-[#0070D2]"
+              class="mt-1 accent-[#0070D2]"
               [(ngModel)]="customer.homeDelivery"
               name="homeDelivery"
             />
-            <span class="text-[16px] text-text-muted">
+            <span class="text-[14px] sm:text-[16px] text-text-muted">
               ¿Necesitas entrega a domicilio?
-              <span class="text-[14px] text-[#F7941D]">
+              <span class="text-[12px] sm:text-[14px] text-[#F7941D]">
                 (Disponible solo en La Habana)
               </span>
             </span>
@@ -174,14 +199,14 @@
         </div>
 
         <!-- RESUMEN DEL PEDIDO -->
-        <div class="rounded-xl bg-white">
-          <div class="px-4 py-2 text-xl font-bold text-primary">
+        <div class="rounded-xl bg-white w-full">
+          <div class="px-4 py-2 text-lg sm:text-xl font-bold text-primary">
             RESUMEN DEL PEDIDO
           </div>
 
           <div class="px-4 py-3">
             <div
-              class="flex h-20 px-6 items-center bg-relleno justify-between text-xl font-light text-primary rounded-t-2xl"
+              class="flex h-16 sm:h-20 px-4 sm:px-6 items-center bg-relleno justify-between text-base sm:text-xl font-light text-primary rounded-t-2xl"
             >
               <span>Subtotal</span>
               <span *ngIf="(subtotal$ | async) as subtotal">
@@ -190,15 +215,17 @@
             </div>
 
             <div
-              class="px-6 h-20 py-3 bg-rellenoEnvio rounded-b-2xl flex items-center justify-between"
+              class="px-4 sm:px-6 h-16 sm:h-20 py-3 bg-rellenoEnvio rounded-b-2xl flex items-center justify-between"
               *ngIf="(subtotal$ | async) as subtotal"
             >
-              <span class="text-2xl font-semibold text-primary">
+              <span class="text-lg sm:text-2xl font-semibold text-primary">
                 Total a pagar
               </span>
-              <span class="text-xl font-bold text-primary flex gap-1">
+              <span
+                class="text-lg sm:text-xl font-bold text-primary flex gap-1 items-baseline"
+              >
                 $ {{ getTotal(subtotal) | number: '1.2-2' }}
-                <p class="font-light">USD</p>
+                <p class="font-light text-sm sm:text-base">USD</p>
               </span>
             </div>
           </div>
@@ -208,12 +235,13 @@
       <!-- BOTÓN CONFIRMAR -->
       <button
         type="button"
-        class="w-[385px] mt-2 py-3 rounded-2xl bg-primary text-white text-xl font-semibold hover:opacity-90"
+        class="w-full mt-2 py-3 sm:py-3.5 rounded-2xl bg-primary text-white text-base sm:text-lg md:text-xl font-semibold hover:opacity-90"
         routerLink="/cart/payment"
       >
         Confirmar Orden
       </button>
     </aside>
   </div>
+
   <app-download-app-banner></app-download-app-banner>
 </div>

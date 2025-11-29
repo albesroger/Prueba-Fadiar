@@ -37,6 +37,8 @@
   <!--centro-->
   <div class="flex-col mx-2">
     <app-product-search
+      [showFilterButton]="isProductRoute"
+      (filterClick)="onToggleFilters()"
       (termChange)="onTermChange($event)"
     ></app-product-search>
 
